@@ -8,7 +8,7 @@ using System;
 
 namespace NewHorizonsTemplate
 {
-    public class NewHorizonsTemplate : ModBehaviour
+    public class Main : ModBehaviour
     {
         public INewHorizons NewHorizonsAPI;
 

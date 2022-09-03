@@ -230,13 +230,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="INewHorizons.cs" />
-    <Compile Include="NewHorizonsTemplate.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Main.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="default-config.json" />
     <None Include="manifest.json" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="planets\" />
+    <Folder Include="Properties\" />
+    <Folder Include="systems\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
