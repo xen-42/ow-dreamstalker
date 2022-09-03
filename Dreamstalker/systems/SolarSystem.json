@@ -1,0 +1,13 @@
+{
+	"$schema": "https://raw.githubusercontent.com/xen-42/outer-wilds-new-horizons/main/NewHorizons/Schemas/star_system_schema.json",
+	"Skybox": {
+		"destroyStarField": true,
+		"backPath": "systems/green.png",
+		"bottomPath": "systems/green.png",
+		"frontPath": "systems/green.png",
+		"leftPath": "systems/green.png",
+		"rightPath": "systems/green.png",
+		"topPath": "systems/green.png",
+		"useCube": true
+	}
+}
