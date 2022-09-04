@@ -29,5 +29,7 @@ internal class GeneralHandler : SolarSystemHandler
         {
             campfire.SetState(Campfire.State.SMOLDERING, false);
         }
+
+		Locator.GetPlayerBody().gameObject.AddComponent<PlayerEffectController>();
 	}
 }
