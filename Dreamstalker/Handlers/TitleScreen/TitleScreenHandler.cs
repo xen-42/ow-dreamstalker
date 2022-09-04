@@ -1,4 +1,4 @@
-﻿using Dreamstalker.Utilities;
+﻿using Dreamstalker.Patches;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,11 +27,6 @@ internal class TitleScreenHandler : BaseHandler
 
 	private void OnTitleScreenAwake()
 	{
-		// Campfire
-		var campfire = GameObject.FindObjectOfType<Campfire>();
-		CampfireTinter.Tint(campfire);
-
-
 		// Sounds
 		var music = GameObject.Find("AudioSource_Music").GetComponent<OWAudioSource>();
 		music.AssignAudioLibraryClip(AudioType.DreamRuinsBaseTrack);

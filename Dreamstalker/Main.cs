@@ -1,8 +1,10 @@
 ﻿using Dreamstalker.Handlers.SolarSystem;
 using Dreamstalker.Handlers.TitleScreen;
+using HarmonyLib;
 using OWML.Common;
 using OWML.ModHelper;
 using System;
+using System.Reflection;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -19,10 +21,14 @@ public class Main : ModBehaviour
 
     public UnityEvent TitleScreenAwake = new();
 
+    private void Awake()
+    {
+		Instance = this;
+		Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
+	}
+
     private void Start()
     {
-        Instance = this;
-
 		NewHorizonsAPI = ModHelper.Interaction.TryGetModApi<INewHorizons>("xen.NewHorizons");
         NewHorizonsAPI.LoadConfigs(this);
 
