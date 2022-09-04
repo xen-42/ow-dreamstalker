@@ -10,6 +10,7 @@ namespace Dreamstalker.Components;
 internal class DreamstalkerController : VisibilityObject
 {
 	private DreamstalkerEffectsController _effects;
+	private DreamstalkerGrabController _grabber;
 
 	private float _angularVelocity;
 	private float _angularAcceleration = 360f;
@@ -27,11 +28,19 @@ internal class DreamstalkerController : VisibilityObject
 
 	private Transform _relativeTransform;
 
+	private bool _stalking;
+
+	public float farDistance = 30f;
+	public float nearDistance = 10f;
+	public float grabDistance = 2f;
+	public float speed = 4f;
+
 	public override void Awake()
 	{
 		base.Awake();
 
 		_effects = GetComponent<DreamstalkerEffectsController>();
+		_grabber = GetComponentInChildren<DreamstalkerGrabController>();
 
 		_dreamstalkerCollider = gameObject.AddComponent<CapsuleCollider>();
 		gameObject.AddComponent<OWCollider>();
@@ -48,6 +57,8 @@ internal class DreamstalkerController : VisibilityObject
 	public void Start()
 	{
 		_playerCollider = Locator.GetPlayerCollider();
+
+		_stalking = true;
 	}
 
 	public void SetPlanet(AstroObject planet)
@@ -151,13 +162,14 @@ internal class DreamstalkerController : VisibilityObject
 		_lastTeleportTime = Time.time;
 
 		_effects.OnTeleport();
+		_effects.PlayAnimation(DreamstalkerEffectsController.AnimationKeys.CallForHelp);
 
 		var playerLocalPosition = WorldToLocalPosition(_playerCollider.transform.position);
 		var planeVector = Quaternion.FromToRotation(Vector3.up, playerLocalPosition.normalized) * Vector3.left;
 
 		var playerRelativePos = Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), playerLocalPosition.normalized) * planeVector;
 
-		transform.localPosition = playerLocalPosition + playerRelativePos * 30f;
+		transform.localPosition = playerLocalPosition + playerRelativePos * nearDistance;
 	}
 
 	private void StalkPlayer()
@@ -166,18 +178,18 @@ internal class DreamstalkerController : VisibilityObject
 		var direction = displacement.normalized;
 		var distance = displacement.magnitude;
 
-		if (distance > 50f && Time.time > _lastTeleportTime + teleportCooldown)
+		if (distance > farDistance && Time.time > _lastTeleportTime + teleportCooldown)
 		{
 			TeleportNearPlayer();
 			return;
 		}
 
 		float speed = _velocity.magnitude;
-		float deltaPos = speed * speed / (2f * _acceleration);
+		float deltaPos = speed * speed / (speed * _acceleration);
 
 		if (distance > deltaPos)
 		{
-			var target = direction * 2f;
+			var target = direction * speed;
 			_velocity = Vector3.MoveTowards(_velocity, target, _acceleration * Time.fixedDeltaTime);
 		}
 		else
@@ -190,19 +202,29 @@ internal class DreamstalkerController : VisibilityObject
 
 	public void FixedUpdate()
 	{
-		_localTargetPosition = _relativeTransform.InverseTransformPoint(Locator.GetPlayerBody().transform.position);
-		var localDisplacement = _localTargetPosition - transform.localPosition;
+		_localTargetPosition = _relativeTransform.InverseTransformPoint(Locator.GetPlayerTransform().position);
 
+		var localDisplacement = _localTargetPosition - transform.localPosition;
 		var localDirection = localDisplacement.normalized;
-		var distance = localDisplacement.magnitude;
 
 		TurnTowardsLocalDirection(localDirection, 90f);
 
 		// Move towards player
-		StalkPlayer();
+		if (_stalking)
+		{
+			StalkPlayer();
+		}
 
-		var flickerIntensity = Mathf.Clamp01(1f - (distance / 30f));
-		PlayerEffectController.Instance.SetFlicker(flickerIntensity);
+		var distance = (Locator.GetPlayerTransform().position - transform.position).magnitude;
+
+		// Only kill player when in stalking mode
+		if (_stalking && distance < grabDistance)
+		{
+			_grabber.GrabPlayer(4f);
+			_stalking = false;	
+		}
+
+		var flickerIntensity = Mathf.Clamp01(1f - (distance / 20f));
 		PlayerEffectController.Instance.SetStatic(flickerIntensity);
 
 		_effects.UpdateEffects();

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Dreamstalker.Components;
 
@@ -56,7 +57,7 @@ internal class PlayerEffectController : MonoBehaviour
 		}
 		else
 		{
-			_playerAudioController._repairToolSource.SetLocalVolume(strength * strength * 2f);
+			_playerAudioController._repairToolSource.SetLocalVolume(strength * strength * 4f);
 			if (!_playerAudioController._repairToolSource.isPlaying)
 			{
 				_playerAudioController._repairToolSource.Play();

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Dreamstalker.Utilitiy;
+namespace Dreamstalker.Utility;
 
 internal static class SpawnWrapper
 {
@@ -84,7 +84,7 @@ internal static class SpawnWrapper
 		}
 
 		// Disables the artifact
-		_dreamstalkerPrefab.transform.Find("Ghostbird_Skin_01:Ghostbird_Rig_V01:Base").gameObject.SetActive(false);
+		//_dreamstalkerPrefab.transform.Find("Ghostbird_Skin_01:Ghostbird_Rig_V01:Base").gameObject.SetActive(false);
 
 		GameObject.Destroy(skeleton);
 
@@ -94,6 +94,11 @@ internal static class SpawnWrapper
 
 		_dreamstalkerPrefab.AddComponent<DreamstalkerController>();
 		_dreamstalkerPrefab.AddComponent<DreamstalkerEffectsController>();
+		var grabAttachPoint = new GameObject("GrabAttachPoint");
+		grabAttachPoint.transform.parent = _dreamstalkerPrefab.transform;
+		grabAttachPoint.transform.localPosition = Vector3.zero;
+
+		grabAttachPoint.AddComponent<DreamstalkerGrabController>();
 	}
 
 	private static string GhostBirdBoneMap(string nomaiBone) => nomaiBone switch
