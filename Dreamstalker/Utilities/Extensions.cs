@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Dreamstalker.Utilities;
 
@@ -20,5 +15,11 @@ public static class Extensions
 		var copy = UnityEngine.Object.Instantiate(original);
 		original.SetActive(true);
 		return copy;
+	}
+
+	public static string GetPath(this Transform current)
+	{
+		if (current.parent == null) return current.name;
+		return current.parent.GetPath() + "/" + current.name;
 	}
 }

@@ -1,5 +1,6 @@
 ﻿<Project>
-  <PropertyGroup>
-    <OutputPath>$(AppData)\OuterWildsModManager\OWML\Mods\xen.Dreamstalker</OutputPath>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputPath>$(AppData)\OuterWildsModManager\OWML\Mods\xen.Dreamstalker</OutputPath>
+		<OuterWildsModsDirectory>$(AppData)\OuterWildsModManager\OWML\Mods</OuterWildsModsDirectory>
+	</PropertyGroup>
 </Project>
