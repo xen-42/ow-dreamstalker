@@ -12,6 +12,7 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 {
 	private Animator _animator;
 	private DreamstalkerController _controller;
+	private OWAudioSource _oneShotAudioSource;
 
 	private Vector2 _smoothedMoveSpeed = Vector2.zero;
 	private float _smoothedTurnSpeed;
@@ -24,6 +25,9 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 	{
 		_animator = GetComponent<Animator>();
 		_controller = GetComponent<DreamstalkerController>();
+
+		gameObject.AddComponent<AudioSource>().spatialBlend = 1f;
+		_oneShotAudioSource = gameObject.AddComponent<OWAudioSource>();
 
 		ToggleWalk(false, true);
 	}
@@ -79,5 +83,11 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 		_animator.SetFloat(GhostEffects.AnimatorKeys.Float_TurnSpeed, _smoothedTurnSpeed);
 
 		ToggleWalk(relativeVelocity.ApproxEquals(Vector3.zero));
+	}
+
+	public void OnTeleport()
+	{
+		PlayerEffectController.Instance.Blink();
+		_oneShotAudioSource.PlayOneShot(AudioType.EyeLightning, 1.5f);
 	}
 }

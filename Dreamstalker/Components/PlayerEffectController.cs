@@ -11,7 +11,12 @@ internal class PlayerEffectController : MonoBehaviour
 {
 	private PlayerCameraEffectController _cameraEffectController;
 	private LightFlickerController _lightFlickerController;
-	private PlayerAudioController _playerAudioController; 
+	private PlayerAudioController _playerAudioController;
+
+	public float timeModifier = 1.0f;
+	public float minFlicker = 0.0f;
+	public float maxFlicker = 0.5f;
+
 	public static PlayerEffectController Instance { get; private set; }
 
 	private void Awake()
@@ -22,13 +27,13 @@ internal class PlayerEffectController : MonoBehaviour
 	private void Start()
 	{
 		_cameraEffectController = GameObject.FindObjectOfType<PlayerCameraEffectController>();
-		_lightFlickerController = GameObject.FindObjectOfType<LightFlickerController>();
+		_lightFlickerController = Locator.GetPlayerBody().gameObject.GetComponentInChildren<LightFlickerController>();
 		_playerAudioController = Locator.GetPlayerAudioController();
 
 		_playerAudioController._repairToolSource.AssignAudioLibraryClip(AudioType.ToolScopeStatic);
 	}
 
-	public void Blink(float time)
+	public void Blink(float time = 2f)
 	{
 		_cameraEffectController.CloseEyes(time / 2f);
 		_cameraEffectController.OpenEyes(time / 2f, false);
@@ -36,7 +41,8 @@ internal class PlayerEffectController : MonoBehaviour
 
 	public void SetFlicker(float strength)
 	{
-		_lightFlickerController.Flicker(strength, strength == 0 ? 0 : float.MaxValue, 0.05f * strength, 0.1f * strength, 0.2f * strength, 0.3f * strength);
+		var flicker = strength * Mathf.Clamp(Mathf.PerlinNoise(Time.time * timeModifier, 0f), minFlicker, maxFlicker);
+		_lightFlickerController._bubbleRenderer.material.SetAlpha(1f - Mathf.Clamp01(flicker));
 	}
 
 	public void SetStatic(float strength)
@@ -50,11 +56,14 @@ internal class PlayerEffectController : MonoBehaviour
 		}
 		else
 		{
-			_playerAudioController._repairToolSource.SetLocalVolume(strength);
+			_playerAudioController._repairToolSource.SetLocalVolume(strength * strength * 2f);
 			if (!_playerAudioController._repairToolSource.isPlaying)
 			{
 				_playerAudioController._repairToolSource.Play();
 			}
 		}
 	}
+
+	public void PlayOneShot(AudioType type) =>
+		_playerAudioController.PlayOneShotInternal(type);
 }

@@ -60,6 +60,8 @@ internal class DreamstalkerController : MonoBehaviour
 		}
 		Quaternion localRotation = Quaternion.AngleAxis(angleToRotate, up) * transform.localRotation;
 		transform.localRotation = localRotation;
+
+		transform.LookAt(transform.position + Vector3.ProjectOnPlane(transform.forward, GlobalUp()), GlobalUp());
 	}
 
 	public Vector3 GetRelativeVelocity() =>
@@ -113,11 +115,29 @@ internal class DreamstalkerController : MonoBehaviour
 		*/
 	}
 
+	private void TeleportNearPlayer()
+	{
+		_effects.OnTeleport();
+
+		var playerLocalPosition = WorldToLocalPosition(_playerCollider.transform.position);
+		var planeVector = Quaternion.FromToRotation(Vector3.up, playerLocalPosition.normalized) * Vector3.left;
+
+		var playerRelativePos = Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), playerLocalPosition.normalized) * planeVector;
+
+		transform.localPosition = playerLocalPosition + playerRelativePos * 30f;
+	}
+
 	private void StalkPlayer()
 	{
 		var displacement = (_localTargetPosition - transform.localPosition);
 		var direction = displacement.normalized;
 		var distance = displacement.magnitude;
+
+		if (distance > 50f)
+		{
+			TeleportNearPlayer();
+			return;
+		}
 
 		float speed = _velocity.magnitude;
 		float deltaPos = speed * speed / (2f * _acceleration);

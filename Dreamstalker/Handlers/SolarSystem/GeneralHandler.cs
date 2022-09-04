@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Dreamstalker.Components;
+using UnityEngine;
 
 namespace Dreamstalker.Handlers.SolarSystem;
 
