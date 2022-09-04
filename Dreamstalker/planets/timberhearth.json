@@ -1,0 +1,18 @@
+{
+	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
+	"name": "Timber Hearth",
+	"removeChildren": [
+		"Atmosphere_TH",
+		"Sector_TH/Sector_Village/Interactables_Village/ModelRocket_Station/ModelRocketStation_AttachPoint",
+		"Sector_TH/Sector_Village/Interactables_Village/SatelliteProjectorExhibit/Projector/ProjectorControls",
+	],
+	"Volumes": {
+		"audioVolumes": [
+			{
+				"audio": "EyeAmbience_LP",
+				"radius": 400,
+				"track": "music"
+			}
+		]
+	}
+}

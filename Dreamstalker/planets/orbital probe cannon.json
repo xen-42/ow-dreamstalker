@@ -1,0 +1,5 @@
+{
+    "$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
+    "name": "Orbital Probe Cannon",
+	"destroy": true
+}

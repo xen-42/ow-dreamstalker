@@ -1,5 +1,5 @@
 ﻿<Project>
   <PropertyGroup>
-    <OutputPath>$(AppData)\OuterWildsModManager\OWML\Mods\xen.NewHorizons</OutputPath>
+    <OutputPath>$(AppData)\OuterWildsModManager\OWML\Mods\xen.Dreamstalker</OutputPath>
   </PropertyGroup>
 </Project>

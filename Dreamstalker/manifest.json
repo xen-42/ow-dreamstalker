@@ -1,10 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/amazingalek/owml/master/schemas/manifest_schema.json",
-  "filename": "NewHorizonsTemplate.dll",
+  "filename": "Dreamstalker.dll",
   "author": "xen",
-  "name": "New Horizons Template",
-  "uniqueName": "xen.NewHorizonsTemplate",
+  "name": "Escape the Dreamstalker",
+  "uniqueName": "xen.Dreamstalker",
   "version": "0.1.0",
-  "owmlVersion": "2.5.2",
+  "owmlVersion": "2.6.0",
   "dependencies": [ "xen.NewHorizons" ]
 }

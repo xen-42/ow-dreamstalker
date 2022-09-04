@@ -1,0 +1,11 @@
+{
+    "$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
+    "name": "Cave Twin",
+    "removeChildren": [
+        "Atmosphere_CaveTwin",
+		"SandSphere_Rising"
+    ],
+	"Sand": {
+		"size": 30
+	}
+}

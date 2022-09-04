@@ -19,6 +19,10 @@
         <PackageReference Include="OWML" Version="2.6.0" />
         <PackageReference Include="OuterWildsGameLibs" Version="1.1.12.201" />
     </ItemGroup>
+	<Reference Include="NewHorizons">
+		<HintPath>$(OuterWildsModsDirectory)\xen.NewHorizons\NewHorizons.dll</HintPath>
+		<Private>False</Private>
+	</Reference>
     <ItemGroup>
         <None Include="default-config.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -26,14 +30,17 @@
         <None Include="manifest.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Include="Assets\**">
+        <None Include="planets\**">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-		<None Include="Icons\**">
+		<None Include="systems\**">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>
     <ItemGroup>
         <Content Include="Dreamstalker.csproj.user" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="planets\" />
     </ItemGroup>
 </Project>
