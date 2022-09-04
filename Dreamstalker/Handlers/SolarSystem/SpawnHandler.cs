@@ -64,11 +64,12 @@ internal class SpawnHandler : SolarSystemHandler
                 var newParent = zombiePrefab.GetComponentsInChildren<Transform>().FirstOrDefault(x => x.name == name);
                 if (newParent != null)
                 {
-                    var localPosition = transform.localPosition;
-                    var localRotation = transform.localRotation;
                     transform.parent = newParent;
-                    transform.localPosition = Vector3.zero;
-                    transform.localRotation = Quaternion.identity;
+
+                    var adjustment = NomaiBoneAdjustments(transform.name);
+
+                    transform.localPosition = adjustment.offset;
+					transform.localRotation = Quaternion.Euler(adjustment.rotation);
                 }
             }
         }
@@ -82,6 +83,8 @@ internal class SpawnHandler : SolarSystemHandler
         zombiePrefab.transform.Find("Ghostbird_Skin_01:Ghostbird_Rig_V01:Base").gameObject.SetActive(false);
 
         Destroy(skeleton);
+
+        zombiePrefab.name = "Dreamstalker_Prefab";
 
         zombiePrefab.SetActive(false);
     }
@@ -166,4 +169,22 @@ internal class SpawnHandler : SolarSystemHandler
         _ => null
     };
 
+    public (Vector3 offset, Vector3 rotation) NomaiBoneAdjustments(string nomaiBone) => nomaiBone switch
+    {
+        "Nomai_Rig_v01:TrajectorySHJnt" => (new Vector3(0, 2.5f, -0.5f), new Vector3(60, 180, 180)),
+
+		"Nomai_Rig_v01:LF_Arm_WristSHJnt" => (new Vector3(-0.1f, -0.12f, 0.05f), new Vector3(90, 300, 160)),
+		"Nomai_Rig_v01:RT_Arm_WristSHJnt" => (new Vector3(-0.1f, -0.12f, 0.05f), new Vector3(90, 300, 160)),
+
+		"Nomai_Rig_v01:LF_Leg_HipSHJnt" => (new Vector3(-0.04f, 0.03f, 0.17f), new Vector3(0, 65, 355)),
+		"Nomai_Rig_v01:RT_Leg_HipSHJnt" => (new Vector3(0.04f, -0.03f, -0.17f), new Vector3(0, -65, -355)),
+
+		"Nomai_Rig_v01:LF_Leg_Knee1SHJnt" => (new Vector3(0.5f, -0.2f, 0.4f), Vector3.zero),
+		"Nomai_Rig_v01:RT_Leg_Knee1SHJnt" => (new Vector3(-0.5f, 0.2f, -0.4f), Vector3.zero),
+
+		"Nomai_Rig_v01:Spine_TopSHJnt" => (new Vector3(1f, 0f, 0f), Vector3.zero),
+		"Nomai_Rig_v01:Neck_TopSHJnt" => (new Vector3(0.1f, -0.5f, 0f), Vector3.zero),
+
+		_ => (Vector3.zero, Vector3.zero)
+    };
 }
