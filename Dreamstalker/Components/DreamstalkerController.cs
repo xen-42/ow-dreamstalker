@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Dreamstalker.Components;
 
-internal class DreamstalkerController : MonoBehaviour
+internal class DreamstalkerController : VisibilityObject
 {
 	private DreamstalkerEffectsController _effects;
 
@@ -22,19 +22,38 @@ internal class DreamstalkerController : MonoBehaviour
 	private Collider _playerCollider;
 	private Collider _dreamstalkerCollider;
 
-	public Transform RelativeTransform { private get; set; }
+	private float _lastTeleportTime;
+	public float teleportCooldown = 10f;
 
-	public void Awake()
+	private Transform _relativeTransform;
+
+	public override void Awake()
 	{
+		base.Awake();
+
 		_effects = GetComponent<DreamstalkerEffectsController>();
 
 		_dreamstalkerCollider = gameObject.AddComponent<CapsuleCollider>();
 		gameObject.AddComponent<OWCollider>();
+
+		var visibilityTracker = new GameObject("VisibilityTracker_Sphere");
+		visibilityTracker.transform.parent = transform;
+		visibilityTracker.transform.localPosition = Vector3.zero;
+		var sphere = visibilityTracker.AddComponent<SphereShape>();
+		sphere.radius = 4f;
+		var tracker = visibilityTracker.AddComponent<ShapeVisibilityTracker>();
+		_visibilityTrackers = new VisibilityTracker[] { tracker };
 	}
 
 	public void Start()
 	{
 		_playerCollider = Locator.GetPlayerCollider();
+	}
+
+	public void SetPlanet(AstroObject planet)
+	{
+		SetSector(planet.GetRootSector());
+		_relativeTransform = planet.transform;
 	}
 
 	private void TurnTowardsLocalDirection(Vector3 localDirection, float targetDegreesPerSecond)
@@ -71,22 +90,22 @@ internal class DreamstalkerController : MonoBehaviour
 		_angularVelocity;
 
 	public Vector3 WorldToLocalDirection(Vector3 worldDir) =>
-		RelativeTransform.InverseTransformDirection(worldDir);
+		_relativeTransform.InverseTransformDirection(worldDir);
 
 	public Vector3 LocalToWorldDirection(Vector3 localDir) =>
-		RelativeTransform.TransformDirection(localDir);
+		_relativeTransform.TransformDirection(localDir);
 
 	public Vector3 WorldToLocalPosition(Vector3 worldPos) =>
-		RelativeTransform.InverseTransformPoint(worldPos);
+		_relativeTransform.InverseTransformPoint(worldPos);
 
 	public Quaternion WorldToLocalRotation(Quaternion worldRot) =>
-		RelativeTransform.InverseTransformRotation(worldRot);
+		_relativeTransform.InverseTransformRotation(worldRot);
 
 	public Vector3 LocalUp() =>
 		WorldToLocalDirection(GlobalUp());
 
 	public Vector3 GlobalUp() =>
-		(transform.position - RelativeTransform.position).normalized;
+		(transform.position - _relativeTransform.position).normalized;
 
 	private void UpdatePositionFromVelocity()
 	{
@@ -95,28 +114,42 @@ internal class DreamstalkerController : MonoBehaviour
 		var localPlayerPos = WorldToLocalPosition(Locator.GetPlayerTransform().position);
 		var localPlayerRot = WorldToLocalRotation(Locator.GetPlayerTransform().rotation);
 
-		Vector3 direction;
-		float distance;
-		if (Physics.ComputePenetration(_dreamstalkerCollider, newPos, transform.localRotation, _playerCollider, localPlayerPos, localPlayerRot, out direction, out distance))
+		if (Physics.ComputePenetration(_dreamstalkerCollider, newPos, transform.localRotation, _playerCollider, localPlayerPos, localPlayerRot,
+			out var direction, out var distance))
 		{
 			newPos += direction * distance;
 		}
 
 		transform.localPosition = newPos;
 
-		/*
 		// Stick to the ground
-		var origin = RelativeTransform.position + GlobalUp() * 500f;
+		_dreamstalkerCollider.enabled = false;
+		var origin = transform.position + GlobalUp() * 2f;
+		var originalPosition = transform.position;
 		var downwards = -GlobalUp();
+
 		if (Physics.Raycast(origin, downwards, out var hitInfo, 500f, OWLayerMask.physicalMask))
 		{
 			transform.position = hitInfo.point;
 		}
-		*/
+		else if (Physics.Raycast(transform.position + GlobalUp() * 50f, downwards, out hitInfo, 500f, OWLayerMask.physicalMask))
+		{
+			transform.position = hitInfo.point;
+		}
+
+		// Treat it as a teleport if it was a big jump
+		if ((transform.position - originalPosition).sqrMagnitude > 1)
+		{
+			_effects.OnTeleport();
+		}
+
+		_dreamstalkerCollider.enabled = true;
 	}
 
 	private void TeleportNearPlayer()
 	{
+		_lastTeleportTime = Time.time;
+
 		_effects.OnTeleport();
 
 		var playerLocalPosition = WorldToLocalPosition(_playerCollider.transform.position);
@@ -133,7 +166,7 @@ internal class DreamstalkerController : MonoBehaviour
 		var direction = displacement.normalized;
 		var distance = displacement.magnitude;
 
-		if (distance > 50f)
+		if (distance > 50f && Time.time > _lastTeleportTime + teleportCooldown)
 		{
 			TeleportNearPlayer();
 			return;
@@ -157,7 +190,7 @@ internal class DreamstalkerController : MonoBehaviour
 
 	public void FixedUpdate()
 	{
-		_localTargetPosition = RelativeTransform.InverseTransformPoint(Locator.GetPlayerBody().transform.position);
+		_localTargetPosition = _relativeTransform.InverseTransformPoint(Locator.GetPlayerBody().transform.position);
 		var localDisplacement = _localTargetPosition - transform.localPosition;
 
 		var localDirection = localDisplacement.normalized;

@@ -87,7 +87,7 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 
 	public void OnTeleport()
 	{
-		PlayerEffectController.Instance.Blink();
-		_oneShotAudioSource.PlayOneShot(AudioType.EyeLightning, 1.5f);
+		_oneShotAudioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+		_oneShotAudioSource.PlayOneShot(AudioType.Ghost_Identify_Curious, 1f);
 	}
 }

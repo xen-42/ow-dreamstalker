@@ -40,7 +40,7 @@ internal static class SpawnWrapper
 		dreamstalker.transform.parent = planet.GetRootSector().transform;
 		dreamstalker.transform.position = planet.GetRootSector().transform.TransformPoint(position);
 		AlignToNormal(planet.GetRootSector().gameObject, dreamstalker);
-		dreamstalker.GetComponent<DreamstalkerController>().RelativeTransform = planet.transform;
+		dreamstalker.GetComponent<DreamstalkerController>().SetPlanet(planet);
 		dreamstalker.SetActive(true);
 	}
 
