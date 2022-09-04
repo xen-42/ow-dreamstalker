@@ -18,12 +18,14 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 	private DampedSpring2D _moveSpeedSpring = new DampedSpring2D(50f, 1f);
 	private DampedSpring _turnSpeedSpring = new DampedSpring(50f, 1f);
 
+	private bool _moving;
+
 	public void Awake()
 	{
 		_animator = GetComponent<Animator>();
 		_controller = GetComponent<DreamstalkerController>();
 
-		_animator.SetInteger(GhostEffects.AnimatorKeys.Int_MoveStyle, (int)GhostEffects.MovementStyle.Stalk);
+		ToggleWalk(false, true);
 	}
 
 	public enum AnimationKeys
@@ -45,15 +47,37 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 		};
 	}
 
-	public void Update_Effects()
+	public void ToggleWalk(bool move, bool forceUpdate = false)
 	{
-		Vector3 relativeVelocity = this._controller.GetRelativeVelocity();
-		float num = 2f;
-		Vector2 targetValue = new Vector2(relativeVelocity.x / num, relativeVelocity.z / num);
-		this._smoothedMoveSpeed = this._moveSpeedSpring.Update(this._smoothedMoveSpeed, targetValue, Time.deltaTime);
-		this._animator.SetFloat(GhostEffects.AnimatorKeys.Float_MoveDirectionX, this._smoothedMoveSpeed.x);
-		this._animator.SetFloat(GhostEffects.AnimatorKeys.Float_MoveDirectionY, this._smoothedMoveSpeed.y);
-		this._smoothedTurnSpeed = this._turnSpeedSpring.Update(this._smoothedTurnSpeed, this._controller.GetAngularVelocity() / 90f, Time.deltaTime);
-		this._animator.SetFloat(GhostEffects.AnimatorKeys.Float_TurnSpeed, this._smoothedTurnSpeed);
+		if (!forceUpdate && move == _moving)
+		{
+			return;
+		}
+
+		if (move)
+		{
+			_animator.SetInteger(GhostEffects.AnimatorKeys.Int_MoveStyle, (int)GhostEffects.MovementStyle.Normal);
+		}
+		else
+		{
+			_animator.SetInteger(GhostEffects.AnimatorKeys.Int_MoveStyle, (int)GhostEffects.MovementStyle.Stalk);
+		}
+
+		_moving = move;
+	}
+
+	public void UpdateEffects()
+	{
+		Vector3 relativeVelocity = _controller.GetRelativeVelocity();
+		float speed = 2f;
+
+		Vector2 targetValue = new Vector2(relativeVelocity.x / speed, relativeVelocity.z / speed);
+		_smoothedMoveSpeed = _moveSpeedSpring.Update(_smoothedMoveSpeed, targetValue, Time.deltaTime);
+		_animator.SetFloat(GhostEffects.AnimatorKeys.Float_MoveDirectionX, _smoothedMoveSpeed.x);
+		_animator.SetFloat(GhostEffects.AnimatorKeys.Float_MoveDirectionY, _smoothedMoveSpeed.y);
+		_smoothedTurnSpeed = _turnSpeedSpring.Update(_smoothedTurnSpeed, _controller.GetAngularVelocity() / 90f, Time.deltaTime);
+		_animator.SetFloat(GhostEffects.AnimatorKeys.Float_TurnSpeed, _smoothedTurnSpeed);
+
+		ToggleWalk(relativeVelocity.ApproxEquals(Vector3.zero));
 	}
 }

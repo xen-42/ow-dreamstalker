@@ -59,7 +59,7 @@ internal class TimberHearthHandler : SolarSystemHandler
 
 		// Spawn stuff
 		SpawnWrapper.SpawnDreamstalker(th, new Vector3(28.1f, -43.8f, 183.6f));
-		SpawnWrapper.Spawn(th, SpawnWrapper.GhostBirdPath, new Vector3(25.6f, -43.6f, 184f));
-		SpawnWrapper.Spawn(th, SpawnWrapper.MummyPath, new Vector3(30.6f, -42.9f, 183.5f));
+		//SpawnWrapper.Spawn(th, SpawnWrapper.GhostBirdPath, new Vector3(25.6f, -43.6f, 184f));
+		//SpawnWrapper.Spawn(th, SpawnWrapper.MummyPath, new Vector3(30.6f, -42.9f, 183.5f));
 	}
 }
