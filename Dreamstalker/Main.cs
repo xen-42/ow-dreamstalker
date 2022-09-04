@@ -38,7 +38,6 @@ public class Main : ModBehaviour
         gameObject.AddComponent<GeneralHandler>();
         gameObject.AddComponent<SunHandler>();
         gameObject.AddComponent<TimberHearthHandler>();
-        gameObject.AddComponent<SpawnHandler>();
 
         gameObject.AddComponent<TitleScreenHandler>();
 

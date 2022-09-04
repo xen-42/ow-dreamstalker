@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Dreamstalker.Handlers.SolarSystem;
+namespace Dreamstalker.Handlers;
 
 [RequireComponent(typeof(Main))]
 public abstract class SolarSystemHandler : BaseHandler
