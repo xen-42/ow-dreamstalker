@@ -33,7 +33,7 @@ internal class DreamstalkerController : VisibilityObject
 	public float farDistance = 30f;
 	public float nearDistance = 10f;
 	public float grabDistance = 2f;
-	public float speed = 4f;
+	public float maxSpeed = 4f;
 
 	public override void Awake()
 	{
@@ -58,7 +58,7 @@ internal class DreamstalkerController : VisibilityObject
 	{
 		_playerCollider = Locator.GetPlayerCollider();
 
-		_stalking = true;
+		_stalking = false;
 	}
 
 	public void SetPlanet(AstroObject planet)
@@ -185,11 +185,11 @@ internal class DreamstalkerController : VisibilityObject
 		}
 
 		float speed = _velocity.magnitude;
-		float deltaPos = speed * speed / (speed * _acceleration);
+		float deltaPos = speed * speed / (maxSpeed * _acceleration);
 
 		if (distance > deltaPos)
 		{
-			var target = direction * speed;
+			var target = direction * maxSpeed;
 			_velocity = Vector3.MoveTowards(_velocity, target, _acceleration * Time.fixedDeltaTime);
 		}
 		else
@@ -198,6 +198,17 @@ internal class DreamstalkerController : VisibilityObject
 		}
 
 		UpdatePositionFromVelocity();
+	}
+
+	public void StartStalking()
+	{
+		_stalking = true;
+	}
+
+	public void StopStalking()
+	{
+		_stalking = false;
+		_velocity = Vector3.zero;
 	}
 
 	public void FixedUpdate()
@@ -221,7 +232,7 @@ internal class DreamstalkerController : VisibilityObject
 		if (_stalking && distance < grabDistance)
 		{
 			_grabber.GrabPlayer(4f);
-			_stalking = false;	
+			StopStalking();
 		}
 
 		var flickerIntensity = Mathf.Clamp01(1f - (distance / 20f));

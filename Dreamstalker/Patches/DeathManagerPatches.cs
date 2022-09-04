@@ -16,13 +16,18 @@ internal static class DeathManagerPatches
 	private static bool _resurrectAfterDelay;
 	private static bool _fakeDeath;
 
-	[HarmonyPrefix]
-	[HarmonyPatch(typeof(DeathManager), nameof(DeathManager.Start))]
-	private static void DeathManager_Awake()
+	private static void Reset()
 	{
 		_resurrectTime = 0f;
 		_resurrectAfterDelay = false;
 		_fakeDeath = false;
+	}
+
+	[HarmonyPrefix]
+	[HarmonyPatch(typeof(DeathManager), nameof(DeathManager.Start))]
+	private static void DeathManager_Awake()
+	{
+		Reset();
 	}
 
 	[HarmonyPrefix]
@@ -50,6 +55,7 @@ internal static class DeathManagerPatches
 		}
 		else
 		{
+			Reset();
 			return true;
 		}
 	}
@@ -73,6 +79,8 @@ internal static class DeathManagerPatches
 
 			GlobalMessenger.FireEvent("PlayerResurrection");
 			Locator.GetPauseCommandListener().RemovePauseCommandLock();
+
+			Reset();
 		}
 	}
 }
