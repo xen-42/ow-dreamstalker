@@ -25,12 +25,17 @@ internal class GeneralHandler : SolarSystemHandler
 
     protected override void OnSolarSystemStart()
     {
-        // Turn off all campfires (has to happen after campfire Awake
-        foreach (var campfire in FindObjectsOfType<Campfire>())
-        {
-            campfire.SetState(Campfire.State.SMOLDERING, false);
-        }
+		// Turn off all campfires (has to happen after campfire Awake
+		TurnOffCampFires();
 
 		Locator.GetPlayerBody().gameObject.AddComponent<PlayerEffectController>();
+	}
+
+	public static void TurnOffCampFires()
+	{
+		foreach (var campfire in FindObjectsOfType<Campfire>())
+		{
+			campfire.SetState(Campfire.State.SMOLDERING, false);
+		}
 	}
 }
