@@ -1,4 +1,5 @@
-﻿using Dreamstalker.Utility;
+﻿using Dreamstalker.Handlers.SolarSystem;
+using Dreamstalker.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,14 @@ internal class DreamstalkerController : VisibilityObject
 		_playerCollider = Locator.GetPlayerCollider();
 
 		_stalking = false;
+
+		PropHandler.Instance.CampfireLit.AddListener(StartStalking);
+	}
+
+	public override void OnDestroy()
+	{
+		base.OnDestroy();
+		PropHandler.Instance.CampfireLit.RemoveListener(StartStalking);
 	}
 
 	public void SetPlanet(AstroObject planet)

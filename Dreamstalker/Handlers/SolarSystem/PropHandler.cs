@@ -1,11 +1,22 @@
 ﻿using Dreamstalker.Components;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Dreamstalker.Handlers.SolarSystem;
 
 [RequireComponent(typeof(Main))]
-internal class GeneralHandler : SolarSystemHandler
+internal class PropHandler : SolarSystemHandler
 {
+	public static PropHandler Instance { get; private set; }
+
+	public UnityEvent CampfireLit = new();
+
+	protected override void Awake()
+	{
+		base.Awake();
+		Instance = this;
+	}
+
     protected override void OnSolarSystemAwake() 
     {
 		// Want to do this before NH starts creating any of it
@@ -37,5 +48,10 @@ internal class GeneralHandler : SolarSystemHandler
 		{
 			campfire.SetState(Campfire.State.SMOLDERING, false);
 		}
+	}
+
+	public static void OnCampfireLit()
+	{
+		Instance?.CampfireLit?.Invoke();
 	}
 }

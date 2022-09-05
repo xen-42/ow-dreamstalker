@@ -35,7 +35,7 @@ public class Main : ModBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         // Add in the handlers
-        gameObject.AddComponent<GeneralHandler>();
+        gameObject.AddComponent<PropHandler>();
         gameObject.AddComponent<SunHandler>();
         gameObject.AddComponent<TimberHearthHandler>();
 

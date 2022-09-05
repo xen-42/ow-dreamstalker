@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using Dreamstalker.Handlers.SolarSystem;
+using HarmonyLib;
 using NewHorizons.Utility;
 using System;
 using UnityEngine;
@@ -39,7 +40,17 @@ internal static class FirePatches
         }
     }
 
-    [HarmonyPostfix]
+	[HarmonyPrefix]
+	[HarmonyPatch(typeof(Campfire), nameof(Campfire.SetState))]
+    public static void Campfire_SetState(Campfire.State newState)
+    {
+        if (newState == Campfire.State.LIT)
+        {
+            PropHandler.OnCampfireLit();
+        }
+    }
+
+	[HarmonyPostfix]
     [HarmonyPatch(typeof(Marshmallow), nameof(Marshmallow.Start))]
     private static void Marshmallow_Start(Marshmallow __instance)
     {

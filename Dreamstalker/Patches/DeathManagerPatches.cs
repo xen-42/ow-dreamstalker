@@ -1,4 +1,5 @@
 ﻿using Dreamstalker.Components;
+using Dreamstalker.Handlers.SolarSystem;
 using Dreamstalker.Utility;
 using HarmonyLib;
 
@@ -16,6 +17,7 @@ internal static class DeathManagerPatches
 		{
 			PlayerEffectController.Instance.Blink(1f);
 			PlayerSpawnUtil.SpawnAt(AstroObject.Name.TimberHearth);
+			PropHandler.TurnOffCampFires();
 			return false;
 		}
 
