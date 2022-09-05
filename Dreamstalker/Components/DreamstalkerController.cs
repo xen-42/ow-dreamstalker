@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Dreamstalker.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using static TimelineObliterationController;
 
 namespace Dreamstalker.Components;
 
@@ -202,6 +204,13 @@ internal class DreamstalkerController : VisibilityObject
 
 	public void StartStalking()
 	{
+		_effects.PlayAnimation(DreamstalkerEffectsController.AnimationKeys.CallForHelp);
+		_effects.CallForHelpComplete.AddListener(OnCallForHelpComplete);
+	}
+
+	private void OnCallForHelpComplete()
+	{
+		_effects.CallForHelpComplete.RemoveListener(OnCallForHelpComplete);
 		_stalking = true;
 	}
 
@@ -209,6 +218,19 @@ internal class DreamstalkerController : VisibilityObject
 	{
 		_stalking = false;
 		_velocity = Vector3.zero;
+	}
+
+	public float LineOfSightFraction()
+	{
+		var camera = Locator.GetActiveCamera().transform;
+		var direction = (transform.position - camera.position).normalized;
+
+		if (DSMath.VectorApproxEquals(camera.forward, direction)) return 1f;
+
+		var up = Vector3.Cross(camera.forward, direction);
+		var angle = OWMath.Angle(camera.forward, direction, up);
+
+		return Mathf.Clamp01(1f - (angle / 90f));
 	}
 
 	public void FixedUpdate()
@@ -237,6 +259,7 @@ internal class DreamstalkerController : VisibilityObject
 
 		var flickerIntensity = Mathf.Clamp01(1f - (distance / 20f));
 		PlayerEffectController.Instance.SetStatic(flickerIntensity);
+		PlayerEffectController.Instance.SetFlicker(IsVisible() ? 6 * flickerIntensity * LineOfSightFraction() : 0f);
 
 		_effects.UpdateEffects();
 	}

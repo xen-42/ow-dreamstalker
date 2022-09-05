@@ -24,6 +24,9 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 
 	public UnityEvent SnapNeck = new();
 	public UnityEvent LiftPlayer = new();
+	public UnityEvent CallForHelpComplete = new();
+
+	private float _callForHelpTime;
 
 	public void Awake()
 	{
@@ -49,10 +52,19 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 	{
 		switch (key)
 		{
-			case AnimationKeys.Default: _animator.SetTrigger(GhostEffects.AnimatorKeys.Trigger_Default); break;
-			case AnimationKeys.Grab: _animator.SetTrigger(GhostEffects.AnimatorKeys.Trigger_Grab); break;
-			case AnimationKeys.SnapNeck: _animator.SetTrigger(GhostEffects.AnimatorKeys.Trigger_SnapNeck); break;
-			case AnimationKeys.CallForHelp: _animator.SetTrigger(GhostEffects.AnimatorKeys.Trigger_CallForHelp); break;
+			case AnimationKeys.Default: 
+				_animator.SetTrigger(GhostEffects.AnimatorKeys.Trigger_Default); 
+				break;
+			case AnimationKeys.Grab: 
+				_animator.SetTrigger(GhostEffects.AnimatorKeys.Trigger_Grab); 
+				break;
+			case AnimationKeys.SnapNeck: 
+				_animator.SetTrigger(GhostEffects.AnimatorKeys.Trigger_SnapNeck); 
+				break;
+			case AnimationKeys.CallForHelp: 
+				_animator.SetTrigger(GhostEffects.AnimatorKeys.Trigger_CallForHelp);
+				_callForHelpTime = Time.time + 1f;
+				break;
 		};
 	}
 
@@ -88,6 +100,12 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 		_animator.SetFloat(GhostEffects.AnimatorKeys.Float_TurnSpeed, _smoothedTurnSpeed);
 
 		ToggleWalk(relativeVelocity.ApproxEquals(Vector3.zero));
+
+		if (_callForHelpTime != 0f && _callForHelpTime < Time.time)
+		{
+			CallForHelpComplete?.Invoke();
+			_callForHelpTime = 0f;
+		}
 	}
 
 	public void OnTeleport() 

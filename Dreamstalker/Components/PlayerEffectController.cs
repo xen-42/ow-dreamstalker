@@ -15,7 +15,6 @@ internal class PlayerEffectController : MonoBehaviour
 	private PlayerAudioController _playerAudioController;
 
 	public float timeModifier = 1.0f;
-	public float minFlicker = 0.0f;
 	public float maxFlicker = 0.5f;
 
 	public static PlayerEffectController Instance { get; private set; }
@@ -42,8 +41,13 @@ internal class PlayerEffectController : MonoBehaviour
 
 	public void SetFlicker(float strength)
 	{
-		var flicker = strength * Mathf.Clamp(Mathf.PerlinNoise(Time.time * timeModifier, 0f), minFlicker, maxFlicker);
-		_lightFlickerController._bubbleRenderer.material.SetAlpha(1f - Mathf.Clamp01(flicker));
+		if (!_lightFlickerController.IsFlickering())
+		{
+			var flicker = 0.8f * Mathf.PerlinNoise(Time.time * 4, 0f) + 0.2f * Mathf.PerlinNoise(0f, Time.time + 100000f);
+			var flickerScale = 1.5f * strength * Mathf.Clamp01(flicker * flicker);
+			_lightFlickerController._bubbleRenderer.material.SetAlpha(Mathf.Clamp(flickerScale, 0f, 0.9f));
+			_lightFlickerController._bubbleRenderer.enabled = true;
+		}
 	}
 
 	public void SetStatic(float strength)
@@ -57,7 +61,7 @@ internal class PlayerEffectController : MonoBehaviour
 		}
 		else
 		{
-			_playerAudioController._repairToolSource.SetLocalVolume(strength * strength * 4f);
+			_playerAudioController._repairToolSource.SetLocalVolume(strength * strength * 10f);
 			if (!_playerAudioController._repairToolSource.isPlaying)
 			{
 				_playerAudioController._repairToolSource.Play();
