@@ -64,7 +64,7 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 				break;
 			case AnimationKeys.CallForHelp: 
 				_animator.SetTrigger(GhostEffects.AnimatorKeys.Trigger_CallForHelp);
-				_callForHelpTime = Time.time + 1f;
+				_callForHelpTime = Time.time + 3f;
 				break;
 		};
 	}

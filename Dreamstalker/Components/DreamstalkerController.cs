@@ -173,7 +173,6 @@ internal class DreamstalkerController : VisibilityObject
 		_lastTeleportTime = Time.time;
 
 		_effects.OnTeleport();
-		_effects.PlayAnimation(DreamstalkerEffectsController.AnimationKeys.CallForHelp);
 
 		var playerLocalPosition = WorldToLocalPosition(_playerCollider.transform.position);
 		var planeVector = Quaternion.FromToRotation(Vector3.up, playerLocalPosition.normalized) * Vector3.left;
@@ -181,6 +180,11 @@ internal class DreamstalkerController : VisibilityObject
 		var playerRelativePos = Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), playerLocalPosition.normalized) * planeVector;
 
 		transform.localPosition = playerLocalPosition + playerRelativePos * nearDistance;
+
+		StopStalking();
+
+		// Replay the scream and point thing
+		StartStalking();
 	}
 
 	private void StalkPlayer()
