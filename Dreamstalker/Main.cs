@@ -5,7 +5,9 @@ using OWML.Common;
 using OWML.ModHelper;
 using System;
 using System.Reflection;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Dreamstalker;
@@ -20,6 +22,8 @@ public class Main : ModBehaviour
     public UnityEvent SolarSystemStart = new();
 
     public UnityEvent TitleScreenAwake = new();
+
+    public static bool DebugMode { get; private set; } = false;
 
     private void Awake()
     {
@@ -64,6 +68,14 @@ public class Main : ModBehaviour
 			SolarSystemAwake?.Invoke();
             FireOnNextUpdate(() => SolarSystemStart?.Invoke());
 		}
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current[Key.Q].isPressed && Keyboard.current[Key.RightBracket].wasReleasedThisFrame)
+        {
+            DebugMode = !DebugMode;
+        }
     }
 
     public static void FireOnNextUpdate(Action action) =>
