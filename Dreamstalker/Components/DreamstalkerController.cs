@@ -14,6 +14,7 @@ internal class DreamstalkerController : VisibilityObject
 {
 	private DreamstalkerEffectsController _effects;
 	private DreamstalkerGrabController _grabber;
+	private Campfire _campfire;
 
 	private float _angularVelocity;
 	private float _angularAcceleration = 360f;
@@ -32,6 +33,9 @@ internal class DreamstalkerController : VisibilityObject
 	private Transform _relativeTransform;
 
 	private bool _stalking;
+
+	private bool _despawning;
+	private float _despawnTime;
 
 	public float farDistance = 30f;
 	public float nearDistance = 10f;
@@ -62,20 +66,37 @@ internal class DreamstalkerController : VisibilityObject
 		_playerCollider = Locator.GetPlayerCollider();
 
 		_stalking = false;
-
-		PropHandler.Instance.CampfireLit.AddListener(StartStalking);
 	}
 
 	public override void OnDestroy()
 	{
 		base.OnDestroy();
-		PropHandler.Instance.CampfireLit.RemoveListener(StartStalking);
+		if(_campfire != null)
+		{
+			_campfire.OnCampfireStateChange -= OnCampfireStateChange;
+		}
 	}
 
 	public void SetPlanet(AstroObject planet)
 	{
 		SetSector(planet.GetRootSector());
 		_relativeTransform = planet.transform;
+	}
+
+	public void SetCampfire(Campfire campfire)
+	{
+		_campfire = campfire;
+		campfire.OnCampfireStateChange += OnCampfireStateChange;
+	}
+
+	public void OnCampfireStateChange(Campfire campfire)
+	{
+		if (campfire.GetState() == Campfire.State.LIT)
+		{
+			gameObject.SetActive(true);
+			_despawning = false;
+			StartStalking();
+		}
 	}
 
 	private void TurnTowardsLocalDirection(Vector3 localDirection, float targetDegreesPerSecond)
@@ -199,8 +220,8 @@ internal class DreamstalkerController : VisibilityObject
 			return;
 		}
 
-		float speed = _velocity.magnitude;
-		float deltaPos = speed * speed / (maxSpeed * _acceleration);
+		var speed = _velocity.magnitude;
+		var deltaPos = speed * speed / (maxSpeed * _acceleration);
 
 		if (distance > deltaPos)
 		{
@@ -217,6 +238,7 @@ internal class DreamstalkerController : VisibilityObject
 
 	public void StartStalking()
 	{
+		Main.Log("Started stalking");
 		_effects.PlayAnimation(DreamstalkerEffectsController.AnimationKeys.CallForHelp);
 		_effects.CallForHelpComplete.AddListener(OnCallForHelpComplete);
 	}
@@ -231,6 +253,12 @@ internal class DreamstalkerController : VisibilityObject
 	{
 		_stalking = false;
 		_velocity = Vector3.zero;
+	}
+
+	public void Despawn()
+	{
+		_despawning = true;
+		_despawnTime = Time.time + 4f;
 	}
 
 	public float LineOfSightFraction()
@@ -248,6 +276,14 @@ internal class DreamstalkerController : VisibilityObject
 
 	public void FixedUpdate()
 	{
+		if (_despawning && Time.time > _despawnTime)
+		{
+			_despawning = false;
+			_despawnTime = 0;
+			StopStalking();
+			gameObject.SetActive(false);
+		}
+
 		_localTargetPosition = _relativeTransform.InverseTransformPoint(Locator.GetPlayerTransform().position);
 
 		var localDisplacement = _localTargetPosition - transform.localPosition;
@@ -268,11 +304,8 @@ internal class DreamstalkerController : VisibilityObject
 		{
 			_grabber.GrabPlayer(4f);
 			StopStalking();
+			Despawn();
 		}
-
-		var flickerIntensity = Mathf.Clamp01(1f - (distance / 20f));
-		PlayerEffectController.Instance.SetStatic(flickerIntensity);
-		PlayerEffectController.Instance.SetFlicker(IsVisible() ? 6 * flickerIntensity * LineOfSightFraction() : 0f);
 
 		_effects.UpdateEffects();
 	}

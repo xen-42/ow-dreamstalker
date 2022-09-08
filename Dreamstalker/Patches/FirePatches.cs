@@ -40,16 +40,6 @@ internal static class FirePatches
         }
     }
 
-	[HarmonyPrefix]
-	[HarmonyPatch(typeof(Campfire), nameof(Campfire.SetState))]
-    public static void Campfire_SetState(Campfire.State newState)
-    {
-        if (newState == Campfire.State.LIT)
-        {
-            PropHandler.OnCampfireLit();
-        }
-    }
-
 	[HarmonyPostfix]
     [HarmonyPatch(typeof(Marshmallow), nameof(Marshmallow.Start))]
     private static void Marshmallow_Start(Marshmallow __instance)

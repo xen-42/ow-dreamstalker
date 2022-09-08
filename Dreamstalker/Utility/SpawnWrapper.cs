@@ -27,7 +27,7 @@ internal static class SpawnWrapper
 		return go;
 	}
 
-	public static void SpawnDreamstalker(AstroObject planet, Vector3 position)
+	public static void SpawnDreamstalker(AstroObject planet, Campfire campfire, Vector3 position)
 	{
 		if (_dreamstalkerPrefab == null) InitDreamstalkerPrefab();
 
@@ -35,8 +35,10 @@ internal static class SpawnWrapper
 		dreamstalker.transform.parent = planet.GetRootSector().transform;
 		dreamstalker.transform.position = planet.GetRootSector().transform.TransformPoint(position);
 		AlignToNormal(planet.GetRootSector().gameObject, dreamstalker);
-		dreamstalker.GetComponent<DreamstalkerController>().SetPlanet(planet);
-		dreamstalker.SetActive(true);
+
+		var controller = dreamstalker.GetComponent<DreamstalkerController>();
+		controller.SetPlanet(planet);
+		controller.SetCampfire(campfire);
 	}
 
 	#region Dreamstalker creation
