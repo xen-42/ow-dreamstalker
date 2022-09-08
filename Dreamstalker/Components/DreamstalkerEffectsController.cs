@@ -64,7 +64,7 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 				break;
 			case AnimationKeys.CallForHelp: 
 				_animator.SetTrigger(GhostEffects.AnimatorKeys.Trigger_CallForHelp);
-				_callForHelpTime = Time.time + 3f;
+				_callForHelpTime = Time.time + 2f;
 				break;
 		};
 	}
@@ -90,10 +90,10 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 
 	public void UpdateEffects()
 	{
-		Vector3 relativeVelocity = _controller.GetRelativeVelocity();
-		float speed = 2f;
+		var relativeVelocity = _controller.GetRelativeVelocity();
+		var speed = 2f;
 
-		Vector2 targetValue = new Vector2(relativeVelocity.x / speed, relativeVelocity.z / speed);
+		var targetValue = new Vector2(relativeVelocity.x / speed, relativeVelocity.z / speed);
 		_smoothedMoveSpeed = _moveSpeedSpring.Update(_smoothedMoveSpeed, targetValue, Time.deltaTime);
 		_animator.SetFloat(GhostEffects.AnimatorKeys.Float_MoveDirectionX, _smoothedMoveSpeed.x);
 		_animator.SetFloat(GhostEffects.AnimatorKeys.Float_MoveDirectionY, _smoothedMoveSpeed.y);
@@ -107,11 +107,22 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 			CallForHelpComplete?.Invoke();
 			_callForHelpTime = 0f;
 		}
+
+		var distance = (Locator.GetPlayerTransform().position - transform.position).magnitude;
+
+		var flickerIntensity = Mathf.Clamp01(1f - (distance / 20f));
+		PlayerEffectController.Instance.SetStatic(flickerIntensity);
+		PlayerEffectController.Instance.SetFlicker(_controller.IsVisible() ? 6 * flickerIntensity * _controller.LineOfSightFraction() : 0f);
 	}
 
 	public void OnTeleport() 
 	{
 		PlayOneShot(AudioType.Ghost_Identify_Curious, 1f, UnityEngine.Random.Range(0.9f, 1.1f));
+
+		if (_controller.LineOfSightFraction() > 0.5f)
+		{
+			PlayerEffectController.Instance.Blink();
+		}
 	}
 
 	public void PlayOneShot(AudioType type, float volume = 1f, float pitch = 1f)
@@ -120,6 +131,7 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 		_oneShotAudioSource.PlayOneShot(type, volume);
 	}
 
+	#region animation callbacks or wtv
 	private void Anim_SnapNeck() =>
 		SnapNeck?.Invoke();
 
@@ -143,4 +155,5 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 	{
 		PlayOneShot(AudioType.DBAnglerfishDetectTarget, 1f, 1.2f);
 	}
+	#endregion
 }
