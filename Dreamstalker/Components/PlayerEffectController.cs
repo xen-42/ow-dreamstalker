@@ -41,6 +41,9 @@ internal class PlayerEffectController : MonoBehaviour
 
 	public void SetFlicker(float strength)
 	{
+		// Disable flickering in debug mode so we can actually see the creature
+		if (Main.DebugMode) return;
+
 		if (!_lightFlickerController.IsFlickering())
 		{
 			var flicker = 0.8f * Mathf.PerlinNoise(Time.time * 4, 0f) + 0.2f * Mathf.PerlinNoise(0f, Time.time + 100000f);
