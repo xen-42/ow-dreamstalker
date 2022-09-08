@@ -202,9 +202,11 @@ internal class DreamstalkerController : VisibilityObject
 
 		transform.localPosition = playerLocalPosition + playerRelativePos * nearDistance;
 
-		StopStalking();
+		// Will stick it to the ground
+		UpdatePositionFromVelocity();
 
 		// Replay the scream and point thing
+		StopStalking();
 		StartStalking();
 	}
 
@@ -258,7 +260,7 @@ internal class DreamstalkerController : VisibilityObject
 	public void Despawn()
 	{
 		_despawning = true;
-		_despawnTime = Time.time + 4f;
+		_despawnTime = Time.time + 3f;
 	}
 
 	public float LineOfSightFraction()
@@ -281,6 +283,7 @@ internal class DreamstalkerController : VisibilityObject
 			_despawning = false;
 			_despawnTime = 0;
 			StopStalking();
+			transform.localPosition = Vector3.zero;
 			gameObject.SetActive(false);
 		}
 
