@@ -1,0 +1,8 @@
+{
+	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/main/NewHorizons/Schemas/translation_schema.json",
+	"DialogueDictionary": {
+	  "DREAMSTALKER_TH_NOTE_1": "All the fires must be lit. It will try to stop you.",
+	  "DREAMSTALKER_TH_NOTE_2": "Light the fire. Go to the observatory, you'll be safe there.",
+	  "DREAMSTALKER_TH_NOTE_3": "Do not let it catch you. It could be anywhere."
+	}
+}

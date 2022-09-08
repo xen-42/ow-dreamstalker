@@ -4,7 +4,7 @@
 	"removeChildren": [
 		"Atmosphere_TH",
 		"Sector_TH/Sector_Village/Interactables_Village/ModelRocket_Station/ModelRocketStation_AttachPoint",
-		"Sector_TH/Sector_Village/Interactables_Village/SatelliteProjectorExhibit/Projector/ProjectorControls",
+		"Sector_TH/Sector_Village/Interactables_Village/SatelliteProjectorExhibit/Projector/ProjectorControls"
 	],
 	"Volumes": {
 		"audioVolumes": [
@@ -12,6 +12,48 @@
 				"audio": "EyeAmbience_LP",
 				"radius": 400,
 				"track": "music"
+			}
+		]
+	},
+	"Props": {
+		"details": [
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_Observatory/Interactables_Observatory/Prefab_HEA_DeepFieldExhibit/DeepFieldNotes_1/plaque_paper_1 (1)",
+				"rename": "Slate's Note",
+				"position": {
+					"x": 19.7415,
+					"y": -42.7578,
+					"z": 184.9693
+				},
+				"rotation": {
+					"x": 8.0686,
+					"y": 128.5364,
+					"z": 291.8434
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"rename": "Slate's Lantern",
+				"position": {
+					"x": 19.45804,
+					"y": -43.43522,
+					"z": 184.8416
+				},
+				"rotation": {
+					"x": 74.8546,
+					"y": 182.1162,
+					"z": 179
+				}
+			}
+		],
+		"dialogue": [
+			{
+				"position": {
+					"x": 19.7415,
+					"y": -42.7578,
+					"z": 184.9693
+				},
+				"xmlFile": "assets/xml/TimberHearthNote.xml"
 			}
 		]
 	}
