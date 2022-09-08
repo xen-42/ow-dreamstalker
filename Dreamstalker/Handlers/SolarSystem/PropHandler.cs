@@ -7,14 +7,9 @@ namespace Dreamstalker.Handlers.SolarSystem;
 [RequireComponent(typeof(Main))]
 internal class PropHandler : SolarSystemHandler
 {
-	public static PropHandler Instance { get; private set; }
-
-	public UnityEvent CampfireLit = new();
-
 	protected override void Awake()
 	{
 		base.Awake();
-		Instance = this;
 	}
 
     protected override void OnSolarSystemAwake() 
@@ -24,6 +19,8 @@ internal class PropHandler : SolarSystemHandler
 		// Remove all dialogue
 		foreach (var dialogue in FindObjectsOfType<CharacterDialogueTree>())
 		{
+			// Super hacky, but if the parent is a sector then NH made it. I'm too lazy to make this good.
+			if (dialogue.transform.parent.GetComponent<Sector>() != null) continue;
 			dialogue.gameObject.SetActive(false);
 		}
 
@@ -48,10 +45,5 @@ internal class PropHandler : SolarSystemHandler
 		{
 			campfire.SetState(Campfire.State.SMOLDERING, false);
 		}
-	}
-
-	public static void OnCampfireLit()
-	{
-		Instance?.CampfireLit?.Invoke();
 	}
 }
