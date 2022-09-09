@@ -8,6 +8,7 @@ internal class DreamstalkerController : VisibilityObject
 	private DreamstalkerEffectsController _effects;
 	private DreamstalkerGrabController _grabber;
 	private Campfire _campfire;
+	private CompletionVolume _volume;
 
 	private float _angularVelocity;
 	private float _angularAcceleration = 360f;
@@ -68,6 +69,10 @@ internal class DreamstalkerController : VisibilityObject
 		{
 			_campfire.OnCampfireStateChange -= OnCampfireStateChange;
 		}
+		if (_volume != null)
+		{
+			_volume.OnPlayerEnter.RemoveListener(DespawnImmediate);
+		}
 	}
 
 	public void SetPlanet(AstroObject planet)
@@ -80,6 +85,12 @@ internal class DreamstalkerController : VisibilityObject
 	{
 		_campfire = campfire;
 		campfire.OnCampfireStateChange += OnCampfireStateChange;
+	}
+
+	public void SetVolume(CompletionVolume volume)
+	{
+		_volume = volume;
+		_volume.OnPlayerEnter.AddListener(DespawnImmediate);
 	}
 
 	public void OnCampfireStateChange(Campfire campfire)
@@ -252,8 +263,16 @@ internal class DreamstalkerController : VisibilityObject
 
 	public void Despawn()
 	{
+		StopStalking();
+
 		_despawning = true;
 		_despawnTime = Time.time + 3f;
+	}
+
+	public void DespawnImmediate()
+	{
+		StopStalking();
+		gameObject.SetActive(false);
 	}
 
 	public float LineOfSightFraction()
@@ -299,7 +318,6 @@ internal class DreamstalkerController : VisibilityObject
 		if (_stalking && distance < grabDistance)
 		{
 			_grabber.GrabPlayer(4f);
-			StopStalking();
 			Despawn();
 		}
 

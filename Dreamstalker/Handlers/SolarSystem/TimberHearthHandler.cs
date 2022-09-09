@@ -1,4 +1,5 @@
-﻿using Dreamstalker.Utility;
+﻿using Dreamstalker.Components;
+using Dreamstalker.Utility;
 using UnityEngine;
 
 namespace Dreamstalker.Handlers.SolarSystem;
@@ -60,8 +61,11 @@ internal class TimberHearthHandler : SolarSystemHandler
         // Spawn stuff
         var thCampfire = GameObject.Find("TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire/Controller_Campfire").GetComponent<Campfire>();
 
-		SpawnWrapper.SpawnDreamstalker(th, thCampfire, Vector3.zero);
-		//SpawnWrapper.Spawn(th, SpawnWrapper.GhostBirdPath, new Vector3(25.6f, -43.6f, 184f));
-		//SpawnWrapper.Spawn(th, SpawnWrapper.MummyPath, new Vector3(30.6f, -42.9f, 183.5f));
+		var thCompletionVolume = GameObject.Find("TimberHearth_Body/Sector_TH/Sector_Village/Sector_Observatory/Volumes_Observatory/ObservatoryInteriorVolume/MuseumEntryway").AddComponent<CompletionVolume>();
+		thCompletionVolume.enabled = false;
+		thCompletionVolume.SetCampfire(thCampfire);
+        thCompletionVolume.NextPlanet = AstroObject.Name.BrittleHollow;
+
+		SpawnWrapper.SpawnDreamstalker(th, thCampfire, thCompletionVolume, Vector3.zero);
 	}
 }
