@@ -9,11 +9,35 @@ namespace Dreamstalker.Utility;
 
 internal static class PlayerSpawnUtil
 {
+	private static PlayerSpawner GetPlayerSpawner()
+	{
+		if (_playerSpawner == null) _playerSpawner = GameObject.FindObjectOfType<PlayerSpawner>();
+		return _playerSpawner;
+	}
+	private static PlayerSpawner _playerSpawner;
+
+	private static SpawnPoint GetSpawnPoint(AstroObject.Name planet) => planet switch
+	{
+		AstroObject.Name.CaveTwin => GameObject.Find("CaveTwin_Body/SPAWNS/Spawn_ChertsCamp").GetComponent<SpawnPoint>(),
+		AstroObject.Name.GiantsDeep => GameObject.Find("GabbroIsland_Body/Sector_GabbroIsland/Spawn_GabbroIsland").GetComponent<SpawnPoint>(),
+		AstroObject.Name.BrittleHollow => GameObject.Find("BrittleHollow_Body/SPAWNS_PLAYER/SPAWN_Observatory").GetComponent<SpawnPoint>(),
+		_ => GetPlayerSpawner()._spawnList.FirstOrDefault(x => x.GetSpawnLocation() == GetSpawnLocation(planet) && x.IsShipSpawn() == false)
+	};
+
+	private static SpawnLocation GetSpawnLocation(AstroObject.Name planet) => planet switch
+	{
+		AstroObject.Name.TimberHearth => SpawnLocation.TimberHearth,
+		AstroObject.Name.CaveTwin => SpawnLocation.HourglassTwin_1,
+		AstroObject.Name.TowerTwin => SpawnLocation.HourglassTwin_2,
+		AstroObject.Name.GiantsDeep => SpawnLocation.GasGiant,
+		AstroObject.Name.BrittleHollow => SpawnLocation.BrittleHollow,
+		AstroObject.Name.DarkBramble => SpawnLocation.DarkBramble,
+		_ => SpawnLocation.TimberHearth
+	};
+
 	public static void SpawnAt(AstroObject.Name planet)
 	{
-		var spawner = GameObject.FindObjectOfType<PlayerSpawner>();
-
-		var spawn = spawner._spawnList.FirstOrDefault(x => x.GetSpawnLocation() == SpawnLocation.TimberHearth && x.IsShipSpawn() == false);
+		var spawn = GetSpawnPoint(planet);
 
 		var playerResources = GameObject.FindObjectOfType<PlayerResources>();
 
@@ -24,7 +48,7 @@ internal static class PlayerSpawnUtil
 		spawn.AddObjectToTriggerVolumes(Locator.GetPlayerCamera().GetComponentInChildren<FluidDetector>().gameObject);
 		spawn.OnSpawnPlayer();
 
-		spawner._cameraController.SetDegreesY(80f);
+		GetPlayerSpawner()._cameraController.SetDegreesY(80f);
 
 		playerResources._isSuffocating = false;
 		playerResources.DebugRefillResources();
