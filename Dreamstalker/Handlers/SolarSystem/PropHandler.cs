@@ -29,6 +29,18 @@ internal class PropHandler : SolarSystemHandler
 		{
 			controller.gameObject.SetActive(false);
 		}
+
+		// Remove all travelers
+		foreach (var traveler in FindObjectsOfType<TravelerController>())
+		{
+			traveler.gameObject.SetActive(false);
+		}
+
+		// Remove all signals (since some is played out loud)
+		foreach (var signal in FindObjectsOfType<AudioSignal>())
+		{
+			signal.gameObject.SetActive(false);
+		}
 	}
 
     protected override void OnSolarSystemStart()
@@ -37,6 +49,7 @@ internal class PropHandler : SolarSystemHandler
 		TurnOffCampFires();
 
 		Locator.GetPlayerBody().gameObject.AddComponent<PlayerEffectController>();
+		Locator.GetPlayerBody().gameObject.AddComponent<DebugCommands>();
 	}
 
 	public static void TurnOffCampFires()
