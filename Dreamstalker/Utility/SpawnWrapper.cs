@@ -27,7 +27,7 @@ internal static class SpawnWrapper
 		return go;
 	}
 
-	public static void SpawnDreamstalker(AstroObject planet, Campfire campfire, Vector3 position)
+	public static void SpawnDreamstalker(AstroObject planet, Campfire campfire, CompletionVolume volume, Vector3 position)
 	{
 		if (_dreamstalkerPrefab == null) InitDreamstalkerPrefab();
 
@@ -39,6 +39,7 @@ internal static class SpawnWrapper
 		var controller = dreamstalker.GetComponent<DreamstalkerController>();
 		controller.SetPlanet(planet);
 		controller.SetCampfire(campfire);
+		controller.SetVolume(volume);
 	}
 
 	#region Dreamstalker creation
