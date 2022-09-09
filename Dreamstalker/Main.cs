@@ -4,6 +4,7 @@ using HarmonyLib;
 using OWML.Common;
 using OWML.ModHelper;
 using System;
+using System.Diagnostics;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
@@ -40,7 +41,7 @@ public class Main : ModBehaviour
 
         // Add in the handlers
         gameObject.AddComponent<PropHandler>();
-        gameObject.AddComponent<SunHandler>();
+        gameObject.AddComponent<PlanetHandler>();
         gameObject.AddComponent<TimberHearthHandler>();
 
         gameObject.AddComponent<TitleScreenHandler>();
@@ -72,10 +73,11 @@ public class Main : ModBehaviour
 
     private void Update()
     {
-        if (Keyboard.current[Key.Q].isPressed && Keyboard.current[Key.RightBracket].wasReleasedThisFrame)
+        if (Keyboard.current[Key.L].isPressed && Keyboard.current[Key.Numpad0].wasReleasedThisFrame)
         {
             DebugMode = !DebugMode;
-        }
+			Log($"Debug mode is {(DebugMode ? "on" : "off")}");
+		}
     }
 
     public static void FireOnNextUpdate(Action action) =>
