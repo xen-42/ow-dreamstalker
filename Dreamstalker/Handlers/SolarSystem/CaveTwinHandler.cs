@@ -36,8 +36,8 @@ internal class CaveTwinHandler : SolarSystemHandler
 
 		var ctVolume = new GameObject("CompletionVolume");
 		ctVolume.transform.parent = ct.GetRootSector().transform;
-		ctVolume.transform.localPosition = Vector3.zero;
-		ctVolume.layer = OWLayerMask.effectVolumeMask;
+		ctVolume.transform.localPosition = new Vector3(-93.88305f, -71.32361f, 60.62481f);
+		ctVolume.layer = LayerMask.NameToLayer("BasicEffectVolume");
 
 		var sphere = ctVolume.AddComponent<SphereCollider>();
 		sphere.isTrigger = true;
