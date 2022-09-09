@@ -39,6 +39,13 @@ internal class PlayerEffectController : MonoBehaviour
 		_cameraEffectController.OpenEyes(time / 2f, false);
 	}
 
+	public void WakeUp()
+	{
+		_cameraEffectController.CloseEyes(1f);
+		_cameraEffectController.OpenEyes(_cameraEffectController._wakeLength, _cameraEffectController._calmWakeCurve);
+		_playerAudioController._oneShotSleepingAtCampfireSource.PlayOneShot(AudioType.PlayerGasp_Light, 1f);
+	}
+
 	public void SetFlicker(float strength)
 	{
 		// Disable flickering in debug mode so we can actually see the creature
