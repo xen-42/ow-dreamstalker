@@ -42,7 +42,10 @@ public class Main : ModBehaviour
         // Add in the handlers
         gameObject.AddComponent<PropHandler>();
         gameObject.AddComponent<PlanetHandler>();
+
         gameObject.AddComponent<TimberHearthHandler>();
+        gameObject.AddComponent<BrittleHollowHandler>();
+        gameObject.AddComponent<CaveTwinHandler>();
 
         gameObject.AddComponent<TitleScreenHandler>();
 

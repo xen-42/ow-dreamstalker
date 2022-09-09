@@ -1,7 +1,67 @@
 {
-    "$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
-    "name": "Brittle Hollow",
-    "removeChildren": [
-        "Atmosphere_BH",
+  "$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
+  "name": "Brittle Hollow",
+  "removeChildren": [
+    "Atmosphere_BH",
+    "BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/MockUpTornado",
+    "BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/MockDownTornado",
+    "BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/HologramProjector",
+    "BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/Prefab_NOM_SharedStone",
+    "BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/Prefab_NOM_Whiteboard",
+    "BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/Prefab_NOM_Whiteboard",
+    "BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/Prefab_NOM_Whiteboard"
+  ],
+  "Props": {
+    "details": [
+      {
+        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire",
+        "position": {
+          "x": -0.850227356,
+          "y": -291.898773,
+          "z": -13.0534458
+        },
+        "rotation": {
+          "x": 0.000179272058,
+          "y": 181.924332,
+          "z": 180.000778
+        }
+      },
+      {
+        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_Observatory/Interactables_Observatory/Prefab_HEA_DeepFieldExhibit/DeepFieldNotes_1/plaque_paper_1 (1)",
+        "position": {
+          "x": 0.6041,
+          "y": -291.9832,
+          "z": -13.6946
+        },
+        "rotation": {
+          "x": 20.9,
+          "y": 115.4247,
+          "z": 180
+        }
+      },
+      {
+        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+        "position": {
+          "x": 0.07866955,
+          "y": -291.898865,
+          "z": -14.220396
+        },
+        "rotation": {
+          "x": 0.00156461843,
+          "y": 95.106514,
+          "z": 179.999939
+        }
+      }
+    ],
+    "dialogue": [
+      {
+        "position": {
+          "x": 0.6041,
+          "y": -291.9832,
+          "z": -13.6946
+        },
+        "xmlFile": "assets/xml/BrittleHollowNote.xml"
+      }
     ]
+  }
 }

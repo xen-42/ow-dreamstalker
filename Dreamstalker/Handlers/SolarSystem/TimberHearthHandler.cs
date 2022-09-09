@@ -1,4 +1,4 @@
-﻿using Dreamstalker.Components;
+﻿using Dreamstalker.Components.Volumes;
 using Dreamstalker.Utility;
 using UnityEngine;
 
