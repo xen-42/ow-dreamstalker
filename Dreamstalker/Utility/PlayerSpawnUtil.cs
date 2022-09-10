@@ -16,7 +16,7 @@ internal static class PlayerSpawnUtil
 	}
 	private static PlayerSpawner _playerSpawner;
 
-	private static SpawnPoint GetSpawnPoint(AstroObject.Name planet) => planet switch
+	public static SpawnPoint GetSpawnPoint(AstroObject.Name planet) => planet switch
 	{
 		AstroObject.Name.CaveTwin => GameObject.Find("CaveTwin_Body/SPAWNS/Spawn_ChertsCamp").GetComponent<SpawnPoint>(),
 		AstroObject.Name.GiantsDeep => GameObject.Find("GabbroIsland_Body/Sector_GabbroIsland/Spawn_GabbroIsland").GetComponent<SpawnPoint>(),
