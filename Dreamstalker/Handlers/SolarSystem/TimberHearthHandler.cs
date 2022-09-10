@@ -40,7 +40,7 @@ internal class TimberHearthHandler : SolarSystemHandler
         // Dont want lights disabling when it becomes "day"
         foreach (var nightLight in th.GetComponentsInChildren<NightLight>())
         {
-            nightLight.enabled = false;
+            Component.Destroy(nightLight);
         }
 
         // Get rid of the ship
