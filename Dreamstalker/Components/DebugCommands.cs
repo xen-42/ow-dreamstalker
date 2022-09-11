@@ -23,6 +23,7 @@ internal class DebugCommands : MonoBehaviour
 				if (Keyboard.current[Key.Numpad4].wasReleasedThisFrame) PlayerSpawnUtil.SpawnAt(AstroObject.Name.BrittleHollow);
 				if (Keyboard.current[Key.Numpad5].wasReleasedThisFrame) PlayerSpawnUtil.SpawnAt(AstroObject.Name.GiantsDeep);
 				if (Keyboard.current[Key.Numpad6].wasReleasedThisFrame) PlayerSpawnUtil.SpawnAt(AstroObject.Name.DarkBramble);
+				if (Keyboard.current[Key.Numpad7].wasReleasedThisFrame) PlayerSpawnUtil.SpawnAt(AstroObject.Name.DreamWorld);
 			} 
 		}
 	}

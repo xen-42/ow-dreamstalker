@@ -1,0 +1,53 @@
+{
+	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
+	"name": "Dreaming",
+	"Base": {
+		"groundSize": 199.5,
+		"surfaceSize": 200,
+		"ambientLight": 0.3,
+		"hasMapMarker": true,
+		"surfaceGravity": 10
+	},
+	"Orbit": {
+		"primaryBody": "Sun",
+		"staticPosition": {
+			"x": 0,
+			"y": 10000,
+			"z": 0
+		}
+	},
+	"Water": {
+		"size": 200
+	},
+	"Atmosphere": {
+		"size": 300,
+		"fogTint": {
+			"r": 200,
+			"g": 255,
+			"b": 255,
+			"a": 255
+		},
+		"fogSize": 300,
+		"hasOxygen": true,
+		"hasRain": true
+	},
+	"Props": {
+		"scatter": [
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_Underground/IslandsRoot/IslandPivot_B/Island_B/Props_Island_B/Tree_DW_L (3)",
+				"count": 24,
+				"scale": 0.7
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_4/Props_DreamZone_4_Upper/Tree_DW_S_B",
+				"count": 40
+			}
+		],
+		"details": [
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Atmosphere_Dreamworld/Prefab_IP_VisiblePlanet",
+				"position": { "y": 2000 }
+			}
+		]
+	}
+}
