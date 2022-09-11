@@ -46,6 +46,7 @@ internal class DreamworldHandler : SolarSystemHandler
 		dreamworld.GetGravityVolume().SetPriority(2);
 
 		// Change fireplace
+		// TODO: make the light green too :)
 		var fireRoot = dreamworld.transform.Find("Sector/Party_House/Interactibles_PartyHouse/Prefab_IP_LodgeFire/Structure_DW_LodgeFireplace/LodgeFireplace_Fire");
 		fireRoot.transform.Find("LodgeFireplace_Ash");
 
@@ -61,6 +62,9 @@ internal class DreamworldHandler : SolarSystemHandler
 		// Doors
 		foreach (var rotatingDoor in dreamworld.GetComponentsInChildren<RotatingDoor>())
 		{
+			// some of them are open so CLOSE THEM
+			rotatingDoor.Close();
+			
 			var doorTrigger = new GameObject("DoorTrigger");
 			doorTrigger.layer = LayerMask.NameToLayer("BasicEffectVolume");
 			doorTrigger.transform.parent = rotatingDoor.transform;
