@@ -24,6 +24,16 @@ internal class PropHandler : SolarSystemHandler
 			dialogue.gameObject.SetActive(false);
 		}
 
+		// Remove all signals (since some is played out loud)
+		foreach (var signal in FindObjectsOfType<AudioSignal>())
+		{
+			signal.gameObject.SetActive(false);
+		}
+	}
+
+    protected override void OnSolarSystemStart()
+    {
+		// Doing these on Start so they can be found on Awake elsewhere
 		// Remove all Hearthians
 		foreach (var controller in FindObjectsOfType<CharacterAnimController>())
 		{
@@ -36,15 +46,6 @@ internal class PropHandler : SolarSystemHandler
 			traveler.gameObject.SetActive(false);
 		}
 
-		// Remove all signals (since some is played out loud)
-		foreach (var signal in FindObjectsOfType<AudioSignal>())
-		{
-			signal.gameObject.SetActive(false);
-		}
-	}
-
-    protected override void OnSolarSystemStart()
-    {
 		// Turn off all campfires (has to happen after campfire Awake
 		TurnOffCampFires();
 
