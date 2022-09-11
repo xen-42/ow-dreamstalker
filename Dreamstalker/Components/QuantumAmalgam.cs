@@ -32,8 +32,6 @@ namespace Dreamstalker.Components
 			var first = true;
 			foreach (var character in GameObject.FindObjectsOfType<CharacterAnimController>())
 			{
-				Main.Log($"Copying character {character.gameObject.name}");
-
 				if (character.gameObject.name.Equals("Villager_HEA_Spinel_ANIM_Fishing_ROD") ||
 					character.gameObject.name.Equals("Villager_HEA_Tephra_ANIM_SitIdle")) continue;
 
@@ -183,8 +181,6 @@ namespace Dreamstalker.Components
 
 			geswaldo.SetActive(false);
 			_characters.Add((geswaldo, true));
-
-			Main.Log($"Found {_characters.Count} characters");
 
 			var visibilityTracker = new GameObject("VisibilityTracker_Sphere");
 			visibilityTracker.transform.parent = transform;
