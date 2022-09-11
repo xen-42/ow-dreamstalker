@@ -109,7 +109,8 @@ internal class DreamworldHandler : SolarSystemHandler
         {
             path = prefab.name,
             position = pos,
-            rotation = rot ?? Vector3.zero
+            rotation = rot ?? Vector3.zero,
+			keepLoaded = true
 		};
 		return DetailBuilder.Make(dreamworld.gameObject, dreamworld.GetRootSector(), island);
 	}
