@@ -44,6 +44,15 @@
 				"count": 40
 			}
 		],
+		"rafts": [
+			{
+				"position": {
+					"x": 94.26017,
+					"y": 9.947554,
+					"z": -30.27073
+				}
+			}
+		],
 		"details": [
 			{
 				"path": "DreamWorld_Body/Sector_DreamWorld/Atmosphere_Dreamworld/Prefab_IP_VisiblePlanet",
