@@ -61,6 +61,9 @@ internal class DreamworldHandler : SolarSystemHandler
 		// Doors
 		foreach (var rotatingDoor in dreamworld.GetComponentsInChildren<RotatingDoor>())
 		{
+			// some of them are open so CLOSE THEM
+			rotatingDoor.Close();
+			
 			var doorTrigger = new GameObject("DoorTrigger");
 			doorTrigger.layer = LayerMask.NameToLayer("BasicEffectVolume");
 			doorTrigger.transform.parent = rotatingDoor.transform;
