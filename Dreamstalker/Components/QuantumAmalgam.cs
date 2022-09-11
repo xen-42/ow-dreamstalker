@@ -85,7 +85,7 @@ namespace Dreamstalker.Components
 				{
 					// Add a chair
 					var chair = DetailBuilder.Make(detail, _sector, new PropModule.DetailInfo() { 
-						path = "Props_HEA_RockingChair:Props_HEA_RockingChair", position = new Vector3(0, 0, -0.6f)
+						path = "Props_HEA_RockingChair:Props_HEA_RockingChair", position = new Vector3(0, 0, -0.6f),
 						keepLoaded = true
 					});
 					chair.transform.parent = detail.transform;
