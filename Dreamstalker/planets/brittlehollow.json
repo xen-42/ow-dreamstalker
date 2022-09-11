@@ -1,210 +1,210 @@
 {
-  "$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
-  "name": "Brittle Hollow",
-  "removeChildren": [
-    "Atmosphere_BH",
-    "BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/MockUpTornado",
-    "BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/MockDownTornado",
-    "BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/HologramProjector",
-    "BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/Prefab_NOM_SharedStone",
-    "BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/Prefab_NOM_Whiteboard",
-    "BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/Prefab_NOM_Whiteboard",
-    "BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/Prefab_NOM_Whiteboard"
-  ],
-  "Props": {
-    "details": [
-      {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire",
-        "position": {
-          "x": -0.850227356,
-          "y": -291.898773,
-          "z": -13.0534458
-        },
-        "rotation": {
-          "x": 0.000179272058,
-          "y": 181.924332,
-          "z": 180.000778
-        }
-      },
-      {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_Observatory/Interactables_Observatory/Prefab_HEA_DeepFieldExhibit/DeepFieldNotes_1/plaque_paper_1 (1)",
-        "position": {
-          "x": 0.6041,
-          "y": -291.9832,
-          "z": -13.6946
-        },
-        "rotation": {
-          "x": 20.9,
-          "y": 115.4247,
-          "z": 180
-        }
-      },
-      {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
-        "position": {
-          "x": 0.07859373,
-          "y": -291.898865,
-          "z": -14.2199221
-        },
-        "rotation": {
-          "x": 0.00156461855,
-          "y": 95.106514,
-          "z": 179.999939
-        }
-      },
-      {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
-        "position": {
-          "x": 12.3118477,
-          "y": -287.25354,
-          "z": 95.3157043
-        },
-        "rotation": {
-          "x": 16.2849045,
-          "y": 225.1898,
-          "z": 185.342529
-        }
-      },
-      {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
-        "position": {
-          "x": 49.4924927,
-          "y": -267.16803,
-          "z": 128.406738
-        },
-        "rotation": {
-          "x": 26.926178,
-          "y": 184.801559,
-          "z": 166.741226
-        }
-      },
-      {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
-        "position": {
-          "x": 85.35547,
-          "y": -249.7847,
-          "z": 136.662567
-        },
-        "rotation": {
-          "x": 17.3921833,
-          "y": 262.616882,
-          "z": 202.312653
-        }
-      },
-      {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
-        "position": {
-          "x": 101.831367,
-          "y": -228.895035,
-          "z": 158.059784
-        },
-        "rotation": {
-          "x": 47.4036942,
-          "y": 194.103561,
-          "z": 166.490982
-        }
-      },
-      {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
-        "position": {
-          "x": 134.550217,
-          "y": -198.931534,
-          "z": 161.445023
-        },
-        "rotation": {
-          "x": 347.790344,
-          "y": 324.163025,
-          "z": 220.601532
-        }
-      },
-      {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
-        "position": {
-          "x": 173.636429,
-          "y": -159.283722,
-          "z": 149.391724
-        },
-        "rotation": {
-          "x": 17.2285519,
-          "y": 321.345917,
-          "z": 241.619263
-        }
-      },
-      {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
-        "position": {
-          "x": 189.657471,
-          "y": -143.769211,
-          "z": 118.211517
-        },
-        "rotation": {
-          "x": 358.563934,
-          "y": 330.120758,
-          "z": 236.476959
-        }
-      },
-      {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
-        "position": {
-          "x": 206.033234,
-          "y": -126.932182,
-          "z": 104.894958
-        },
-        "rotation": {
-          "x": 66.36203,
-          "y": 281.370026,
-          "z": 203.979141
-        }
-      },
-      {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
-        "position": {
-          "x": 217.160675,
-          "y": -113.243034,
-          "z": 72.78912
-        },
-        "rotation": {
-          "x": 14.2954826,
-          "y": 335.204529,
-          "z": 249.110748
-        }
-      },
-      {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
-        "position": {
-          "x": 234.766434,
-          "y": -88.25205,
-          "z": 49.2713623
-        },
-        "rotation": {
-          "x": 72.77344,
-          "y": 281.526459,
-          "z": 200.0311
-        }
-      },
-      {
-        "path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
-        "position": {
-          "x": 247.744522,
-          "y": -61.10466,
-          "z": 21.0093689
-        },
-        "rotation": {
-          "x": 36.73076,
-          "y": 340.496735,
-          "z": 251.069092
-        }
-      }
-    ],
-    "dialogue": [
-      {
-        "position": {
-          "x": 0.6041,
-          "y": -291.9832,
-          "z": -13.6946
-        },
-        "xmlFile": "assets/xml/BrittleHollowNote.xml"
-      }
-    ]
-  }
+	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
+	"name": "Brittle Hollow",
+	"removeChildren": [
+		"Atmosphere_BH",
+		"BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/MockUpTornado",
+		"BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/MockDownTornado",
+		"BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/HologramProjector",
+		"BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/Prefab_NOM_SharedStone",
+		"BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/Prefab_NOM_Whiteboard",
+		"BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/Prefab_NOM_Whiteboard",
+		"BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/Prefab_NOM_Whiteboard"
+	],
+	"Props": {
+		"details": [
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire",
+				"position": {
+					"x": -0.850227356,
+					"y": -291.898773,
+					"z": -13.0534458
+				},
+				"rotation": {
+					"x": 0.000179272058,
+					"y": 181.924332,
+					"z": 180.000778
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_Observatory/Interactables_Observatory/Prefab_HEA_DeepFieldExhibit/DeepFieldNotes_1/plaque_paper_1 (1)",
+				"position": {
+					"x": 0.6041,
+					"y": -291.9832,
+					"z": -13.6946
+				},
+				"rotation": {
+					"x": 20.9,
+					"y": 115.4247,
+					"z": 180
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"position": {
+					"x": 0.07859373,
+					"y": -291.898865,
+					"z": -14.2199221
+				},
+				"rotation": {
+					"x": 0.00156461855,
+					"y": 95.106514,
+					"z": 179.999939
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"position": {
+					"x": 12.3118477,
+					"y": -287.25354,
+					"z": 95.3157043
+				},
+				"rotation": {
+					"x": 16.2849045,
+					"y": 225.1898,
+					"z": 185.342529
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"position": {
+					"x": 49.4924927,
+					"y": -267.16803,
+					"z": 128.406738
+				},
+				"rotation": {
+					"x": 26.926178,
+					"y": 184.801559,
+					"z": 166.741226
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"position": {
+					"x": 85.35547,
+					"y": -249.7847,
+					"z": 136.662567
+				},
+				"rotation": {
+					"x": 17.3921833,
+					"y": 262.616882,
+					"z": 202.312653
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"position": {
+					"x": 101.831367,
+					"y": -228.895035,
+					"z": 158.059784
+				},
+				"rotation": {
+					"x": 47.4036942,
+					"y": 194.103561,
+					"z": 166.490982
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"position": {
+					"x": 134.550217,
+					"y": -198.931534,
+					"z": 161.445023
+				},
+				"rotation": {
+					"x": 347.790344,
+					"y": 324.163025,
+					"z": 220.601532
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"position": {
+					"x": 173.636429,
+					"y": -159.283722,
+					"z": 149.391724
+				},
+				"rotation": {
+					"x": 17.2285519,
+					"y": 321.345917,
+					"z": 241.619263
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"position": {
+					"x": 189.657471,
+					"y": -143.769211,
+					"z": 118.211517
+				},
+				"rotation": {
+					"x": 358.563934,
+					"y": 330.120758,
+					"z": 236.476959
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"position": {
+					"x": 206.033234,
+					"y": -126.932182,
+					"z": 104.894958
+				},
+				"rotation": {
+					"x": 66.36203,
+					"y": 281.370026,
+					"z": 203.979141
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"position": {
+					"x": 217.160675,
+					"y": -113.243034,
+					"z": 72.78912
+				},
+				"rotation": {
+					"x": 14.2954826,
+					"y": 335.204529,
+					"z": 249.110748
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"position": {
+					"x": 234.766434,
+					"y": -88.25205,
+					"z": 49.2713623
+				},
+				"rotation": {
+					"x": 72.77344,
+					"y": 281.526459,
+					"z": 200.0311
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"position": {
+					"x": 247.744522,
+					"y": -61.10466,
+					"z": 21.0093689
+				},
+				"rotation": {
+					"x": 36.73076,
+					"y": 340.496735,
+					"z": 251.069092
+				}
+			}
+		],
+		"dialogue": [
+			{
+				"position": {
+					"x": 0.6041,
+					"y": -291.9832,
+					"z": -13.6946
+				},
+				"xmlFile": "assets/xml/BrittleHollowNote.xml"
+			}
+		]
+	}
 }
