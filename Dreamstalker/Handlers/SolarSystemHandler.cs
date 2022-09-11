@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Dreamstalker.Handlers;
 
@@ -9,20 +10,44 @@ public abstract class SolarSystemHandler : BaseHandler
     {
         base.Awake();
 
-        _main.SolarSystemAwake.AddListener(OnSolarSystemAwake);
-        _main.SolarSystemStart.AddListener(OnSolarSystemStart);
+        _main.SolarSystemAwake.AddListener(TryOnSolarSystemAwake);
+        _main.SolarSystemStart.AddListener(TryOnSolarSystemStart);
     }
 
     protected void OnDestroy()
     {
         if (_main != null)
         {
-            _main.SolarSystemAwake.RemoveListener(OnSolarSystemAwake);
-            _main.SolarSystemStart.RemoveListener(OnSolarSystemStart);
+            _main.SolarSystemAwake.RemoveListener(TryOnSolarSystemAwake);
+            _main.SolarSystemStart.RemoveListener(TryOnSolarSystemStart);
         }
     }
 
-    protected abstract void OnSolarSystemAwake();
+    private void TryOnSolarSystemAwake()
+    {
+        try
+        {
+            OnSolarSystemAwake();
+        }
+        catch (Exception e)
+        {
+            Main.LogError($"{e}");
+        }
+    }
+
+	private void TryOnSolarSystemStart()
+	{
+		try
+		{
+			OnSolarSystemStart();
+		}
+		catch (Exception e)
+		{
+			Main.LogError($"{e}");
+		}
+	}
+
+	protected abstract void OnSolarSystemAwake();
 
     protected abstract void OnSolarSystemStart();
 }
