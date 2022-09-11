@@ -9,7 +9,31 @@
 		"size": 30
 	},
 	"Props": {
+		"dialogue": [
+			{
+				"position": {
+					"x": 3.7778,
+					"y": 157.2422,
+					"z": 0.304
+				},
+				"xmlFile": "assets/xml/EmberTwinNote.xml"
+			}
+		],
 		"details": [
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_Observatory/Interactables_Observatory/Prefab_HEA_DeepFieldExhibit/DeepFieldNotes_1/plaque_paper_1 (1)",
+				"rename": "Chert's Note",
+				"position": {
+					"x": 3.7778,
+					"y": 157.2422,
+					"z": 0.304
+				},
+				"rotation": {
+					"x": 51.0152,
+					"y": 242.6034,
+					"z": 3.1095
+				}
+			},
 			{
 				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
 				"position": {
