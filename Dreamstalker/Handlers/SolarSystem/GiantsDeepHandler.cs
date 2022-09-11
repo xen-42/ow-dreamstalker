@@ -1,4 +1,5 @@
 ﻿using Dreamstalker.Components;
+using Dreamstalker.Components.Volumes;
 using UnityEngine;
 
 namespace Dreamstalker.Handlers.SolarSystem;
@@ -36,6 +37,9 @@ internal class GiantsDeepHandler : SolarSystemHandler
 		// Ambient light
 		var gd = GameObject.Find("GiantsDeep_Body");
 		gd.transform.Find("AmbientLight_GD").GetComponent<Light>().intensity = 0.2f;
+
+		var campfire = gabbroIsland.transform.Find("Sector_GabbroIsland/Interactables_GabbroIsland/Prefab_HEA_Campfire/Controller_Campfire");
+		campfire.gameObject.AddComponent<CompletionCampfire>().destinationPlanet = AstroObject.Name.DreamWorld;
 	}
 
 	protected override void OnSolarSystemStart()
