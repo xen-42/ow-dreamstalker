@@ -18,6 +18,7 @@ internal class AutoDoorTrigger : MonoBehaviour
 		_door = gameObject.GetComponentInParent<RotatingDoor>();
 
 		_trigger.OnEntry += OnEntry;
+		_trigger.OnExit += OnExit;
 	}
 
 	private void OnDestroy()
@@ -25,15 +26,23 @@ internal class AutoDoorTrigger : MonoBehaviour
 		if (_trigger != null)
 		{
 			_trigger.OnEntry -= OnEntry;
+			_trigger.OnExit -= OnExit;
 		}
 	}
 
 	private void OnEntry(GameObject hitObject)
 	{
-		if (hitObject.CompareTag("Player"))
+		if (hitObject.CompareTag("PlayerDetector"))
 		{
 			_door.Open();
 		}
 	}
 
+	private void OnExit(GameObject hitObject)
+	{
+		if (hitObject.CompareTag("PlayerDetector"))
+		{
+			_door.Close();
+		}
+	}
 }
