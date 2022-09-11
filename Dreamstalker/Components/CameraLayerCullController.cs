@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Dreamstalker.Components;
 
-internal class FarClipPlaneController : SectoredMonoBehaviour
+internal class CameraLayerCullController : SectoredMonoBehaviour
 {
 	private SectorDetector _playerSectorDetector;
 	private List<OWCamera> _affectedCameras = new();

@@ -2,11 +2,11 @@
 	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
 	"name": "Dreaming",
 	"Base": {
-		"groundSize": 199.5,
-		"surfaceSize": 200,
+		"groundSize": 99.5,
+		"surfaceSize": 100,
 		"ambientLight": 0.3,
 		"hasMapMarker": true,
-		"surfaceGravity": 10
+		"surfaceGravity": 8
 	},
 	"Orbit": {
 		"primaryBody": "Sun",
@@ -17,7 +17,7 @@
 		}
 	},
 	"Water": {
-		"size": 200
+		"size": 100
 	},
 	"Atmosphere": {
 		"size": 300,
@@ -46,7 +46,27 @@
 		"details": [
 			{
 				"path": "DreamWorld_Body/Sector_DreamWorld/Atmosphere_Dreamworld/Prefab_IP_VisiblePlanet",
-				"position": { "y": 2000 }
+				"position": { "x": 1500 },
+				"rotation": {
+					"x": 329,
+					"y": 105,
+					"z": 290
+				}
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Structures_DreamZone_1/Party_House",
+				"position": { "z": 100 },
+				"alignToNormal": true
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Structures_DreamZone_1/Generic_House_A",
+				"position": { "z": -100 },
+				"alignToNormal": true
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Structures_DreamZone_1/Generic_House_B",
+				"position": { "x": 100 },
+				"alignToNormal": true
 			}
 		]
 	}
