@@ -35,7 +35,7 @@ internal class CompletionVolume : MonoBehaviour
         // This gets called even when disabled I guess that makes sense
         if (!enabled) return;
 
-        if (hitCollider.attachedRigidbody == Locator.GetPlayerBody())
+        if (hitCollider.attachedRigidbody == Locator.GetPlayerBody()._rigidbody)
         {
             OnPlayerEnter?.Invoke();
             PlayerEffectController.Instance.WakeUp();
