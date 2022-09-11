@@ -46,6 +46,7 @@ public class Main : ModBehaviour
         gameObject.AddComponent<TimberHearthHandler>();
         gameObject.AddComponent<BrittleHollowHandler>();
         gameObject.AddComponent<CaveTwinHandler>();
+        gameObject.AddComponent<DreamworldHandler>();
 
         gameObject.AddComponent<TitleScreenHandler>();
 
