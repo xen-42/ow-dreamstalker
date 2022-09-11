@@ -32,7 +32,7 @@ internal class CompletionVolume : MonoBehaviour
 
     public virtual void OnTriggerEnter(Collider hitCollider)
     {
-        // This gets called even when enabled I guess that makes sense
+        // This gets called even when disabled I guess that makes sense
         if (!enabled) return;
 
         if (hitCollider.attachedRigidbody == Locator.GetPlayerBody())
