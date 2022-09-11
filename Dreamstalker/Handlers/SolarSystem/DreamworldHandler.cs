@@ -53,10 +53,8 @@ internal class DreamworldHandler : SolarSystemHandler
 		emberMaterial.SetTexture("_MainTex", ImageUtilities.GetTexture(Main.Instance, "assets/Props_HEA_CampfireEmbers_d.png"));
 		emberMaterial.SetTexture("_EmissionMap", ImageUtilities.GetTexture(Main.Instance, "assets/Props_HEA_CampfireEmbers_e.png"));
 
-		/* Ash material isnt the same like with embers
 		var ashMaterial = fireRoot.transform.Find("LodgeFireplace_Ash").GetComponent<MeshRenderer>().material;
 		ashMaterial.SetTexture("_EmissionMap", ImageUtilities.GetTexture(Main.Instance, "assets/Props_HEA_CampfireAsh_e.png"));
-		*/
 
 		fireRoot.transform.Find("LodgeFireplace_Flames").GetComponent<MeshRenderer>().material.color = new Color(0f, 1f, 0f);
 
