@@ -6,7 +6,8 @@
 		"surfaceSize": 100,
 		"ambientLight": 0.3,
 		"hasMapMarker": true,
-		"surfaceGravity": 8
+		"surfaceGravity": 8,
+		"zeroGravityRadius": 400
 	},
 	"Orbit": {
 		"primaryBody": "Sun",
@@ -60,13 +61,283 @@
 			},
 			{
 				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Structures_DreamZone_1/Generic_House_A",
-				"position": { "z": -100 },
+				"position": {
+					"x": -100
+				},
 				"alignToNormal": true
 			},
 			{
 				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Structures_DreamZone_1/Generic_House_B",
-				"position": { "x": 100 },
+				"position": {
+					"x": 98.54012,
+					"y": 11.86544,
+					"z": -7.021817
+				},
 				"alignToNormal": true
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Structures_DreamZone_1/TunnelStairs/TunnelStairRoot_1/Stairs_IP_DW",
+				"position": {
+					"x": 14.0303,
+					"y": -28.0001,
+					"z": 99.9759
+				},
+				"rotation": { "x": 90 }
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Structures_DreamZone_1/TunnelStairs/TunnelStairRoot_1/Stairs_IP_DW",
+				"position": {
+					"x": 14.0432,
+					"y": -35.6557,
+					"z": 94.3001
+				},
+				"rotation": { "x": 90 }
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Sector_PartyHouse/Props_PartyHouse/OtherComponentsGroup/Prefab_IP_DW_Chair/",
+				"position": {
+					"x": 6.04956627,
+					"y": -6.02025,
+					"z": 103.100006
+				},
+				"rotation": {
+					"x": 88.81931,
+					"y": 90.0,
+					"z": 90.0
+				}
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Sector_PartyHouse/Props_PartyHouse/OtherComponentsGroup/Prefab_IP_DW_Chair/",
+				"position": {
+					"x": -10.5427017,
+					"y": -17.3140926,
+					"z": 103.1
+				},
+				"rotation": {
+					"x": 45.6776,
+					"y": 90.0,
+					"z": 90.0
+				}
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Sector_PartyHouse/Props_PartyHouse/OtherComponentsGroup/Prefab_IP_DW_Chair/",
+				"position": {
+					"x": 1.85063744,
+					"y": 5.7862916,
+					"z": 115.100006
+				},
+				"rotation": {
+					"x": 43.2665443,
+					"y": 270.0,
+					"z": 270.0
+				},
+				"scale": 1.00000012
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Sector_PartyHouse/Props_PartyHouse/OtherComponentsGroup/Prefab_IP_DW_Chair/",
+				"position": {
+					"x": 1.94300842,
+					"y": -13.3758659,
+					"z": 109.123642
+				},
+				"rotation": {
+					"x": 295.877747,
+					"y": 270.0,
+					"z": 270.0
+				},
+				"scale": 0.9999999
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Sector_PartyHouse/Props_PartyHouse/OtherComponentsGroup/Props_IP_DW_Crate/",
+				"position": {
+					"x": -14.8402424,
+					"y": -1.18625212,
+					"z": 109.100006
+				},
+				"rotation": {
+					"x": 2.73381639,
+					"y": 90.0,
+					"z": 90.0
+				},
+				"scale": 1.00000024
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Sector_PartyHouse/Props_PartyHouse/OtherComponentsGroup/Props_IP_DW_Crate/",
+				"position": {
+					"x": -13.6490574,
+					"y": 6.595219,
+					"z": 109.100006
+				},
+				"rotation": {
+					"x": 85.58767,
+					"y": 270.0,
+					"z": 270.0
+				}
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Sector_PartyHouse/Props_PartyHouse/OtherComponentsGroup/Props_IP_DW_Crate/",
+				"position": {
+					"x": -13.8272581,
+					"y": -14.4939442,
+					"z": 109.100006
+				},
+				"rotation": {
+					"x": 276.94455,
+					"y": 270.0,
+					"z": 270.0
+				},
+				"scale": 1.00000012
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Props_DreamZone_1/OtherComponentsGroup/Props_Dock/Props_IP_DW_Stool",
+				"position": {
+					"x": -14.2801456,
+					"y": 1.61967611,
+					"z": 109.100006
+				},
+				"rotation": {
+					"x": 9.665357,
+					"y": 90.0,
+					"z": 90.0
+				},
+				"scale": 1.00000024
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Props_DreamZone_1/OtherComponentsGroup/Props_Dock/Props_IP_DW_Stool",
+				"position": {
+					"x": -19.2072315,
+					"y": -10.9173985,
+					"z": 109.100006
+				},
+				"rotation": {
+					"x": 291.704163,
+					"y": 90.0,
+					"z": 90.0
+				},
+				"scale": 0.9999999
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Props_DreamZone_1/OtherComponentsGroup/Props_Dock/Props_IP_DW_Stool",
+				"position": {
+					"x": 2.23408318,
+					"y": -2.32986879,
+					"z": 109.123642
+				},
+				"rotation": {
+					"x": 5.01317358,
+					"y": 270.0,
+					"z": 270.0
+				},
+				"scale": 0.9999999
+			},
+			{
+				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (StoryYellow)/Prefab_IP_SleepingMummy_v2",
+				"position": {
+					"x": -13.9885426,
+					"y": -5.004481,
+					"z": 109.100006
+				},
+				"rotation": {
+					"x": 359.9923,
+					"y": 90.0,
+					"z": 90.0
+				},
+				"scale": 1.00000012
+			},
+			{
+				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (StoryYellow)/Prefab_IP_SleepingMummy_v2",
+				"position": {
+					"x": -1.39970922,
+					"y": -1.93599439,
+					"z": 109.100006
+				},
+				"rotation": {
+					"x": 356.505768,
+					"y": 270.0,
+					"z": 270.0
+				},
+				"scale": 1.00000012
+			},
+			{
+				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (KAMAJI)/Prefab_IP_SleepingMummy_v2/",
+				"position": {
+					"x": -11.3164053,
+					"y": 6.4688344,
+					"z": 109.100006
+				},
+				"rotation": {
+					"x": 87.8481445,
+					"y": 90.0,
+					"z": 90.0
+				}
+			},
+			{
+				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (NOFACE)/Prefab_IP_SleepingMummy_v2/",
+				"position": {
+					"x": -1.41533566,
+					"y": 2.09053183,
+					"z": 109.100006
+				},
+				"rotation": {
+					"x": 357.151123,
+					"y": 270.0,
+					"z": 270.0
+				}
+			},
+			{
+				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (NOFACE)/Prefab_IP_SleepingMummy_v2/",
+				"position": {
+					"x": -14.3538942,
+					"y": 3.51345873,
+					"z": 109.100006
+				},
+				"rotation": {
+					"x": 0.7707418,
+					"y": 90.0,
+					"z": 90.0
+				}
+			},
+			{
+				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (YUBABA)/Prefab_IP_SleepingMummy_v2/",
+				"position": {
+					"x": -13.6123829,
+					"y": -12.4792871,
+					"z": 109.100006
+				},
+				"rotation": {
+					"x": 2.69672775,
+					"y": 90.0,
+					"z": 90.0
+				},
+				"scale": 1.00000024
+			},
+			{
+				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (YUBABA)/Prefab_IP_SleepingMummy_v2/",
+				"position": {
+					"x": -0.339836121,
+					"y": -1.82737327,
+					"z": 115.100006
+				},
+				"rotation": {
+					"x": 5.040487,
+					"y": 270.0,
+					"z": 270.0
+				},
+				"scale": 1.00000012
+			},
+			{
+				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (YUBABA)/Prefab_IP_SleepingMummy_v2/",
+				"position": {
+					"x": -12.572588,
+					"y": -6.01730347,
+					"z": 115.100006
+				},
+				"rotation": {
+					"x": 354.44397,
+					"y": 90.0,
+					"z": 90.0
+				},
+				"scale": 1.00000024
 			}
 		]
 	}

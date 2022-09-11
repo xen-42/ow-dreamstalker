@@ -1,4 +1,4 @@
-﻿using Dreamstalker.Components;
+﻿using Dreamstalker.Components.Dreamworld;
 using Dreamstalker.Components.Volumes;
 using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
@@ -30,11 +30,52 @@ internal class DreamworldHandler : SolarSystemHandler
 		// Spawn point
 		var spawnGO = new GameObject("Spawn");
         spawnGO.transform.parent = dreamworld.transform;
-        spawnGO.transform.localPosition = new Vector3(0, 100, 0);
+        spawnGO.transform.localPosition = new Vector3(93.9882f, 11.37577f, -30.61145f);
         spawnGO.layer = 8;
         var spawn = spawnGO.AddComponent<SpawnPoint>();
         spawn._isShipSpawn = false;
         spawn._triggerVolumes = new OWTriggerVolume[] { dreamworld.GetComponentInChildren<Sector>()._owTriggerVolume };
+
+		// Change floorbed material
+		dreamworld.transform.Find("Sector/GroundSphere").GetComponent<MeshRenderer>().material =
+			GameObject.Find("DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Geo_DreamZone_1/Terrain_IP_Dreamworld_Floorbed/Terrain_Dreamworld_Floorbed_Z1")
+			.GetComponent<MeshRenderer>()
+			.material;
+
+		// Fix gravity
+		dreamworld.GetGravityVolume().SetPriority(2);
+
+		// Change fireplace
+		var fireRoot = dreamworld.transform.Find("Sector/Party_House/Interactibles_PartyHouse/Prefab_IP_LodgeFire/Structure_DW_LodgeFireplace/LodgeFireplace_Fire");
+		fireRoot.transform.Find("LodgeFireplace_Ash");
+
+		var emberMaterial = fireRoot.transform.Find("LodgeFireplace_Embers").GetComponent<MeshRenderer>().material;
+		emberMaterial.SetTexture("_MainTex", ImageUtilities.GetTexture(Main.Instance, "assets/Props_HEA_CampfireEmbers_d.png"));
+		emberMaterial.SetTexture("_EmissionMap", ImageUtilities.GetTexture(Main.Instance, "assets/Props_HEA_CampfireEmbers_e.png"));
+
+		/* Ash material isnt the same like with embers
+		var ashMaterial = fireRoot.transform.Find("LodgeFireplace_Ash").GetComponent<MeshRenderer>().material;
+		ashMaterial.SetTexture("_EmissionMap", ImageUtilities.GetTexture(Main.Instance, "assets/Props_HEA_CampfireAsh_e.png"));
+		*/
+
+		fireRoot.transform.Find("LodgeFireplace_Flames").GetComponent<MeshRenderer>().material.color = new Color(0f, 1f, 0f);
+
+		// Doors
+		foreach (var rotatingDoor in dreamworld.GetComponentsInChildren<RotatingDoor>())
+		{
+			var doorTrigger = new GameObject("DoorTrigger");
+			doorTrigger.layer = LayerMask.NameToLayer("BasicEffectVolume");
+			doorTrigger.transform.parent = rotatingDoor.transform;
+			doorTrigger.transform.localPosition = Vector3.zero;
+
+			var col = doorTrigger.AddComponent<SphereCollider>();
+			col.isTrigger = true;
+			col.radius = 10f;
+
+			doorTrigger.AddComponent<OWTriggerVolume>();
+
+			doorTrigger.AddComponent<AutoDoorTrigger>();
+		}
 
         var islandPrefab = DZ1_A_Island_C_Prefab();
 
