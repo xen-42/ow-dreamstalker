@@ -32,6 +32,7 @@ internal class AutoDoorTrigger : MonoBehaviour
 	{
 		if (hitObject.CompareTag("Player"))
 		{
+			Main.Log("Player entered entry thing");
 			_door.Open();
 		}
 	}
