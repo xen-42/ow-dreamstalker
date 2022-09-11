@@ -37,6 +37,7 @@ internal class CompletionVolume : MonoBehaviour
 
         if (hitCollider.attachedRigidbody == Locator.GetPlayerBody())
         {
+            Main.Log("Player entered a completion volume");
             OnPlayerEnter?.Invoke();
             PlayerEffectController.Instance.WakeUp();
             PlayerSpawnUtil.SpawnAt(NextPlanet);
