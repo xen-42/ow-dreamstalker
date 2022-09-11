@@ -1,14 +1,14 @@
 {
-    "$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
-    "name": "Sun",
-    "removeChildren": [
-        "AmbientLight_SUN",
-        "Atmosphere_SUN",
-        "Sector_SUN"
-    ],
-    "Star": {
-        "lifespan": 0,
-        "stellarRemnantType": "whiteDwarf",
-        "size": 2000
-    }
+	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
+	"name": "Sun",
+	"removeChildren": [
+		"AmbientLight_SUN",
+		"Atmosphere_SUN",
+		"Sector_SUN"
+	],
+	"Star": {
+		"lifespan": 0,
+		"stellarRemnantType": "whiteDwarf",
+		"size": 2000
+	}
 }

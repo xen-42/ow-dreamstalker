@@ -1,8 +1,8 @@
 {
-    "$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
-    "name": "Hollow's Lantern",
-    "removeChildren": [
-        "MoltenCore_VM",
+	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
+	"name": "Hollow's Lantern",
+	"removeChildren": [
+		"MoltenCore_VM",
 		"Sector_VM/Effects_VM"
-    ]
+	]
 }
