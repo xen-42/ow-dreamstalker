@@ -61,7 +61,7 @@ internal class DreamstalkerGrabController : MonoBehaviour
 
         if (PlayerState.IsAttached())
         {
-            return;
+            PlayerAttachPointController.Instance.Detatch();
         }
 
         enabled = true;

@@ -50,6 +50,7 @@ internal class PropHandler : SolarSystemHandler
 		TurnOffCampFires();
 
 		Locator.GetPlayerBody().gameObject.AddComponent<PlayerEffectController>();
+		Locator.GetPlayerBody().gameObject.AddComponent<PlayerAttachPointController>();
 		Locator.GetPlayerBody().gameObject.AddComponent<DebugCommands>();
 	}
 

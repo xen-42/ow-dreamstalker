@@ -16,7 +16,7 @@ internal static class DeathManagerPatches
 		if (deathType != DeathType.TimeLoop)
 		{
 			PlayerEffectController.Instance.Blink(1f);
-			PlayerSpawnUtil.SpawnAt(AstroObject.Name.TimberHearth);
+			PlayerSpawnUtil.Respawn();
 			PropHandler.TurnOffCampFires();
 			return false;
 		}

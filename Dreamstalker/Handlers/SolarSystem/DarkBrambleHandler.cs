@@ -1,4 +1,5 @@
-﻿using Dreamstalker.Utility;
+﻿using Dreamstalker.Components;
+using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
 using NewHorizons.External.Modules;
 using System;
@@ -19,14 +20,14 @@ internal class DarkBrambleHandler : SolarSystemHandler
 
 	protected override void OnSolarSystemAwake()
 	{
-
+		GlobalMessenger<float>.AddListener("EatMarshmallow", OnEatMarshmallow);
 	}
 
 	protected override void OnSolarSystemStart()
 	{
 		var db = Locator.GetAstroObject(AstroObject.Name.DarkBramble);
 
-		var ernestoPos = new Vector3(-525.7968f, 617.6582f - 160.946f);
+		var ernestoPos = new Vector3(-525.7968f, 617.6582f, -160.946f);
 		var spawnPos = new Vector3(-524.4136f, 616.8699f, -164.5957f);
 
 
@@ -51,14 +52,22 @@ internal class DarkBrambleHandler : SolarSystemHandler
 			rotation = new Vector3(355.8887f, 156.5434f, 330.4391f)
 		});
 
-		ernesto.transform.localPosition = ernestoPos;
+		ernesto.transform.position = db.transform.TransformPoint(ernestoPos);
 
 		(_dialogue, _dialogueTrigger) = Main.Instance.NewHorizonsAPI.SpawnDialogue(Main.Instance, db.gameObject, "assets/xml/DarkBramble.xml", remoteTriggerRadius: 2);
 		_dialogue.transform.parent = ernesto.transform;
 		_dialogue.transform.localPosition = Vector3.zero;
+
 		_dialogueTrigger.transform.localPosition = spawnPos;
+		_dialogueTrigger._deactivateTriggerPostConversation = false;
 
 		_dialogue.OnEndConversation += OnEndConversation;
+	}
+
+	private void OnEatMarshmallow(float _)
+	{
+		PlayerAttachPointController.Instance.Detatch();
+		PlayerSpawnUtil.SpawnAt(AstroObject.Name.DarkBramble);
 	}
 
 	protected override void OnDestroy()
@@ -68,11 +77,13 @@ internal class DarkBrambleHandler : SolarSystemHandler
 		{
 			_dialogue.OnEndConversation -= OnEndConversation;
 		}
+		GlobalMessenger<float>.RemoveListener("EatMarshmallow", OnEatMarshmallow);
 	}
 
 	private void OnEndConversation()
 	{
-		PlayerSpawnUtil.SpawnAt(AstroObject.Name.TimberHearth);
+		PlayerSpawnUtil.SpawnAt(PlayerSpawnUtil.SecondLastSpawn);
+		PropHandler.TurnOffCampFires();
 		_dialogueTrigger.enabled = true;
 	}
 }

@@ -1,4 +1,5 @@
-﻿using Dreamstalker.Handlers.SolarSystem;
+﻿using Dreamstalker.Components;
+using Dreamstalker.Handlers.SolarSystem;
 using System.Linq;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ namespace Dreamstalker.Utility;
 
 internal static class PlayerSpawnUtil
 {
+	public static AstroObject.Name LastSpawn { get; private set; } = AstroObject.Name.TimberHearth;
+	public static AstroObject.Name SecondLastSpawn { get; private set; } = AstroObject.Name.TimberHearth;
+
 	private static PlayerSpawner GetPlayerSpawner()
 	{
 		if (_playerSpawner == null) _playerSpawner = GameObject.FindObjectOfType<PlayerSpawner>();
@@ -36,6 +40,9 @@ internal static class PlayerSpawnUtil
 
 	public static void SpawnAt(AstroObject.Name planet)
 	{
+		SecondLastSpawn = LastSpawn;
+		LastSpawn = planet;
+
 		var spawn = GetSpawnPoint(planet);
 
 		var playerResources = GameObject.FindObjectOfType<PlayerResources>();
@@ -52,5 +59,12 @@ internal static class PlayerSpawnUtil
 		playerResources._isSuffocating = false;
 		playerResources.DebugRefillResources();
 		Main.FireOnNextUpdate(() => playerResources.enabled = true);
+
+		PlayerEffectController.Instance.SetStatic(0f);
+	}
+
+	public static void Respawn()
+	{
+		SpawnAt(LastSpawn);
 	}
 }

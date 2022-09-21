@@ -102,6 +102,10 @@ internal class DreamstalkerController : VisibilityObject
             _despawning = false;
             StartStalking();
         }
+        else
+        {
+            DespawnImmediate();
+        }
     }
 
     private void TurnTowardsLocalDirection(Vector3 localDirection, float targetDegreesPerSecond)
