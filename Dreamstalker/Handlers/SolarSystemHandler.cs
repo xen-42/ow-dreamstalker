@@ -14,7 +14,7 @@ public abstract class SolarSystemHandler : BaseHandler
         _main.SolarSystemStart.AddListener(TryOnSolarSystemStart);
     }
 
-    protected void OnDestroy()
+    protected virtual void OnDestroy()
     {
         if (_main != null)
         {

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Dreamstalker.Handlers.SolarSystem;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Dreamstalker.Utility;
@@ -22,6 +19,7 @@ internal static class PlayerSpawnUtil
 		AstroObject.Name.GiantsDeep => GameObject.Find("GabbroIsland_Body/Sector_GabbroIsland/Spawn_GabbroIsland").GetComponent<SpawnPoint>(),
 		AstroObject.Name.BrittleHollow => GameObject.Find("BrittleHollow_Body/SPAWNS_PLAYER/SPAWN_Observatory").GetComponent<SpawnPoint>(),
 		AstroObject.Name.DreamWorld => GameObject.Find("Dreaming_Body/Spawn").GetComponent<SpawnPoint>(),
+		AstroObject.Name.DarkBramble => DarkBrambleHandler.EasterEggSpawnPoint,
 		_ => GetPlayerSpawner()._spawnList.FirstOrDefault(x => x.GetSpawnLocation() == GetSpawnLocation(planet) && x.IsShipSpawn() == false)
 	};
 

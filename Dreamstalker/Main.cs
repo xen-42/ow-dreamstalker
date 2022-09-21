@@ -48,6 +48,7 @@ public class Main : ModBehaviour
         gameObject.AddComponent<CaveTwinHandler>();
         gameObject.AddComponent<DreamworldHandler>();
         gameObject.AddComponent<GiantsDeepHandler>();
+        gameObject.AddComponent<DarkBrambleHandler>();
 
         gameObject.AddComponent<TitleScreenHandler>();
 

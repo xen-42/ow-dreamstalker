@@ -1,0 +1,47 @@
+﻿{
+	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
+	"name": "Dark Bramble",
+	"Props": {
+		"details": [
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Props_StartingCamp/OtherComponentsGroup/Props_HEA_CampsiteTableSetting",
+				"position": {
+					"x": -526.423,
+					"y": 615.9743,
+					"z": -161.9702
+				},
+				"rotation": {
+					"x": 28.2305584,
+					"y": 237.037567,
+					"z": 347.373962
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Props_StartingCamp/OtherComponentsGroup/Props_HEA_CampsiteCookingStand",
+				"position": {
+					"x": -523.0367,
+					"y": 617.9827,
+					"z": -161.0833
+				},
+				"rotation": {
+					"x": 11.6167917,
+					"y": 194.501038,
+					"z": 333.069641
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Props_StartingCamp/OtherComponentsGroup/Props_HEA_CampsiteLogAssets",
+				"position": {
+					"x": -520.1876,
+					"y": 619.2664,
+					"z": -163.952316
+				},
+				"rotation": {
+					"x": 13.7004414,
+					"y": 322.482239,
+					"z": 25.5976067
+				}
+			}
+		]
+	}
+}

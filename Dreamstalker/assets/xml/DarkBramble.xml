@@ -1,0 +1,21 @@
+<DialogueTree xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/xen-42/outer-wilds-new-horizons/main/NewHorizons/Schemas/dialogue_schema.xsd">
+	<NameField>SIGN</NameField>
+
+	<DialogueNode>
+		<Name>MAIN</Name>
+		<Randomize/>
+		<EntryCondition>DEFAULT</EntryCondition>
+		<Dialogue>
+			<Page>DREAMSTALKER_DB_1</Page>
+		</Dialogue>
+		<Dialogue>
+			<Page>DREAMSTALKER_DB_2</Page>
+		</Dialogue>
+		<Dialogue>
+			<Page>DREAMSTALKER_DB_3</Page>
+		</Dialogue>
+		<Dialogue>
+			<Page>DREAMSTALKER_DB_4</Page>
+		</Dialogue>
+	</DialogueNode>
+</DialogueTree>
