@@ -19,7 +19,7 @@ internal class DarkBrambleHandler : SolarSystemHandler
 
 	protected override void OnSolarSystemAwake()
 	{
-		throw new NotImplementedException();
+
 	}
 
 	protected override void OnSolarSystemStart()

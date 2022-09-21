@@ -267,7 +267,7 @@ internal class DreamstalkerController : VisibilityObject
         StopStalking();
 
         _despawning = true;
-        _despawnTime = Time.time + 3f;
+        _despawnTime = Time.time + 2.5f;
     }
 
     public void DespawnImmediate()
