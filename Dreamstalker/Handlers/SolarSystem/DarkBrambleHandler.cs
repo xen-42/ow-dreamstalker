@@ -1,4 +1,4 @@
-﻿using Dreamstalker.Components;
+﻿using Dreamstalker.Components.Player;
 using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
 using NewHorizons.External.Modules;

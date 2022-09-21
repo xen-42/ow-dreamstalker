@@ -1,4 +1,5 @@
-﻿using NewHorizons.Builder.Props;
+﻿using Dreamstalker.Components.Player;
+using NewHorizons.Builder.Props;
 using NewHorizons.Components;
 using NewHorizons.External.Modules;
 using NewHorizons.Utility;
@@ -9,7 +10,7 @@ using Random = UnityEngine.Random;
 
 namespace Dreamstalker.Components
 {
-	internal class QuantumAmalgam : QuantumObject
+    internal class QuantumAmalgam : QuantumObject
 	{
 		private List<(GameObject character, bool isStrange)> _characters = new();
 		private int _currentState;

@@ -1,4 +1,5 @@
-﻿using Dreamstalker.Utility;
+﻿using Dreamstalker.Components.Player;
+using Dreamstalker.Utility;
 using UnityEngine;
 using UnityEngine.Events;
 
