@@ -1,8 +1,10 @@
-﻿using Dreamstalker.Handlers.SolarSystem;
+﻿using Dreamstalker.Components.Streaming;
+using Dreamstalker.Handlers.SolarSystem;
 using HarmonyLib;
 using NewHorizons.Utility;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Dreamstalker.Patches;
 
@@ -33,7 +35,22 @@ internal static class FirePatches
             ashMaterial.SetTexture("_EmissionMap", ImageUtilities.GetTexture(Main.Instance, "assets/Props_HEA_CampfireAsh_e.png"));
 
 			__instance._flames.material.color = new Color(0f, 1f, 0f);
-        }
+
+            if (SceneManager.GetActiveScene().name == "SolarSystem")
+            {
+				var streamingVolume = new GameObject("CampfireStreamingVolume");
+				streamingVolume.transform.parent = __instance.transform;
+				streamingVolume.transform.localPosition = Vector3.zero;
+				streamingVolume.layer = LayerMask.NameToLayer("BasicEffectVolume");
+
+				streamingVolume.AddComponent<SphereShape>().radius = 5f;
+				streamingVolume.AddComponent<OWTriggerVolume>();
+				var streamingController = streamingVolume.AddComponent<CampfireStreamingLoadVolume>();
+				streamingController.SetSector(__instance.GetSector());
+				streamingController.SetStreaming(Locator.GetAstroObject(AstroObject.Name.DarkBramble).gameObject.GetComponent<StreamingGroup>());
+				streamingController.campfire = __instance;
+			}
+		}
         catch (Exception e)
         {
             Main.LogError($"Could not tint campfire {__instance.transform.GetPath()} : {e}");

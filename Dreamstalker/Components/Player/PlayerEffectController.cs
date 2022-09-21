@@ -39,7 +39,7 @@ internal class PlayerEffectController : MonoBehaviour
 		_cameraEffectController.OpenEyes(time / 2f, false);
 	}
 
-	public void WakeUp()
+	public void WakeUp(bool gasp = true)
 	{
 		_cameraEffectController.CloseEyes(1f);
 		_cameraEffectController.OpenEyes(_cameraEffectController._wakeLength, _cameraEffectController._calmWakeCurve);

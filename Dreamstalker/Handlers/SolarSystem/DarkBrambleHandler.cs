@@ -1,8 +1,10 @@
-﻿using Dreamstalker.Components.Player;
+﻿using Dreamstalker.Components;
+using Dreamstalker.Components.Player;
 using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
 using NewHorizons.External.Modules;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,8 +17,11 @@ internal class DarkBrambleHandler : SolarSystemHandler
 {
 	public static SpawnPoint EasterEggSpawnPoint { get; private set; }
 
-	private RemoteDialogueTrigger _dialogueTrigger;
+	private StreamingGroup _streamingGroup;
 	private CharacterDialogueTree _dialogue;
+
+	private PlayerLockOnTargeting _lockOn;
+	private Transform _ernesto;
 
 	protected override void OnSolarSystemAwake()
 	{
@@ -53,21 +58,43 @@ internal class DarkBrambleHandler : SolarSystemHandler
 		});
 
 		ernesto.transform.position = db.transform.TransformPoint(ernestoPos);
+		_ernesto = ernesto.transform;
 
-		(_dialogue, _dialogueTrigger) = Main.Instance.NewHorizonsAPI.SpawnDialogue(Main.Instance, db.gameObject, "assets/xml/DarkBramble.xml", remoteTriggerRadius: 2);
+		(_dialogue, _) = Main.Instance.NewHorizonsAPI.SpawnDialogue(Main.Instance, db.gameObject, "assets/xml/DarkBramble.xml", radius: 0);
 		_dialogue.transform.parent = ernesto.transform;
 		_dialogue.transform.localPosition = Vector3.zero;
 
-		_dialogueTrigger.transform.localPosition = spawnPos;
-		_dialogueTrigger._deactivateTriggerPostConversation = false;
-
 		_dialogue.OnEndConversation += OnEndConversation;
+
+		_lockOn = Locator.GetPlayerTransform().GetRequiredComponent<PlayerLockOnTargeting>();
 	}
 
 	private void OnEatMarshmallow(float _)
 	{
 		PlayerAttachPointController.Instance.Detatch();
+		PlayerEffectController.Instance.WakeUp(gasp: false);
 		PlayerSpawnUtil.SpawnAt(AstroObject.Name.DarkBramble);
+
+		// Keep the previous location loaded
+		var streamingGroup = Locator.GetAstroObject(PlayerSpawnUtil.SecondLastSpawn).GetComponentInChildren<StreamingGroup>();
+		if (streamingGroup != null && PlayerSpawnUtil.SecondLastSpawn != AstroObject.Name.DreamWorld)
+		{
+			_streamingGroup = streamingGroup;
+			_streamingGroup.RequestRequiredAssets(0);
+			_streamingGroup.RequestGeneralAssets(0);
+		}
+
+		StartCoroutine(BeginErnestoSequence());
+	}
+
+	private IEnumerator BeginErnestoSequence()
+	{
+		OWInput.ChangeInputMode(InputMode.None);
+		_lockOn.LockOn(_ernesto);
+		yield return new WaitForSeconds(2f);
+		_lockOn.BreakLock();
+		OWInput.ChangeInputMode(InputMode.Character);
+		_dialogue.StartConversation();
 	}
 
 	protected override void OnDestroy()
@@ -82,8 +109,15 @@ internal class DarkBrambleHandler : SolarSystemHandler
 
 	private void OnEndConversation()
 	{
+		if (_streamingGroup != null)
+		{
+			_streamingGroup.ReleaseRequiredAssets();
+			_streamingGroup.ReleaseGeneralAssets();
+			_streamingGroup = null;
+		}
+
 		PlayerSpawnUtil.SpawnAt(PlayerSpawnUtil.SecondLastSpawn);
+		PlayerEffectController.Instance.Blink();
 		PropHandler.TurnOffCampFires();
-		_dialogueTrigger.enabled = true;
 	}
 }

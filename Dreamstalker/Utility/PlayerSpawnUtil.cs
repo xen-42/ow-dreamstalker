@@ -41,8 +41,11 @@ internal static class PlayerSpawnUtil
 
 	public static void SpawnAt(AstroObject.Name planet)
 	{
-		SecondLastSpawn = LastSpawn;
-		LastSpawn = planet;
+		if (LastSpawn != planet)
+		{
+			SecondLastSpawn = LastSpawn;
+			LastSpawn = planet;
+		}
 
 		var spawn = GetSpawnPoint(planet);
 

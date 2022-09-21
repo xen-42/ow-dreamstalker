@@ -1,4 +1,5 @@
 ﻿using Dreamstalker.Components.Player;
+using Dreamstalker.Components.Streaming;
 using Dreamstalker.Utility;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,6 +13,24 @@ internal class CompletionVolume : MonoBehaviour
     private Campfire _campfire;
 
     public UnityEvent OnPlayerEnter = new();
+
+    protected SphereShape _streamingSphere;
+
+    public virtual void Start()
+    {
+		var streamingVolume = new GameObject("StreamingVolume");
+		streamingVolume.transform.parent = transform;
+		streamingVolume.transform.localPosition = Vector3.zero;
+		streamingVolume.layer = LayerMask.NameToLayer("BasicEffectVolume");
+
+        _streamingSphere = streamingVolume.AddComponent<SphereShape>();
+		_streamingSphere.radius = 50f;
+
+		streamingVolume.AddComponent<OWTriggerVolume>();
+		var streamingController = streamingVolume.AddComponent<StreamingLoadVolume>();
+		streamingController.SetSector(gameObject.GetAttachedOWRigidbody().GetComponent<AstroObject>().GetRootSector());
+		streamingController.SetStreaming(StreamingGroups.Get(NextPlanet));
+	}
 
     public void SetCampfire(Campfire campfire)
     {
