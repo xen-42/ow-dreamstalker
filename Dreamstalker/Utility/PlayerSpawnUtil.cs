@@ -28,6 +28,7 @@ internal static class PlayerSpawnUtil
 		AstroObject.Name.BrittleHollow => GameObject.Find("BrittleHollow_Body/SPAWNS_PLAYER/SPAWN_Observatory").GetComponent<SpawnPoint>(),
 		AstroObject.Name.DreamWorld => GameObject.Find("Dreaming_Body/Spawn").GetComponent<SpawnPoint>(),
 		AstroObject.Name.DarkBramble => DarkBrambleHandler.EasterEggSpawnPoint,
+		AstroObject.Name.QuantumMoon => GameObject.Find("CustomQuantumMoon_Body/Spawn").GetComponent<SpawnPoint>(),
 		_ => GetPlayerSpawner()._spawnList.FirstOrDefault(x => x.GetSpawnLocation() == GetSpawnLocation(planet) && x.IsShipSpawn() == false)
 	};
 

@@ -5,7 +5,7 @@
 		"groundSize": 99.5,
 		"surfaceSize": 100,
 		"ambientLight": 0.3,
-		"hasMapMarker": true,
+		"hasMapMarker": false,
 		"surfaceGravity": 8,
 		"zeroGravityRadius": 400
 	},

@@ -1,0 +1,74 @@
+{
+	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
+	"name": "Custom Quantum Moon",
+	"Base": {
+		"surfaceSize": 100,
+		"ambientLight": 0.3,
+		"hasMapMarker": false,
+		"surfaceGravity": 8,
+		"zeroGravityRadius": 400
+	},
+	"Props": {
+		"details": [
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_BH",
+				"keepLoaded": true
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_DB",
+				"keepLoaded": true
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_EYE",
+				"keepLoaded": true
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_GD",
+				"keepLoaded": true
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_HT",
+				"keepLoaded": true
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_TH",
+				"keepLoaded": true
+			},
+			{
+				"path": "QuantumMoon_Body/AmbientLight_QM",
+				"keepLoaded": true
+			}
+		]
+	},
+	"Orbit": {
+		"primaryBody": "Sun",
+		"staticPosition": {
+			"x": 0,
+			"y": -10000,
+			"z": 0
+		}
+	},
+	"Atmosphere": {
+		"hasOxygen": true,
+		"size": 200,
+		"fogSize": 200,
+		"fogDensity": 1,
+		"fogTint": {
+			"r": 0,
+			"g": 0,
+			"b": 0,
+			"a": 255
+		},
+		"clouds": {
+			"texturePath": "assets/blank.png",
+			"tint": {
+				"r": 0,
+				"g": 0,
+				"b": 0,
+				"a": 255
+			},
+			"outerCloudRadius": 120,
+			"innerCloudRadius": 100
+		}
+	}
+}
