@@ -13,16 +13,17 @@ internal class PropHandler : SolarSystemHandler
 		base.Awake();
 	}
 
-    protected override void OnSolarSystemAwake() 
-    {
-		// Want to do this before NH starts creating any of it
-
+	protected override void BeforePlanetCreation() 
+	{
 		// Remove all dialogue
 		foreach (var dialogue in FindObjectsOfType<CharacterDialogueTree>())
 		{
-			// Super hacky, but if the parent is a sector then NH made it. I'm too lazy to make this good.
-			if (dialogue.transform.parent.GetComponent<Sector>() != null) continue;
 			dialogue.gameObject.SetActive(false);
+		}
+
+		foreach (var remoteTrigger in FindObjectsOfType<RemoteDialogueTrigger>())
+		{
+			remoteTrigger.gameObject.SetActive(false);
 		}
 
 		// Remove all signals (since some is played out loud)
@@ -31,6 +32,8 @@ internal class PropHandler : SolarSystemHandler
 			signal.gameObject.SetActive(false);
 		}
 	}
+
+	protected override void OnSolarSystemAwake() { }
 
     protected override void OnSolarSystemStart()
     {

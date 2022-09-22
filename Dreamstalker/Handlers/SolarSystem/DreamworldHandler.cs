@@ -15,10 +15,9 @@ internal class DreamworldHandler : SolarSystemHandler
 	private GameObject _sectorRoot;
 	private OWRigidbody _raft;
 
-    protected override void OnSolarSystemAwake()
-    {
+	protected override void BeforePlanetCreation() { }
 
-    }
+	protected override void OnSolarSystemAwake() { }
 
     protected override void OnSolarSystemStart()
     {
@@ -107,7 +106,7 @@ internal class DreamworldHandler : SolarSystemHandler
 		_sectorRoot = _dreamworld.GetRootSector().gameObject;
 		_raft = _sectorRoot.GetComponentInChildren<RaftController>().GetAttachedOWRigidbody();
 		_raft.Suspend();
-		_sectorRoot.gameObject.SetActive(false);
+		_sectorRoot.SetActive(false);
 		PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);
 	}
 

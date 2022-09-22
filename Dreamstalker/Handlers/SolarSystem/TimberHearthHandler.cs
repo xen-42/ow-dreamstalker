@@ -6,7 +6,10 @@ namespace Dreamstalker.Handlers.SolarSystem;
 
 internal class TimberHearthHandler : SolarSystemHandler
 {
-    protected override void OnSolarSystemAwake()
+    protected override void BeforePlanetCreation() { }
+
+
+	protected override void OnSolarSystemAwake()
     {
         // Before NH can add the audio volume
         var th = GameObject.Find("TimberHearth_Body");
@@ -32,7 +35,7 @@ internal class TimberHearthHandler : SolarSystemHandler
                 else if (parent.name.Contains("WindowPivot_Cabin"))
                 {
                     // Turn off their window lights
-                    light.gameObject.GetComponent<NightLight>().OnSunrise();
+                    DestroyImmediate(light);
                 }
             }
             light.color = new Color(0.4f, 1f, 1f);
@@ -40,8 +43,8 @@ internal class TimberHearthHandler : SolarSystemHandler
         // Dont want lights disabling when it becomes "day"
         foreach (var nightLight in th.GetComponentsInChildren<NightLight>())
         {
-            // BUG: this shit dont work lmao
-            Component.Destroy(nightLight);
+            nightLight.OnSunrise();
+            DestroyImmediate(nightLight);
         }
 
         // Get rid of the ship

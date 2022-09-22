@@ -11,6 +11,8 @@ namespace Dreamstalker.Handlers.SolarSystem;
 
 internal class BrittleHollowHandler : SolarSystemHandler
 {
+	protected override void BeforePlanetCreation() { }
+
 	protected override void OnSolarSystemAwake()
 	{
 		// Before NH can add the audio volume

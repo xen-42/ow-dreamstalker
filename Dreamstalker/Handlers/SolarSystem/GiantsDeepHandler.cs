@@ -6,6 +6,8 @@ namespace Dreamstalker.Handlers.SolarSystem;
 
 internal class GiantsDeepHandler : SolarSystemHandler
 {
+	protected override void BeforePlanetCreation() { }
+
 	protected override void OnSolarSystemAwake()
 	{
 		var gabbroIsland = GameObject.Find("GabbroIsland_Body");

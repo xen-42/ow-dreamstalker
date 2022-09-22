@@ -10,6 +10,7 @@ public abstract class SolarSystemHandler : BaseHandler
     {
         base.Awake();
 
+        _main.BeforePlanetCreation.AddListener(TryBeforePlanetCreation);
         _main.SolarSystemAwake.AddListener(TryOnSolarSystemAwake);
         _main.SolarSystemStart.AddListener(TryOnSolarSystemStart);
     }
@@ -18,12 +19,26 @@ public abstract class SolarSystemHandler : BaseHandler
     {
         if (_main != null)
         {
+            _main.BeforePlanetCreation.RemoveListener(TryBeforePlanetCreation);
             _main.SolarSystemAwake.RemoveListener(TryOnSolarSystemAwake);
             _main.SolarSystemStart.RemoveListener(TryOnSolarSystemStart);
         }
     }
 
-    private void TryOnSolarSystemAwake()
+    private void TryBeforePlanetCreation()
+    {
+		try
+		{
+			BeforePlanetCreation();
+		}
+		catch (Exception e)
+		{
+			Main.LogError($"{e}");
+		}
+	}
+
+
+	private void TryOnSolarSystemAwake()
     {
         try
         {
@@ -46,6 +61,8 @@ public abstract class SolarSystemHandler : BaseHandler
 			Main.LogError($"{e}");
 		}
 	}
+
+    protected abstract void BeforePlanetCreation();
 
 	protected abstract void OnSolarSystemAwake();
 

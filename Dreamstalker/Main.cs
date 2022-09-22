@@ -2,6 +2,7 @@
 using Dreamstalker.Handlers.SolarSystem;
 using Dreamstalker.Handlers.TitleScreen;
 using HarmonyLib;
+using NewHorizons.Handlers;
 using OWML.Common;
 using OWML.ModHelper;
 using System;
@@ -14,12 +15,14 @@ using UnityEngine.SceneManagement;
 
 namespace Dreamstalker;
 
+[HarmonyPatch]
 public class Main : ModBehaviour
 {
     public INewHorizons NewHorizonsAPI;
 
     public static Main Instance;
 
+    public UnityEvent BeforePlanetCreation = new();
     public UnityEvent SolarSystemAwake = new();
     public UnityEvent SolarSystemStart = new();
 
@@ -50,9 +53,9 @@ public class Main : ModBehaviour
         gameObject.AddComponent<TimberHearthHandler>();
         gameObject.AddComponent<BrittleHollowHandler>();
         gameObject.AddComponent<CaveTwinHandler>();
-        gameObject.AddComponent<DreamworldHandler>();
         gameObject.AddComponent<GiantsDeepHandler>();
         gameObject.AddComponent<DarkBrambleHandler>();
+        gameObject.AddComponent<QuantumMoonHandler>();
 
         gameObject.AddComponent<TitleScreenHandler>();
 
@@ -102,4 +105,8 @@ public class Main : ModBehaviour
 
 	public static void LogError(string msg) =>
 	    Instance.ModHelper.Console.WriteLine($"Error: {msg}", MessageType.Error);
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(PlanetCreationHandler), nameof(PlanetCreationHandler.Init))]
+    private static void PlanetCreationHandler_Init() => Instance.BeforePlanetCreation?.Invoke();
 }

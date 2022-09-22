@@ -23,6 +23,8 @@ internal class DarkBrambleHandler : SolarSystemHandler
 	private PlayerLockOnTargeting _lockOn;
 	private Transform _ernesto;
 
+	protected override void BeforePlanetCreation() { }
+
 	protected override void OnSolarSystemAwake()
 	{
 		GlobalMessenger<float>.AddListener("EatMarshmallow", OnEatMarshmallow);

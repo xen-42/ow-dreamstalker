@@ -9,10 +9,15 @@ namespace Dreamstalker.Handlers.SolarSystem;
 
 internal class PlanetHandler : SolarSystemHandler
 {
-    protected override void OnSolarSystemAwake() { }
+	protected override void BeforePlanetCreation() { }
+
+	protected override void OnSolarSystemAwake() { }
 
     protected override void OnSolarSystemStart()
     {
+		// Turn prompts back on
+		GUIMode.SetRenderMode(GUIMode.RenderMode.FPS);
+
 		// Add eye to the sun
 		var sun = Locator.GetAstroObject(AstroObject.Name.Sun);
 		sun.gameObject.AddComponent<EyeRotationController>();
