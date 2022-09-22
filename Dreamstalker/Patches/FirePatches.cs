@@ -1,5 +1,6 @@
 ﻿using Dreamstalker.Components.Streaming;
 using Dreamstalker.Handlers.SolarSystem;
+using Dreamstalker.Utility;
 using HarmonyLib;
 using NewHorizons.Utility;
 using System;
@@ -47,7 +48,7 @@ internal static class FirePatches
 				streamingVolume.AddComponent<OWTriggerVolume>();
 				var streamingController = streamingVolume.AddComponent<CampfireStreamingLoadVolume>();
 				streamingController.SetSector(__instance.GetSector());
-				streamingController.SetStreaming(Locator.GetAstroObject(AstroObject.Name.DarkBramble).gameObject.GetComponent<StreamingGroup>());
+				streamingController.SetStreaming(StreamingGroups.Get(AstroObject.Name.DarkBramble));
 				streamingController.campfire = __instance;
 			}
 		}
