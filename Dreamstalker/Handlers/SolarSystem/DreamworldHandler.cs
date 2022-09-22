@@ -11,7 +11,9 @@ namespace Dreamstalker.Handlers.SolarSystem;
 
 internal class DreamworldHandler : SolarSystemHandler
 {
-    private AstroObject dreamworld;
+    private AstroObject _dreamworld;
+	private GameObject _sectorRoot;
+	private OWRigidbody _raft;
 
     protected override void OnSolarSystemAwake()
     {
@@ -22,32 +24,32 @@ internal class DreamworldHandler : SolarSystemHandler
     {
         Main.Log("Dream World handler invoked.");
 
-        dreamworld = AstroObjectLocator.GetAstroObject("Dreaming");
+        _dreamworld = AstroObjectLocator.GetAstroObject("Dreaming");
 
-        var farClipController = dreamworld.gameObject.AddComponent<CameraLayerCullController>();
-        farClipController.SetSector(dreamworld.GetRootSector());
+        var farClipController = _dreamworld.gameObject.AddComponent<CameraLayerCullController>();
+        farClipController.SetSector(_dreamworld.GetRootSector());
 
 		// Spawn point
 		var spawnGO = new GameObject("Spawn");
-        spawnGO.transform.parent = dreamworld.transform;
+        spawnGO.transform.parent = _dreamworld.transform;
         spawnGO.transform.localPosition = new Vector3(93.9882f, 11.37577f, -30.61145f);
         spawnGO.layer = 8;
         var spawn = spawnGO.AddComponent<SpawnPoint>();
         spawn._isShipSpawn = false;
-        spawn._triggerVolumes = new OWTriggerVolume[] { dreamworld.GetComponentInChildren<Sector>()._owTriggerVolume };
+        spawn._triggerVolumes = new OWTriggerVolume[] { _dreamworld.GetComponentInChildren<Sector>()._owTriggerVolume };
 
 		// Change floorbed material
-		dreamworld.transform.Find("Sector/GroundSphere").GetComponent<MeshRenderer>().material =
+		_dreamworld.transform.Find("Sector/GroundSphere").GetComponent<MeshRenderer>().material =
 			GameObject.Find("DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Geo_DreamZone_1/Terrain_IP_Dreamworld_Floorbed/Terrain_Dreamworld_Floorbed_Z1")
 			.GetComponent<MeshRenderer>()
 			.material;
 
 		// Fix gravity
-		dreamworld.GetGravityVolume().SetPriority(2);
+		_dreamworld.GetGravityVolume().SetPriority(2);
 
 		// Change fireplace
 		// TODO: make the light green too :)
-		var fireRoot = dreamworld.transform.Find("Sector/Party_House/Interactibles_PartyHouse/Prefab_IP_LodgeFire/Structure_DW_LodgeFireplace/LodgeFireplace_Fire");
+		var fireRoot = _dreamworld.transform.Find("Sector/Party_House/Interactibles_PartyHouse/Prefab_IP_LodgeFire/Structure_DW_LodgeFireplace/LodgeFireplace_Fire");
 		fireRoot.transform.Find("LodgeFireplace_Ash");
 
 		var emberMaterial = fireRoot.transform.Find("LodgeFireplace_Embers").GetComponent<MeshRenderer>().material;
@@ -60,7 +62,7 @@ internal class DreamworldHandler : SolarSystemHandler
 		fireRoot.transform.Find("LodgeFireplace_Flames").GetComponent<MeshRenderer>().material.color = new Color(0f, 1f, 0f);
 
 		// Doors
-		foreach (var rotatingDoor in dreamworld.GetComponentsInChildren<RotatingDoor>())
+		foreach (var rotatingDoor in _dreamworld.GetComponentsInChildren<RotatingDoor>())
 		{
 			// some of them are open so CLOSE THEM
 			rotatingDoor.Close();
@@ -101,6 +103,32 @@ internal class DreamworldHandler : SolarSystemHandler
 
 		SpawnWrapper.SpawnDreamstalker(th, thCampfire, thCompletionVolume, Vector3.zero);
         */
+
+		_sectorRoot = _dreamworld.GetRootSector().gameObject;
+		_raft = _sectorRoot.GetComponentInChildren<RaftController>().GetAttachedOWRigidbody();
+		_raft.Suspend();
+		_sectorRoot.gameObject.SetActive(false);
+		PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);
+	}
+
+	protected override void OnDestroy()
+	{
+		base.OnDestroy();
+		PlayerSpawnUtil.OnSpawn.RemoveListener(OnSpawn);
+	}
+
+	private void OnSpawn(AstroObject.Name planet)
+	{
+		if (planet == AstroObject.Name.DreamWorld)
+		{
+			_sectorRoot.SetActive(true);
+			_raft.Unsuspend();
+		}
+		else
+		{
+			_raft.Suspend();
+			_sectorRoot.SetActive(false);
+		}
 	}
 
     private GameObject MakeIsland(GameObject prefab, Vector3 pos, Vector3? rot = null)
@@ -111,7 +139,7 @@ internal class DreamworldHandler : SolarSystemHandler
             position = pos,
             rotation = rot ?? Vector3.zero
 		};
-		return DetailBuilder.Make(dreamworld.gameObject, dreamworld.GetRootSector(), island);
+		return DetailBuilder.Make(_dreamworld.gameObject, _dreamworld.GetRootSector(), island);
 	}
 
     private GameObject DZ1_A_Island_C_Prefab()

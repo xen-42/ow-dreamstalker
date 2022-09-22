@@ -3,11 +3,14 @@ using Dreamstalker.Components.Player;
 using Dreamstalker.Handlers.SolarSystem;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Dreamstalker.Utility;
 
 internal static class PlayerSpawnUtil
 {
+	public class SpawnEvent : UnityEvent<AstroObject.Name> { }
+	public static SpawnEvent OnSpawn = new();
 	public static AstroObject.Name LastSpawn { get; private set; } = AstroObject.Name.TimberHearth;
 	public static AstroObject.Name SecondLastSpawn { get; private set; } = AstroObject.Name.TimberHearth;
 
@@ -41,6 +44,9 @@ internal static class PlayerSpawnUtil
 
 	public static void SpawnAt(AstroObject.Name planet)
 	{
+		PlayerAttachPointController.Instance.Detatch();
+		OnSpawn?.Invoke(planet);
+
 		if (LastSpawn != planet)
 		{
 			SecondLastSpawn = LastSpawn;

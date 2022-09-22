@@ -47,9 +47,9 @@
 		"rafts": [
 			{
 				"position": {
-					"x": 94.26017,
-					"y": 9.947554,
-					"z": -30.27073
+					"x": 83.86038,
+					"y": 13.66607,
+					"z": -51.77766
 				}
 			}
 		],
@@ -76,13 +76,13 @@
 				"alignToNormal": true
 			},
 			{
+				"alignToNormal": true,
 				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Structures_DreamZone_1/Generic_House_B",
 				"position": {
-					"x": 98.54012,
+					"x": 98.5401154,
 					"y": 11.86544,
-					"z": -7.021817
-				},
-				"alignToNormal": true
+					"z": -7.021818
+				}
 			},
 			{
 				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Structures_DreamZone_1/TunnelStairs/TunnelStairRoot_1/Stairs_IP_DW",
