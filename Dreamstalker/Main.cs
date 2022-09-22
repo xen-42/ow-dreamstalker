@@ -29,13 +29,13 @@ public class Main : ModBehaviour
 
     public static bool DebugMode { get; private set; } = false;
 
-    private void Awake()
+	internal void Awake()
     {
 		Instance = this;
 		Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
 	}
 
-    private void Start()
+	internal void Start()
     {
 		NewHorizonsAPI = ModHelper.Interaction.TryGetModApi<INewHorizons>("xen.NewHorizons");
         NewHorizonsAPI.LoadConfigs(this);
@@ -60,7 +60,7 @@ public class Main : ModBehaviour
         OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
 
-    private void OnDestroy()
+    internal void OnDestroy()
     {
 		SceneManager.sceneLoaded -= OnSceneLoaded;
 	}
@@ -79,12 +79,13 @@ public class Main : ModBehaviour
 				FireOnNextUpdate(() => SolarSystemStart?.Invoke());
 				break;
             case "EyeOfTheUniverse":
-                EyeSceneAwake?.Invoke();
+				Log("EyeOfTheUniverse loaded event invocation");
+				EyeSceneAwake?.Invoke();
 				break;
         }
     }
 
-    private void Update()
+	internal void Update()
     {
         if (Keyboard.current[Key.L].isPressed && Keyboard.current[Key.Numpad0].wasReleasedThisFrame)
         {
