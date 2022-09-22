@@ -60,7 +60,7 @@ internal static class SpawnWrapper
 		}
 
 		var root = skeleton.transform.Find("Nomai_Rig_v01:TrajectorySHJnt");
-		foreach (var transform in root.transform.GetComponentsInChildren<Transform>().Append(root))
+		foreach (var transform in root.GetComponentsInChildren<Transform>())
 		{
 			var name = GhostBirdBoneMap(transform.name);
 			if (name != null)
