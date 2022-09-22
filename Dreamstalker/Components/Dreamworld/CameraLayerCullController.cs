@@ -40,7 +40,7 @@ internal class CameraLayerCullController : SectoredMonoBehaviour
             for (int i = 0; i < 32; i++)
             {
                 // We set them to 3000f so we don't see that far, except the sun layer which stays at 0 meaning it takes the default farClipPlane
-                distances[i] = i == LayerMask.NameToLayer("Sun") ? 0 : 3000f;
+                distances[i] = i == LayerMask.NameToLayer("Sun") || i == LayerMask.NameToLayer("IgnoreSun") ? 0 : 3000f;
             }
             camera.mainCamera.layerCullDistances = distances;
         }

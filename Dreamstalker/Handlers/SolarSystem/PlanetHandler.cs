@@ -1,6 +1,8 @@
 ﻿using Dreamstalker.Components;
+using Dreamstalker.Handlers.EyeScene;
 using NewHorizons;
 using NewHorizons.Builder.Atmosphere;
+using NewHorizons.Builder.Props;
 using NewHorizons.External.Configs;
 using NewHorizons.External.Modules;
 using NewHorizons.Utility;
@@ -10,12 +12,15 @@ namespace Dreamstalker.Handlers.SolarSystem;
 
 internal class PlanetHandler : SolarSystemHandler
 {
+	private GameObject _eye;
+
     protected override void OnSolarSystemAwake() { }
 
     protected override void OnSolarSystemStart()
     {
-        // Fix the remnant on the sun, doesn't immediately show if lifespan is 0
-        Locator.GetAstroObject(AstroObject.Name.Sun).gameObject.AddComponent<RemnantFixer>();
+		// Add eye to the sun
+		var sun = Locator.GetAstroObject(AstroObject.Name.Sun);
+		_eye = DetailBuilder.Make(sun.gameObject, sun._rootSector, EyeHandler.EyePrefab, new PropModule.DetailInfo() { keepLoaded = true });
 
 		// Add oxygen to all planets
 		AddPlanetEffects(AstroObject.Name.TimberHearth, false, true, 400, 180);
@@ -26,7 +31,6 @@ internal class PlanetHandler : SolarSystemHandler
 		AddPlanetEffects(AstroObject.Name.DarkBramble, true, false, 1000, 0);
 
 		AddPlanetFog(AstroObject.Name.GiantsDeep, 9f, Color.black, 1000);
-
 	}
 
     private static void AddPlanetEffects(AstroObject.Name planetName, bool oxygen, bool rain, float maxHeight, float surfaceHeight)
@@ -57,5 +61,11 @@ internal class PlanetHandler : SolarSystemHandler
 
 		var planet = Locator.GetAstroObject(planetName);
 		FogBuilder.Make(planet.gameObject, planet.GetRootSector(), atmosphere);
+	}
+
+	public void Update()
+	{
+		var toPlayer = (Locator.GetPlayerTransform().position - _eye.transform.position).normalized;
+		_eye.transform.rotation = Quaternion.FromToRotation(Vector3.up, toPlayer);
 	}
 }

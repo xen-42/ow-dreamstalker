@@ -1,4 +1,5 @@
-﻿using Dreamstalker.Handlers.SolarSystem;
+﻿using Dreamstalker.Handlers.EyeScene;
+using Dreamstalker.Handlers.SolarSystem;
 using Dreamstalker.Handlers.TitleScreen;
 using HarmonyLib;
 using OWML.Common;
@@ -24,6 +25,8 @@ public class Main : ModBehaviour
 
     public UnityEvent TitleScreenAwake = new();
 
+    public UnityEvent EyeSceneAwake = new();
+
     public static bool DebugMode { get; private set; } = false;
 
     private void Awake()
@@ -42,6 +45,7 @@ public class Main : ModBehaviour
         // Add in the handlers
         gameObject.AddComponent<PropHandler>();
         gameObject.AddComponent<PlanetHandler>();
+        gameObject.AddComponent<EyeHandler>();
 
         gameObject.AddComponent<TimberHearthHandler>();
         gameObject.AddComponent<BrittleHollowHandler>();
@@ -63,18 +67,21 @@ public class Main : ModBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "TitleScreen")
+        switch(scene.name)
         {
-			Log("TitleScreen loaded event invocation");
-			TitleScreenAwake?.Invoke();
-		}
-
-        if (scene.name == "SolarSystem")
-        {
-            Log("SolarSystem loaded event invocation");
-			SolarSystemAwake?.Invoke();
-            FireOnNextUpdate(() => SolarSystemStart?.Invoke());
-		}
+            case "TitleScreen":
+				Log("TitleScreen loaded event invocation");
+				TitleScreenAwake?.Invoke();
+				break;
+            case "SolarSystem":
+				Log("SolarSystem loaded event invocation");
+				SolarSystemAwake?.Invoke();
+				FireOnNextUpdate(() => SolarSystemStart?.Invoke());
+				break;
+            case "EyeOfTheUniverse":
+                EyeSceneAwake?.Invoke();
+				break;
+        }
     }
 
     private void Update()

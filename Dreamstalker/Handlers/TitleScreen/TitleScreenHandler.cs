@@ -1,4 +1,5 @@
 ﻿using Dreamstalker.Patches;
+using NewHorizons.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,5 +38,12 @@ internal class TitleScreenHandler : BaseHandler
 		// Props
 		GameObject.Find("Scene/Background/PlanetPivot/PlanetRoot/Props/Structure_HEA_PlayerShip_v4_NearProxy").SetActive(false);
 		GameObject.Find("Scene/Background/PlanetPivot/PlanetRoot/Traveller_HEA_Riebeck (1)").SetActive(false);
+
+		// Menu
+		// When loading in we go to the Eye first to grab props
+		var newGame = SearchUtilities.Find("TitleMenu/TitleCanvas/TitleLayoutGroup/MainMenuBlock/MainMenuLayoutGroup/Button-NewGame")?.GetComponent<SubmitActionLoadScene>();
+		var resumeGame = SearchUtilities.Find("TitleMenu/TitleCanvas/TitleLayoutGroup/MainMenuBlock/MainMenuLayoutGroup/Button-ResumeGame")?.GetComponent<SubmitActionLoadScene>();
+		if (newGame != null) newGame._sceneToLoad = SubmitActionLoadScene.LoadableScenes.EYE;
+		if (resumeGame != null) resumeGame._sceneToLoad = SubmitActionLoadScene.LoadableScenes.EYE;
 	}
 }
