@@ -178,7 +178,7 @@ internal class QuantumMoonController : SectoredMonoBehaviour
 
         foreach (var campfire in _campfires)
         {
-            campfire.SetState(Campfire.State.UNLIT);
+            campfire.SetState(Campfire.State.UNLIT, true);
         }
     }
 }
