@@ -26,7 +26,8 @@ internal class QuantumMoonHandler : SolarSystemHandler
 		var spawnGO = new GameObject("Spawn");
         spawnGO.transform.parent = _quantumMoon.transform;
 		spawnGO.transform.localPosition = new Vector3(-12.61486f, -73.44263f, -2.316277f);
-        spawnGO.layer = 8;
+		spawnGO.transform.localRotation = Quaternion.FromToRotation(Vector3.up, spawnGO.transform.localPosition.normalized);
+		spawnGO.layer = 8;
         var spawn = spawnGO.AddComponent<SpawnPoint>();
         spawn._isShipSpawn = false;
         spawn._triggerVolumes = new OWTriggerVolume[] { _quantumMoon.GetComponentInChildren<Sector>()._owTriggerVolume };

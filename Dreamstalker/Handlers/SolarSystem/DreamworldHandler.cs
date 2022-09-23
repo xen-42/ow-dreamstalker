@@ -32,7 +32,8 @@ internal class DreamworldHandler : SolarSystemHandler
 		var spawnGO = new GameObject("Spawn");
         spawnGO.transform.parent = _dreamworld.transform;
         spawnGO.transform.localPosition = new Vector3(93.9882f, 11.37577f, -30.61145f);
-        spawnGO.layer = 8;
+		spawnGO.transform.localRotation = Quaternion.FromToRotation(Vector3.up, spawnGO.transform.localPosition.normalized);
+		spawnGO.layer = 8;
         var spawn = spawnGO.AddComponent<SpawnPoint>();
         spawn._isShipSpawn = false;
         spawn._triggerVolumes = new OWTriggerVolume[] { _dreamworld.GetComponentInChildren<Sector>()._owTriggerVolume };
