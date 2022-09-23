@@ -21,8 +21,8 @@ internal class PlanetHandler : SolarSystemHandler
 
 		// Add eye to the sun
 		var sun = Locator.GetAstroObject(AstroObject.Name.Sun);
-		DetailBuilder.Make(sun.gameObject, sun._rootSector, EyeHandler.EyePrefab, new PropModule.DetailInfo() { keepLoaded = true })
-			.AddComponent<FaceActiveCamera>()._localFacingVector = Vector3.up;
+		var eye = DetailBuilder.Make(sun.gameObject, sun._rootSector, EyeHandler.EyePrefab, new PropModule.DetailInfo() { keepLoaded = true });
+		eye.AddComponent<FaceActiveCamera>()._localFacingVector = Vector3.up;
 
 		// Add oxygen to all planets
 		AddPlanetEffects(AstroObject.Name.TimberHearth, false, true, 400, 180);
