@@ -4,6 +4,9 @@ Ohhh ahhh oh no theres a DREAMSTALKER after u!
 
 Brittle Hollow fix: sucks when you jump down to the black hole from the quantum tower and accidentally die hitting the bottom of it if you mess up. Maybe like, remove its collision? have you bounce off? just do the warp before then?
 
+Brittle Hollow:
+  - Fix sector loading issues for observatory and remove those props manually OR just spawn outside by the ship
+
 Dreamworld:
   - Use the elevator in the lodge to go to the Dreamworld
 
