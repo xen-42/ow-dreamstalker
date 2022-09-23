@@ -1,0 +1,309 @@
+{
+	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
+	"name": "Custom Quantum Moon",
+	"canShowOnTitle": false,
+	"Base": {
+		"surfaceSize": 100,
+		"ambientLight": 0.3,
+		"hasMapMarker": false,
+		"surfaceGravity": 8,
+		"zeroGravityRadius": 400
+	},
+	"Props": {
+		"details": [
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_BH",
+				"keepLoaded": true
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_DB",
+				"keepLoaded": true
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_EYE",
+				"keepLoaded": true,
+				"removeChildren": [
+					"Clouds_QM_EyeState",
+					"Interactables_EYEState/ConversationPivot/NomaiConversation/ResponseStone"
+				]
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_GD",
+				"keepLoaded": true
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_HT",
+				"keepLoaded": true
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_TH",
+				"keepLoaded": true
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire",
+				"parentPath": "Sector/State_TH",
+				"position": {
+					"x": -4.032997,
+					"y": -69.75011,
+					"z": -0.840597153
+				},
+				"rotation": {
+					"x": 356.696136,
+					"y": 262.432983,
+					"z": 177.471466
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_Observatory/Interactables_Observatory/Prefab_HEA_DeepFieldExhibit/DeepFieldNotes_1/plaque_paper_1 (1)",
+				"parentPath": "Sector/State_TH",
+				"position": {
+					"x": -2.77033043,
+					"y": -69.923645,
+					"z": 0.6728661
+				},
+				"rotation": {
+					"x": 25.5974083,
+					"y": 339.618042,
+					"z": 176.764786
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"parentPath": "Sector/State_TH",
+				"position": {
+					"x": -3.50163913,
+					"y": -69.79177,
+					"z": 0.560585737
+				},
+				"rotation": {
+					"x": 355.967865,
+					"y": 329.337616,
+					"z": 178.968262
+				}
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/QuantumShrine/Structure_NOM_QuantumShrine",
+				"parentPath": "Sector/State_TH",
+				"position": {
+					"x": 41.9616241,
+					"y": -42.0242,
+					"z": 36.9983673
+				},
+				"rotation": {
+					"x": 50.5655479,
+					"y": 220.268036,
+					"z": 173.458237
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire",
+				"parentPath": "Sector/State_HT",
+				"position": {
+					"x": 25.2510986,
+					"y": -39.3495865,
+					"z": 52.4780731
+				},
+				"rotation": {
+					"x": 354.897156,
+					"y": 109.245964,
+					"z": 121.663879
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"parentPath": "Sector/State_HT",
+				"position": {
+					"x": 24.2575073,
+					"y": -40.67887,
+					"z": 52.0055161
+				},
+				"rotation": {
+					"x": 342.535736,
+					"y": 101.259285,
+					"z": 123.238167
+				}
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/QuantumShrine/Structure_NOM_QuantumShrine",
+				"parentPath": "Sector/State_HT",
+				"position": {
+					"x": -48.00037,
+					"y": -41.15808,
+					"z": -27.6220322
+				},
+				"rotation": {
+					"x": 49.2527428,
+					"y": 29.69049,
+					"z": 156.043488
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire",
+				"parentPath": "Sector/State_DB",
+				"position": {
+					"x": -49.81426,
+					"y": -43.3381271,
+					"z": -23.1383171
+				},
+				"rotation": {
+					"x": 1.168338,
+					"y": 154.666916,
+					"z": 231.760086
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"parentPath": "Sector/State_DB",
+				"position": {
+					"x": -49.9804153,
+					"y": -42.4406357,
+					"z": -24.3740959
+				},
+				"rotation": {
+					"x": 16.52416,
+					"y": 139.188492,
+					"z": 230.385086
+				}
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/QuantumShrine/Structure_NOM_QuantumShrine",
+				"parentPath": "Sector/State_DB",
+				"position": {
+					"x": 45.07453,
+					"y": 33.8976326,
+					"z": 41.3990479
+				},
+				"rotation": {
+					"x": 59.61657,
+					"y": 32.9186859,
+					"z": 348.305481
+				}
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/QuantumShrine/Structure_NOM_QuantumShrine",
+				"parentPath": "Sector/State_GD",
+				"position": {
+					"x": -48.04532,
+					"y": 37.0085831,
+					"z": -35.01526
+				},
+				"rotation": {
+					"x": 301.895782,
+					"y": 59.7307434,
+					"z": 353.308228
+				}
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/QuantumShrine/Structure_NOM_QuantumShrine",
+				"parentPath": "Sector/State_BH",
+				"position": {
+					"x": 2.16859174,
+					"y": 69.3325958,
+					"z": -5.146881
+				},
+				"rotation": {
+					"x": 359.040833,
+					"y": 192.553268,
+					"z": 2.90053272
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire",
+				"parentPath": "Sector/State_GD",
+				"position": {
+					"x": 50.93372,
+					"y": 32.4229774,
+					"z": 36.2336235
+				},
+				"rotation": {
+					"x": 300.3292,
+					"y": 249.663788,
+					"z": 350.717255
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"parentPath": "Sector/State_GD",
+				"position": {
+					"x": 52.0597038,
+					"y": 32.24596,
+					"z": 35.0321732
+				},
+				"rotation": {
+					"x": 300.664551,
+					"y": 256.649719,
+					"z": 331.8911
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire",
+				"parentPath": "Sector/State_BH",
+				"position": {
+					"x": -0.456375122,
+					"y": 60.1815758,
+					"z": -35.0464935
+				},
+				"rotation": {
+					"x": 25.1907272,
+					"y": 210.669708,
+					"z": 12.2766371
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"parentPath": "Sector/State_BH",
+				"position": {
+					"x": 0.9351237,
+					"y": 59.4012451,
+					"z": -36.4870949
+				},
+				"rotation": {
+					"x": 20.3964558,
+					"y": 240.709808,
+					"z": 25.491457
+				}
+			}
+		],
+		"dialogue": [
+			{
+				"position": {
+					"x": -2.77033043,
+					"y": -69.923645,
+					"z": 0.6728661
+				},
+				"xmlFile": "assets/xml/QuantumMoonNote.xml"
+			}
+		]
+	},
+	"Orbit": {
+		"primaryBody": "Sun",
+		"staticPosition": {
+			"x": 0,
+			"y": -10000,
+			"z": 0
+		}
+	},
+	"Atmosphere": {
+		"hasOxygen": true,
+		"size": 200,
+		"fogSize": 200,
+		"fogDensity": 1,
+		"fogTint": {
+			"r": 0,
+			"g": 0,
+			"b": 0,
+			"a": 255
+		},
+		"clouds": {
+			"texturePath": "assets/blank.png",
+			"tint": {
+				"r": 79,
+				"g": 0,
+				"b": 98,
+				"a": 255
+			},
+			"outerCloudRadius": 120,
+			"innerCloudRadius": 100
+		}
+	}
+}
