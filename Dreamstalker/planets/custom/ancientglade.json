@@ -1,0 +1,44 @@
+{
+	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/dev/NewHorizons/Schemas/body_schema.json",
+	"name": "Ancient Glade",
+	"Base": {
+		"groundSize": 100,
+		"surfaceSize": 100,
+		"ambientLight": 0,
+		"hasMapMarker": false,
+		"surfaceGravity": 8,
+		"zeroGravityRadius": 500
+	},
+	"Orbit": {
+		"primaryBody": "Sun",
+		"staticPosition": {
+			"x": 0,
+			"y": -10000,
+			"z": 0
+		}
+	},
+	"Atmosphere": {
+		"size": 400,
+		"fogTint": {
+			"r": 200,
+			"g": 255,
+			"b": 255,
+			"a": 255
+		},
+		"fogSize": 400,
+		"hasOxygen": true
+	},
+	"Props": {
+		"scatter": [
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_TH/Interactables_THState/Crater_1/Crater_1_QRedwood/QRedwood (2)/Prefab_TH_Redwood",
+				"count": 24,
+				"scale": 0.7
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_TH/Interactables_THState/Crater_3/Crater_3_Sapling/QSapling/Tree_TH_Sapling",
+				"count": 40
+			}
+		]
+	}
+}

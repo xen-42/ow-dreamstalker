@@ -279,8 +279,8 @@
 		"primaryBody": "Sun",
 		"staticPosition": {
 			"x": 0,
-			"y": -10000,
-			"z": 0
+			"y": 10000,
+			"z": 10000
 		}
 	},
 	"Atmosphere": {

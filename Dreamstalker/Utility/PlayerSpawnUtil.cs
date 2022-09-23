@@ -29,6 +29,7 @@ internal static class PlayerSpawnUtil
 		AstroObject.Name.DreamWorld => GameObject.Find("Dreaming_Body/Spawn").GetComponent<SpawnPoint>(),
 		AstroObject.Name.DarkBramble => DarkBrambleHandler.EasterEggSpawnPoint,
 		AstroObject.Name.QuantumMoon => GameObject.Find("CustomQuantumMoon_Body/Spawn").GetComponent<SpawnPoint>(),
+		AstroObject.Name.Eye => GameObject.Find("AncientGlade_Body/Spawn").GetComponent<SpawnPoint>(),
 		_ => GetPlayerSpawner()._spawnList.FirstOrDefault(x => x.GetSpawnLocation() == GetSpawnLocation(planet) && x.IsShipSpawn() == false)
 	};
 
@@ -65,7 +66,10 @@ internal static class PlayerSpawnUtil
 		spawn.AddObjectToTriggerVolumes(Locator.GetPlayerCamera().GetComponentInChildren<FluidDetector>().gameObject);
 		spawn.OnSpawnPlayer();
 
-		GetPlayerSpawner()._cameraController.SetDegreesY(80f);
+		if (planet != AstroObject.Name.Eye)
+		{
+			GetPlayerSpawner()._cameraController.SetDegreesY(80f);
+		}
 
 		playerResources._isSuffocating = false;
 		playerResources.DebugRefillResources();

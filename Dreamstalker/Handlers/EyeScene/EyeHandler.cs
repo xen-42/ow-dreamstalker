@@ -8,6 +8,9 @@ internal class EyeHandler : BaseHandler
 {
 	public static GameObject LightningPrefab { get; private set; }
 	public static GameObject EyePrefab { get; private set; }
+	public static GameObject InflationPrefab { get; private set; }
+	public static GameObject QuantumCampfirePrefab { get; private set; }
+	public static GameObject MiniGalaxyPrefab { get; private set; }
 
 	protected override void Awake()
 	{
@@ -38,6 +41,9 @@ internal class EyeHandler : BaseHandler
 
 			// Grab prefabs
 			LightningPrefab = GameObject.Find("EyeOfTheUniverse_Body/Sector_EyeOfTheUniverse/SixthPlanet_Root/Sector_EyeSurface/QuantumLightningObjects/Pivot/Prefab_EYE_QuantumLightningObject").InstantiateInactive();
+			InflationPrefab = GameObject.Find("EyeOfTheUniverse_Body/Sector_EyeOfTheUniverse/Sector_Campfire/InflationController").InstantiateInactive();
+			QuantumCampfirePrefab = GameObject.Find("EyeOfTheUniverse_Body/Sector_EyeOfTheUniverse/Sector_Campfire/QuantumCampfire").InstantiateInactive();
+			MiniGalaxyPrefab = GameObject.Find("EyeOfTheUniverse_Body/Sector_EyeOfTheUniverse/ForestOfGalaxies_Root/Sector_ForestOfGalaxies/MiniGalaxyController/Prefab_EYE_MiniGalaxy(Clone)").InstantiateInactive();
 
 			// Make eye prefab
 			var eye = SearchUtilities.Find("EyeOfTheUniverse_Body/Sector_EyeOfTheUniverse/SixthPlanet_Root/Proxy_SixthPlanet").InstantiateInactive();
@@ -71,6 +77,9 @@ internal class EyeHandler : BaseHandler
 
 			// Dont destroy on load
 			DontDestroyOnLoad(LightningPrefab);
+			DontDestroyOnLoad(InflationPrefab);
+			DontDestroyOnLoad(QuantumCampfirePrefab);
+			DontDestroyOnLoad(MiniGalaxyPrefab);
 			DontDestroyOnLoad(EyePrefab);
 		}
 		catch(Exception e)
