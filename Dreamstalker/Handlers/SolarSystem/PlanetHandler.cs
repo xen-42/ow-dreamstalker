@@ -1,5 +1,6 @@
-﻿using Dreamstalker.Components;
+﻿using Dreamstalker.Handlers.EyeScene;
 using NewHorizons.Builder.Atmosphere;
+using NewHorizons.Builder.Props;
 using NewHorizons.External.Configs;
 using NewHorizons.External.Modules;
 using NewHorizons.Utility;
@@ -20,7 +21,8 @@ internal class PlanetHandler : SolarSystemHandler
 
 		// Add eye to the sun
 		var sun = Locator.GetAstroObject(AstroObject.Name.Sun);
-		sun.gameObject.AddComponent<EyeRotationController>();
+		DetailBuilder.Make(sun.gameObject, sun._rootSector, EyeHandler.EyePrefab, new PropModule.DetailInfo() { keepLoaded = true })
+			.AddComponent<FaceActiveCamera>()._localFacingVector = Vector3.up;
 
 		// Add oxygen to all planets
 		AddPlanetEffects(AstroObject.Name.TimberHearth, false, true, 400, 180);
