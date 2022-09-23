@@ -47,18 +47,21 @@ internal class DreamworldHandler : SolarSystemHandler
 		_dreamworld.GetGravityVolume().SetPriority(2);
 
 		// Change fireplace
-		// TODO: make the light green too :)
 		var fireRoot = _dreamworld.transform.Find("Sector/Party_House/Interactibles_PartyHouse/Prefab_IP_LodgeFire/Structure_DW_LodgeFireplace/LodgeFireplace_Fire");
-		fireRoot.transform.Find("LodgeFireplace_Ash");
 
-		var emberMaterial = fireRoot.transform.Find("LodgeFireplace_Embers").GetComponent<MeshRenderer>().material;
+		foreach (var light in fireRoot.parent.parent/*lol*/.GetComponentsInChildren<Light>())
+		{
+			light.color = new Color(0.1f, 0.4f, 0.1f);
+		}
+
+		var emberMaterial = fireRoot.Find("LodgeFireplace_Embers").GetComponent<MeshRenderer>().material;
 		emberMaterial.SetTexture("_MainTex", ImageUtilities.GetTexture(Main.Instance, "assets/Props_HEA_CampfireEmbers_d.png"));
 		emberMaterial.SetTexture("_EmissionMap", ImageUtilities.GetTexture(Main.Instance, "assets/Props_HEA_CampfireEmbers_e.png"));
 
-		var ashMaterial = fireRoot.transform.Find("LodgeFireplace_Ash").GetComponent<MeshRenderer>().material;
+		var ashMaterial = fireRoot.Find("LodgeFireplace_Ash").GetComponent<MeshRenderer>().material;
 		ashMaterial.SetTexture("_EmissionMap", ImageUtilities.GetTexture(Main.Instance, "assets/Props_HEA_CampfireAsh_e.png"));
 
-		fireRoot.transform.Find("LodgeFireplace_Flames").GetComponent<MeshRenderer>().material.color = new Color(0f, 1f, 0f);
+		fireRoot.Find("LodgeFireplace_Flames").GetComponent<MeshRenderer>().material.color = new Color(0f, 1f, 0f);
 
 		// Doors
 		foreach (var rotatingDoor in _dreamworld.GetComponentsInChildren<RotatingDoor>())
