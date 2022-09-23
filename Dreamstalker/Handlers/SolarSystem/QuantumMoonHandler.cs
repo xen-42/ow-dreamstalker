@@ -1,4 +1,5 @@
-﻿using Dreamstalker.Utility;
+﻿using Dreamstalker.Components.QuantumMoon;
+using Dreamstalker.Utility;
 using NewHorizons.Utility;
 using UnityEngine;
 
@@ -19,10 +20,12 @@ internal class QuantumMoonHandler : SolarSystemHandler
 
 		_quantumMoon = AstroObjectLocator.GetAstroObject("Custom Quantum Moon");
 
+		_quantumMoon.gameObject.AddComponent<QuantumMoonController>().SetSector(_quantumMoon.GetRootSector());
+
 		// Spawn point
 		var spawnGO = new GameObject("Spawn");
         spawnGO.transform.parent = _quantumMoon.transform;
-		spawnGO.transform.localPosition = new Vector3(53.21917f, -39.7816f, -22.60495f);
+		spawnGO.transform.localPosition = new Vector3(-12.61486f, -73.44263f, -2.316277f);
         spawnGO.layer = 8;
         var spawn = spawnGO.AddComponent<SpawnPoint>();
         spawn._isShipSpawn = false;
