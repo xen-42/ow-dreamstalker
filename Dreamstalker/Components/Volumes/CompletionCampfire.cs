@@ -36,7 +36,5 @@ public class CompletionCampfire : MonoBehaviour
 	public void OnStartSleepingAtCampfire(bool _)
 	{
 		_playerSleepingHere = _campfire._isPlayerSleeping;
-
-		// TODO: start loading in the destination planet
 	}
 }
