@@ -83,6 +83,14 @@ internal class DreamworldHandler : SolarSystemHandler
 
 			doorTrigger.AddComponent<AutoDoorTrigger>();
 		}
+		
+		// make light sensors (on cage man) work
+		foreach (var lightSensor in _dreamworld.GetComponentsInChildren<SingleLightSensor>())
+		{
+			lightSensor._sector.OnSectorOccupantsUpdated -= lightSensor.OnSectorOccupantsUpdated;
+			lightSensor._sector = _dreamworld.GetRootSector();
+			lightSensor._sector.OnSectorOccupantsUpdated += lightSensor.OnSectorOccupantsUpdated;
+		}
 
         var islandPrefab = DZ1_A_Island_C_Prefab();
 
