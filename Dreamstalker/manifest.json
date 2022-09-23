@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/amazingalek/owml/master/schemas/manifest_schema.json",
   "filename": "Dreamstalker.dll",
-  "author": "xen",
+  "author": "xen & JohnCorby",
   "name": "Escape the Dreamstalker",
   "uniqueName": "xen.Dreamstalker",
   "version": "0.1.0",
