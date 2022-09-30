@@ -57,7 +57,7 @@ public class Main : ModBehaviour
         gameObject.AddComponent<GiantsDeepHandler>();
         gameObject.AddComponent<DarkBrambleHandler>();
         gameObject.AddComponent<QuantumMoonHandler>();
-        // gameObject.AddComponent<AncientGladeHandler>(); TODO enable after fixing spam
+        gameObject.AddComponent<AncientGladeHandler>();
 
         gameObject.AddComponent<TitleScreenHandler>();
 
