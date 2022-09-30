@@ -103,7 +103,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 		_inflationOrb.transform.localRotation = Quaternion.FromToRotation(Vector3.up, -norm);
 
 		_inflationLight = _inflationOrb.transform.Find("PossibilitySphereRoot/InflationLight").GetComponent<Light>();
-		_possibilityLight = _inflationLight.transform.Find("PossibilitySphereRoot/Effects_EYE_PossibilityParticles2/PossibilityLight").GetComponent<Light>();
+		_possibilityLight = _inflationOrb.transform.Find("PossibilitySphereRoot/Effects_EYE_PossibilityParticles2/PossibilityLight").GetComponent<Light>();
 		_sfx = _inflationOrb.transform.Find("SFXAudioSource").GetComponent<OWAudioSource>();
 		_sfx._audioSource.enabled = true;
 
