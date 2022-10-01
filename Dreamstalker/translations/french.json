@@ -1,0 +1,6 @@
+{
+	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/main/NewHorizons/Schemas/translation_schema.json",
+	"DialogueDictionary": {
+		"DREAMSTALKER_POPUP": "Bon bin tabarnak il y a un osti dreamstalker icit cawlise"
+	}
+}
