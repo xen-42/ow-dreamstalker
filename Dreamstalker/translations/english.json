@@ -19,8 +19,9 @@
 		"DREAMSTALKER_QM_NOTE_1": "It's almost over.",
 
 		"DREAMSTALKER_AG_1": "What an unfortunate universe to exist in.",
-		"DREAMSTALKER_AG_2": "Let's try again, shall we?",
-
+		"DREAMSTALKER_AG_2": "Let's try again, shall we?"
+	},
+	"UIDictionary": {
 		"DREAMSTALKER_POPUP": "Thank you for installing Dreamstalker! This should only be played after beating the main game and DLC. Something is different in the solar system, search for notes to find answers."
 	}
 }
