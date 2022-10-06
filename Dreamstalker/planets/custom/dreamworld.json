@@ -33,6 +33,16 @@
 		"hasRain": true
 	},
 	"Props": {
+		"dialogue": [
+			{
+				"position": {
+					"x": 100.7502,
+					"y": 15.156,
+					"z": -3.5835
+				},
+				"xmlFile": "assets/xml/DreamWorldNote.xml"
+			}
+		],
 		"scatter": [
 			{
 				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_Underground/IslandsRoot/IslandPivot_B/Island_B/Props_Island_B/Tree_DW_L (3)",
@@ -79,9 +89,9 @@
 				"alignToNormal": true,
 				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Structures_DreamZone_1/Generic_House_B",
 				"position": {
-					"x": 98.5401154,
-					"y": 11.86544,
-					"z": -7.021818
+					"x": 100.8402,
+					"y": 12.0152,
+					"z": -6.9717
 				}
 			},
 			{
@@ -347,6 +357,28 @@
 					"z": 90.0
 				},
 				"scale": 1.00000024
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire",
+				"position": {
+					"x": 100.9181,
+					"y": 14.24627,
+					"z": -2.109142
+				},
+				"alignToNormal": true
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_Observatory/Interactables_Observatory/Prefab_HEA_DeepFieldExhibit/DeepFieldNotes_1/plaque_paper_1 (1)",
+				"position": {
+					"x": 100.7502,
+					"y": 15.156,
+					"z": -3.5835
+				},
+				"rotation": {
+					"x": 26.3812,
+					"y": 147.1935,
+					"z": 65.1837
+				}
 			}
 		]
 	}

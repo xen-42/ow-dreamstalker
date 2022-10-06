@@ -1,0 +1,46 @@
+{
+	"$schema": "https://raw.githubusercontent.com/xen-42/outer-wilds-new-horizons/main/NewHorizons/Schemas/body_schema.json",
+	"name": "Gabbro Island",
+	"Props": {
+		"details": [
+			{
+				"rename": "Gabbro's Note",
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_Observatory/Interactables_Observatory/Prefab_HEA_DeepFieldExhibit/DeepFieldNotes_1/plaque_paper_1 (1)",
+				"position": {
+					"x": -5.7276,
+					"y": 4.302157,
+					"z": 6.503942
+				},
+				"rotation": {
+					"x": 68.1926,
+					"y": 294.8625,
+					"z": 5.2548
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"position": {
+					"x": -7.0664,
+					"y": 2.4494,
+					"z": 6.271
+				},
+				"rotation": {
+					"x": 1.3375,
+					"y": 304.6486,
+					"z": 359.8766
+				}
+			}
+		],
+		"dialogue": [
+			{
+				"position": {
+					"x": -5.677585,
+					"y": 4.302157,
+					"z": 6.503942
+				},
+				"radius": 1.0,
+				"xmlFile": "assets/xml/GiantsDeepNote.xml"
+			}
+		]
+	}
+}
