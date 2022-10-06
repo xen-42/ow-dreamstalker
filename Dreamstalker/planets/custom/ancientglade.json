@@ -4,7 +4,7 @@
 	"Base": {
 		"groundSize": 100,
 		"surfaceSize": 100,
-		"ambientLight": 0,
+		"ambientLight": 0.3,
 		"hasMapMarker": false,
 		"surfaceGravity": 8,
 		"zeroGravityRadius": 500

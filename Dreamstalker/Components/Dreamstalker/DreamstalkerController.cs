@@ -219,6 +219,11 @@ internal class DreamstalkerController : VisibilityObject
         StartStalking();
     }
 
+    public void DisableTeleport()
+    {
+        _lastTeleportTime = float.MaxValue;
+    }
+
     private void StalkPlayer()
     {
         var displacement = _localTargetPosition - transform.localPosition;

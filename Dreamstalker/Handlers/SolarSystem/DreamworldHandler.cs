@@ -1,4 +1,5 @@
 ﻿using Dreamstalker.Components.Dreamworld;
+using Dreamstalker.Components.Volumes;
 using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
 using NewHorizons.External.Modules;
@@ -102,16 +103,25 @@ internal class DreamworldHandler : SolarSystemHandler
 		}
 
 		// Spawn stuff
-		/*
-        var thCampfire = GameObject.Find("TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire/Controller_Campfire").GetComponent<Campfire>();
+        var dwCampfire = _dreamworld.GetComponentInChildren<Campfire>();
 
-		var thCompletionVolume = GameObject.Find("TimberHearth_Body/Sector_TH/Sector_Village/Sector_Observatory/Volumes_Observatory/ObservatoryInteriorVolume/MuseumEntryway").AddComponent<CompletionVolume>();
-		thCompletionVolume.enabled = false;
-		thCompletionVolume.SetCampfire(thCampfire);
-        thCompletionVolume.NextPlanet = AstroObject.Name.BrittleHollow;
+		dwCampfire.SetState(Campfire.State.UNLIT, true);
 
-		SpawnWrapper.SpawnDreamstalker(th, thCampfire, thCompletionVolume, Vector3.zero);
-        */
+		var dwVolume = new GameObject("CompletionVolume");
+		dwVolume.transform.parent = _dreamworld.GetRootSector().transform;
+		dwVolume.transform.localPosition = new Vector3(-5.937442f, 20.00692f, 109.1746f);
+		dwVolume.layer = LayerMask.NameToLayer("BasicEffectVolume");
+
+		var sphere = dwVolume.AddComponent<SphereCollider>();
+		sphere.isTrigger = true;
+		sphere.radius = 1f;
+
+		var dwCompletionVolume = dwVolume.AddComponent<CompletionVolume>();
+		dwCompletionVolume.enabled = false;
+		dwCompletionVolume.SetCampfire(dwCampfire);
+		dwCompletionVolume.NextPlanet = AstroObject.Name.QuantumMoon;
+
+		SpawnWrapper.SpawnDreamstalker(_dreamworld, dwCampfire, dwCompletionVolume, Vector3.zero);
 
 		_sectorRoot = _dreamworld.GetRootSector().gameObject;
 		_raft = _sectorRoot.GetComponentInChildren<RaftController>().GetAttachedOWRigidbody();

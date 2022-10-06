@@ -1,9 +1,7 @@
-﻿using Dreamstalker.Utility;
+﻿using Dreamstalker.Components.Dreamstalker;
+using Dreamstalker.Components.Volumes;
+using Dreamstalker.Utility;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Dreamstalker.Components.QuantumMoon;
@@ -18,6 +16,8 @@ internal class QuantumMoonController : SectoredMonoBehaviour
     private Campfire[] _campfires;
 
     private CharacterDialogueTree _note;
+
+	private DreamstalkerController _dreamstalker;
 
     public enum QMState
     {
@@ -70,6 +70,19 @@ internal class QuantumMoonController : SectoredMonoBehaviour
 			HTCampfire.OnCampfireStateChange += HTCampfire_OnCampfireStateChange;
 			THCampfire.OnCampfireStateChange += THCampfire_OnCampfireStateChange;
 
+			var quantumMoon = gameObject.GetComponent<AstroObject>();
+
+			CompletionVolume.MakeCompletionVolume(quantumMoon, null,
+				AstroObject.Name.Eye, new Vector3(-5.315461f, -68.58476f, 5.373294f), 10f).transform.parent = EyeState.transform;
+
+			_dreamstalker = SpawnWrapper.SpawnDreamstalker(gameObject.GetComponent<AstroObject>(), null, null, Vector3.zero);
+
+			BHCampfire.OnCampfireStateChange += _dreamstalker.OnCampfireStateChange;
+			DBCampfire.OnCampfireStateChange += _dreamstalker.OnCampfireStateChange;
+			GDCampfire.OnCampfireStateChange += _dreamstalker.OnCampfireStateChange;
+			HTCampfire.OnCampfireStateChange += _dreamstalker.OnCampfireStateChange;
+			THCampfire.OnCampfireStateChange += _dreamstalker.OnCampfireStateChange;
+
 			DestroyImmediate(GetComponentInChildren<NomaiConversationManager>());
 
 			PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);
@@ -84,7 +97,20 @@ internal class QuantumMoonController : SectoredMonoBehaviour
     {
         base.OnDestroy();
 
+		BHCampfire.OnCampfireStateChange -= BHCampfire_OnCampfireStateChange;
+		DBCampfire.OnCampfireStateChange -= DBCampfire_OnCampfireStateChange;
+		GDCampfire.OnCampfireStateChange -= GDCampfire_OnCampfireStateChange;
+		HTCampfire.OnCampfireStateChange -= HTCampfire_OnCampfireStateChange;
         THCampfire.OnCampfireStateChange -= THCampfire_OnCampfireStateChange;
+
+		if (_dreamstalker != null)
+		{
+			BHCampfire.OnCampfireStateChange -= _dreamstalker.OnCampfireStateChange;
+			DBCampfire.OnCampfireStateChange -= _dreamstalker.OnCampfireStateChange;
+			GDCampfire.OnCampfireStateChange -= _dreamstalker.OnCampfireStateChange;
+			HTCampfire.OnCampfireStateChange -= _dreamstalker.OnCampfireStateChange;
+			THCampfire.OnCampfireStateChange -= _dreamstalker.OnCampfireStateChange;
+		}
 
 		PlayerSpawnUtil.OnSpawn.RemoveListener(OnSpawn);
 	}
@@ -160,7 +186,8 @@ internal class QuantumMoonController : SectoredMonoBehaviour
         {
             SetState(nextState);
 
-            // Todo: move to spawn point
+			_dreamstalker.DespawnImmediate();
+
             PlayerEffectController.Instance.Blink();
         }
     }

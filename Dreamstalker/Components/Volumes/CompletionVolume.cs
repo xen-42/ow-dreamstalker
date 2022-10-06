@@ -17,25 +17,37 @@ internal class CompletionVolume : MonoBehaviour
 
     public virtual void Start()
     {
-		var streamingVolume = new GameObject("StreamingVolume");
-		streamingVolume.transform.parent = transform;
-		streamingVolume.transform.localPosition = Vector3.zero;
-		streamingVolume.layer = LayerMask.NameToLayer("BasicEffectVolume");
+        var nextPlanetGroup = StreamingGroups.Get(NextPlanet);
+        if (nextPlanetGroup != null)
+        {
+			var streamingVolume = new GameObject("StreamingVolume");
+			streamingVolume.transform.parent = transform;
+			streamingVolume.transform.localPosition = Vector3.zero;
+			streamingVolume.layer = LayerMask.NameToLayer("BasicEffectVolume");
 
-        _streamingSphere = streamingVolume.AddComponent<SphereShape>();
-		_streamingSphere.radius = 50f;
+			_streamingSphere = streamingVolume.AddComponent<SphereShape>();
+			_streamingSphere.radius = 50f;
 
-		streamingVolume.AddComponent<OWTriggerVolume>();
-		var streamingController = streamingVolume.AddComponent<StreamingLoadVolume>();
-		streamingController.SetSector(gameObject.GetAttachedOWRigidbody().GetComponent<AstroObject>().GetRootSector());
-		streamingController.SetStreaming(StreamingGroups.Get(NextPlanet));
+			streamingVolume.AddComponent<OWTriggerVolume>();
+
+			var streamingController = streamingVolume.AddComponent<StreamingLoadVolume>();
+			streamingController.SetSector(gameObject.GetAttachedOWRigidbody().GetComponent<AstroObject>().GetRootSector());
+			streamingController.SetStreaming(nextPlanetGroup);
+		}
 	}
 
     public void SetCampfire(Campfire campfire)
     {
         _campfire = campfire;
 
-        campfire.OnCampfireStateChange += OnCampfireStateChange;
+        if (_campfire == null)
+        {
+            enabled = true;
+        }
+        else
+        {
+			campfire.OnCampfireStateChange += OnCampfireStateChange;
+		}
     }
 
     public void OnDestroy()
@@ -62,4 +74,23 @@ internal class CompletionVolume : MonoBehaviour
             PlayerSpawnUtil.SpawnAt(NextPlanet);
         }
     }
+
+    public static GameObject MakeCompletionVolume(AstroObject planet, Campfire campfire, AstroObject.Name nextPlanet, Vector3 pos, float radius)
+    {
+		var volume = new GameObject("CompletionVolume");
+		volume.transform.parent = planet.GetRootSector().transform;
+		volume.transform.localPosition = pos;
+		volume.layer = LayerMask.NameToLayer("BasicEffectVolume");
+
+		var sphere = volume.AddComponent<SphereCollider>();
+		sphere.isTrigger = true;
+		sphere.radius = radius;
+
+		var completionVolume = volume.AddComponent<CompletionVolume>();
+		completionVolume.enabled = false;
+		completionVolume.SetCampfire(campfire);
+		completionVolume.NextPlanet = nextPlanet;
+
+        return volume;
+	}
 }

@@ -1,5 +1,8 @@
-﻿using Dreamstalker.Components.Dreamworld;
+﻿using Dreamstalker.Components;
+using Dreamstalker.Components.Dreamstalker;
+using Dreamstalker.Components.Dreamworld;
 using Dreamstalker.Handlers.EyeScene;
+using Dreamstalker.Patches;
 using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
 using NewHorizons.External.Modules;
@@ -7,38 +10,51 @@ using NewHorizons.Utility;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Dreamstalker.Handlers.SolarSystem;
 
 internal class AncientGladeHandler : SolarSystemHandler
 {
-    private AstroObject _ancientGlade;
+	private AstroObject _ancientGlade;
 	private GameObject _sectorRoot;
 
 	private List<MiniGalaxy> _miniGalaxies;
 	private Campfire _campfire;
 	private GameObject _solanum;
 	private CharacterDialogueTree _solanumConversation;
-	
+
 	private GameObject _inflationOrb;
 	private Light _inflationLight, _possibilityLight;
 	private OWAudioSource _sfx;
 	private float timer;
 
+	private GameObject[] amalgams;
+
 	protected override void BeforePlanetCreation() { }
 
-	protected override void OnSolarSystemAwake() { }
+	protected override void OnSolarSystemAwake()
+	{
+		_ancientGlade = AstroObjectLocator.GetAstroObject("Ancient Glade");
 
-    protected override void OnSolarSystemStart()
-    {
-        Main.Log("Ancient Glade handler invoked.");
+		amalgams = new GameObject[]
+		{
+			MakeAmalgam(_ancientGlade._rootSector, new Vector3(-9.464043f, -99.62872f, 2.136397f)),
+			MakeAmalgam(_ancientGlade._rootSector, new Vector3(-7.057989f,  -99.69342f,  5.605537f)),
+			MakeAmalgam(_ancientGlade._rootSector, new Vector3( -7.681655f,  -99.32091f, 9.816586f)),
+			MakeAmalgam(_ancientGlade._rootSector, new Vector3(-11.48301f,  -98.85135f, 10.79663f)),
+			MakeAmalgam(_ancientGlade._rootSector, new Vector3(-14.97792f, -98.62234f, 8.325327f)),
+		};
+	}
+
+	protected override void OnSolarSystemStart()
+	{
+		Main.Log("Ancient Glade handler invoked.");
 
 		_miniGalaxies = new();
 
-		_ancientGlade = AstroObjectLocator.GetAstroObject("Ancient Glade");
-
-        var farClipController = _ancientGlade.gameObject.AddComponent<CameraLayerCullController>();
-        farClipController.SetSector(_ancientGlade.GetRootSector());
+		var farClipController = _ancientGlade.gameObject.AddComponent<CameraLayerCullController>();
+		farClipController.SetSector(_ancientGlade.GetRootSector());
 
 		// Eye stuff
 		var quantumCampfire = DetailBuilder.Make(_ancientGlade.gameObject, _ancientGlade.GetRootSector(), EyeHandler.QuantumCampfirePrefab, new PropModule.DetailInfo()
@@ -50,13 +66,13 @@ internal class AncientGladeHandler : SolarSystemHandler
 
 		// Spawn point
 		var spawnGO = new GameObject("Spawn");
-        spawnGO.transform.parent = _ancientGlade.transform;
-        spawnGO.transform.localPosition = new Vector3(-18.40387f, -98.72745f, -3.800648f);
+		spawnGO.transform.parent = _ancientGlade.transform;
+		spawnGO.transform.localPosition = new Vector3(-18.40387f, -98.72745f, -3.800648f);
 		spawnGO.transform.LookAt(quantumCampfire.transform, spawnGO.transform.localPosition.normalized);
-        spawnGO.layer = 8;
-        var spawn = spawnGO.AddComponent<SpawnPoint>();
-        spawn._isShipSpawn = false;
-        spawn._triggerVolumes = new OWTriggerVolume[] { _ancientGlade.GetComponentInChildren<Sector>()._owTriggerVolume };
+		spawnGO.layer = 8;
+		var spawn = spawnGO.AddComponent<SpawnPoint>();
+		spawn._isShipSpawn = false;
+		spawn._triggerVolumes = new OWTriggerVolume[] { _ancientGlade.GetComponentInChildren<Sector>()._owTriggerVolume };
 
 		// Change ground material
 		var ground = _ancientGlade.transform.Find("Sector/GroundSphere");
@@ -91,8 +107,17 @@ internal class AncientGladeHandler : SolarSystemHandler
 
 		_solanumConversation.OnEndConversation += OnEndConversation;
 
-		_inflationOrb = DetailBuilder.Make(_ancientGlade.gameObject, _ancientGlade.GetRootSector(), 
+		_inflationOrb = DetailBuilder.Make(_ancientGlade.gameObject, _ancientGlade.GetRootSector(),
 			EyeHandler.InflationPrefab, new PropModule.DetailInfo() { keepLoaded = true, removeComponents = true });
+
+		Destroy(_inflationOrb.transform.Find("RepelVolume").gameObject);
+
+		var volume = new GameObject("EndVolume");
+		volume.layer = LayerMask.NameToLayer("BasicEffectVolume");
+		volume.AddComponent<SphereShape>().radius = 3f;
+		volume.AddComponent<OWTriggerVolume>().OnEntry += AncientGladeHandler_OnEntry;
+		volume.transform.parent = _inflationOrb.transform.Find("PossibilitySphereRoot");
+		volume.transform.localPosition = Vector3.zero;
 
 		_inflationOrb.transform.Find("PossibilitySphereRoot").localPosition = Vector3.zero;
 		_inflationOrb.transform.Find("Effects_EYE_SmokeSphere").localPosition = new Vector3(0f, 6f, 0f);
@@ -112,12 +137,41 @@ internal class AncientGladeHandler : SolarSystemHandler
 		_campfire = quantumCampfire.GetComponentInChildren<Campfire>();
 		_campfire.OnCampfireStateChange += OnCampfireStateChange;
 
+		foreach (var amalgam in amalgams)
+		{
+			amalgam.transform.LookAt(_campfire.transform, amalgam.transform.localPosition.normalized);
+		}
+
 		// Fix gravity
 		_ancientGlade.GetGravityVolume().SetPriority(2);
 
 		_sectorRoot = _ancientGlade.GetRootSector().gameObject;
 		_sectorRoot.SetActive(false);
 		PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);
+	}
+
+	private void AncientGladeHandler_OnEntry(GameObject hitObj)
+	{
+		if (DeathManagerPatches.flagEnd) return;
+
+		if (hitObj == Locator.GetPlayerDetector())
+		{
+			var stalker = SpawnWrapper.SpawnDreamstalker(_ancientGlade, null, null, Vector3.zero);
+
+			stalker.transform.position = _solanum.transform.position;
+			stalker.transform.rotation = _solanum.transform.rotation;
+			stalker.DisableTeleport();
+
+			_solanum.SetActive(false);
+			stalker.gameObject.SetActive(true);
+
+			Main.Instance.ModHelper.Events.Unity.FireOnNextUpdate(() =>
+			{
+				stalker.GetComponentInChildren<DreamstalkerGrabController>().GrabPlayer(1f);
+			});
+
+			DeathManagerPatches.flagEnd = true;
+		}
 	}
 
 	private void OnEndConversation()
@@ -129,6 +183,11 @@ internal class AncientGladeHandler : SolarSystemHandler
 		foreach (var miniGalaxy in _miniGalaxies)
 		{
 			miniGalaxy.DieAfterSeconds(Random.Range(0.5f, 4f), true, AudioType.EyeGalaxyBlowAway);
+		}
+
+		foreach (var amalgam in amalgams)
+		{
+			amalgam.SetActive(true);
 		}
 	}
 
@@ -189,5 +248,28 @@ internal class AncientGladeHandler : SolarSystemHandler
 			_possibilityLight.intensity = intensity;
 			_campfire._lightController._intensity = intensity;
 		}
+	}
+
+	private GameObject MakeAmalgam(Sector sector, Vector3 position)
+	{
+		var quantumCharacter = new GameObject("QuantumCharacter");
+		quantumCharacter.SetActive(false);
+
+		quantumCharacter.transform.parent = sector.transform;
+		quantumCharacter.transform.localPosition = position;
+		quantumCharacter.transform.localRotation = Quaternion.identity;
+
+		var (dialogue, _) = Main.Instance.NewHorizonsAPI.SpawnDialogue(Main.Instance, quantumCharacter, "assets/xml/RandomDialogue.xml", radius: 1, range: 2);
+		dialogue.gameObject.transform.localPosition = new Vector3(0, 1, 0);
+		dialogue.gameObject.AddComponent<DialogueRandomizer>();
+
+		var amalgam = quantumCharacter.AddComponent<QuantumAmalgam>();
+		amalgam.SetSector(sector);
+
+		// So that awake runs
+		quantumCharacter.SetActive(true);
+		quantumCharacter.SetActive(false);
+
+		return quantumCharacter;
 	}
 }

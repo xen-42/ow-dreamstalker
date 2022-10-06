@@ -17,7 +17,7 @@ internal static class StreamingGroups
 		}
 		else
 		{
-			return Locator.GetAstroObject(name).GetComponentInChildren<StreamingGroup>();
+			return Locator.GetAstroObject(name)?.GetComponentInChildren<StreamingGroup>();
 		}
 	}
 }

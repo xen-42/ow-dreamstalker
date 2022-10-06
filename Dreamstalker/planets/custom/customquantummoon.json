@@ -236,6 +236,20 @@
 				}
 			},
 			{
+				"path": "CustomQuantumMoon_Body/Sector/State_GD/Interactables_GDState/GDState_Quantum_Objects/QRockClump_Middle/QRockClump_Middle_S/BakedTerrain_Baked_QRockClump_Middle",
+				"parentPath": "Sector/State_GD",
+				"position": {
+					"x": 42.4292,
+					"y": 30.8042,
+					"z": 37.5063
+				},
+				"rotation": {
+					"x": 40.4224,
+					"y": 175.2207,
+					"z": 72.6097
+				}
+			},
+			{
 				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire",
 				"parentPath": "Sector/State_BH",
 				"position": {

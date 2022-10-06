@@ -7,7 +7,10 @@ internal class BlackHoleCompletionVolume : CompletionVolume
 	public override void Start()
 	{
 		base.Start();
-		_streamingSphere.radius = 100f;
+		if (_streamingSphere != null)
+		{
+			_streamingSphere.radius = 100f;
+		}
 	}
 
 	public override void OnTriggerEnter(Collider collider)
