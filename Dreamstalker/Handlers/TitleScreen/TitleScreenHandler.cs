@@ -1,10 +1,4 @@
-﻿using Dreamstalker.Patches;
-using NewHorizons.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NewHorizons.Handlers;
 using UnityEngine;
 
 namespace Dreamstalker.Handlers.TitleScreen;
@@ -16,6 +10,7 @@ internal class TitleScreenHandler : BaseHandler
 		base.Awake();
 
 		_main.TitleScreenAwake.AddListener(OnTitleScreenAwake);
+		_main.ModHelper.Menus.MainMenu.OnInit += OnMainMenuInit;
 	}
 
 	protected void OnDestroy()
@@ -23,6 +18,7 @@ internal class TitleScreenHandler : BaseHandler
 		if (_main != null)
 		{
 			_main.TitleScreenAwake.RemoveListener(OnTitleScreenAwake);
+			_main.ModHelper.Menus.MainMenu.OnInit -= OnMainMenuInit;
 		}
 	}
 
@@ -38,5 +34,19 @@ internal class TitleScreenHandler : BaseHandler
 		// Props
 		GameObject.Find("Scene/Background/PlanetPivot/PlanetRoot/Props/Structure_HEA_PlayerShip_v4_NearProxy").SetActive(false);
 		GameObject.Find("Scene/Background/PlanetPivot/PlanetRoot/Traveller_HEA_Riebeck (1)").SetActive(false);
+	}
+
+	private void OnMainMenuInit()
+	{
+		/*
+		var startButton = Main.Instance.ModHelper.Menus.MainMenu.ResumeExpeditionButton ?? Main.Instance.ModHelper.Menus.MainMenu.NewExpeditionButton;
+		startButton.Duplicate(TranslationHandler.GetTranslation("DREAMSTALKER_STARTBUTTON", TranslationHandler.TextType.UI).ToUpper(), 3);
+
+		_main.ModHelper.Events.Unity.FireOnNextUpdate(() =>
+		{
+			GameObject.Find("TitleMenu/TitleCanvas/TitleLayoutGroup/MainMenuBlock/MainMenuLayoutGroup/Button-ResumeGame")?.SetActive(false);
+			GameObject.Find("TitleMenu/TitleCanvas/TitleLayoutGroup/MainMenuBlock/MainMenuLayoutGroup/Button-NewGame")?.SetActive(false);
+		});
+		*/
 	}
 }

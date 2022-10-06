@@ -22,6 +22,7 @@
 		"DREAMSTALKER_AG_2": "Let's try again, shall we?"
 	},
 	"UIDictionary": {
-		"DREAMSTALKER_POPUP": "Thank you for installing Dreamstalker! This should only be played after beating the main game and DLC. Something is different in the solar system, search for notes to find answers."
+		"DREAMSTALKER_POPUP": "Thank you for installing Dreamstalker! This should only be played after beating the main game and DLC.\n\nSomething is different in the solar system, search for notes to find answers.",
+		"DREAMSTALKER_STARTBUTTON": "ESCAPE"
 	}
 }
