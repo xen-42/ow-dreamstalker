@@ -12,7 +12,6 @@ internal class DreamworldHandler : SolarSystemHandler
 {
     private AstroObject _dreamworld;
 	private GameObject _sectorRoot;
-	private OWRigidbody _raft;
 
 	protected override void BeforePlanetCreation() { }
 
@@ -124,8 +123,6 @@ internal class DreamworldHandler : SolarSystemHandler
 		SpawnWrapper.SpawnDreamstalker(_dreamworld, dwCampfire, dwCompletionVolume, Vector3.zero);
 
 		_sectorRoot = _dreamworld.GetRootSector().gameObject;
-		_raft = _sectorRoot.GetComponentInChildren<RaftController>().GetAttachedOWRigidbody();
-		_raft.Suspend();
 		_sectorRoot.SetActive(false);
 		PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);
 	}
@@ -141,11 +138,9 @@ internal class DreamworldHandler : SolarSystemHandler
 		if (planet == AstroObject.Name.DreamWorld)
 		{
 			_sectorRoot.SetActive(true);
-			_raft.Unsuspend();
 		}
 		else
 		{
-			_raft.Suspend();
 			_sectorRoot.SetActive(false);
 		}
 	}
