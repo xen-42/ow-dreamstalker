@@ -16,19 +16,18 @@ internal static class DeathManagerPatches
 	{
 		if (flagEnd)
 		{
-			LoadManager.LoadScene(OWScene.TitleScreen, LoadManager.FadeType.ToBlack, 0.01f);
+			LoadManager.LoadScene(OWScene.Credits_Fast, LoadManager.FadeType.ToBlack, 0.01f);
 			flagEnd = false;
 		}
 
-		// The time loop should be disabled but just in case
+		// The time loop should be ignored
 		if (deathType != DeathType.TimeLoop)
 		{
 			PlayerEffectController.Instance.Blink(1f);
 			PlayerSpawnUtil.Respawn();
 			PropHandler.TurnOffCampFires();
-			return false;
 		}
 
-		return true;
+		return false;
 	}
 }
