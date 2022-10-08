@@ -15,6 +15,7 @@ namespace Dreamstalker.Components
 		private List<(GameObject character, bool isStrange)> _characters = new();
 		private int _currentState;
 		private bool _allowStrangeCharacters;
+		public bool overrideAllowStrangeCharacters;
 		private CharacterDialogueTree _dialogue;
 
 		public override void Awake()
@@ -238,7 +239,7 @@ namespace Dreamstalker.Components
 					newState = Random.Range(0, _characters.Count - 1);
 				}
 				// Ghostbird, ernesto, geswaldo just have transforms
-				while (newState == _currentState || (!_allowStrangeCharacters && _characters[newState].isStrange));
+				while (newState == _currentState || (!(_allowStrangeCharacters || overrideAllowStrangeCharacters) && _characters[newState].isStrange));
 
 				_characters[newState].character.SetActive(true);
 

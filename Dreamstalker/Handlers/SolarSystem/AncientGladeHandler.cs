@@ -265,6 +265,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 
 		var amalgam = quantumCharacter.AddComponent<QuantumAmalgam>();
 		amalgam.SetSector(sector);
+		amalgam.overrideAllowStrangeCharacters = true;
 
 		// So that awake runs
 		quantumCharacter.SetActive(true);
