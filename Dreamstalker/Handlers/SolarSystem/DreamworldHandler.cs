@@ -115,7 +115,7 @@ internal class DreamworldHandler : SolarSystemHandler
 
 		var dwVolume = new GameObject("CompletionVolume");
 		dwVolume.transform.parent = _dreamworld.GetRootSector().transform;
-		dwVolume.transform.localPosition = new Vector3(-5.937442f, 20.00692f, 97.34744f);
+		dwVolume.transform.localPosition = new Vector3(-5.937442f, 20.00692f, 98.94357f);
 		dwVolume.layer = LayerMask.NameToLayer("BasicEffectVolume");
 
 		var sphere = dwVolume.AddComponent<SphereCollider>();
