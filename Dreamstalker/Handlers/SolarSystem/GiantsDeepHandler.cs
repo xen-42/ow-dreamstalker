@@ -33,7 +33,7 @@ internal class GiantsDeepHandler : SolarSystemHandler
 		// Stop all tornados
 		foreach (var torando in GameObject.FindObjectsOfType<TornadoController>())
 		{
-			torando._wander = false;
+			GameObject.Destroy(torando.gameObject);
 		}
 
 		// Ambient light
