@@ -1,5 +1,8 @@
 ﻿using Dreamstalker.Components;
 using Dreamstalker.Components.Player;
+using Dreamstalker.External;
+using Dreamstalker.Utility;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -56,6 +59,12 @@ internal class PropHandler : SolarSystemHandler
 		Locator.GetPlayerBody().gameObject.AddComponent<PlayerEffectController>();
 		Locator.GetPlayerBody().gameObject.AddComponent<PlayerAttachPointController>();
 		Locator.GetPlayerBody().gameObject.AddComponent<DebugCommands>();
+
+		DreamstalkerData.Load();
+		if (Enum.TryParse<AstroObject.Name>(DreamstalkerData.ActiveProfile.LastPlanet, out var planet))
+		{
+			Main.Instance.ModHelper.Events.Unity.FireOnNextUpdate(() => PlayerSpawnUtil.SpawnAt(planet));
+		}
 	}
 
 	public static void TurnOffCampFires()
