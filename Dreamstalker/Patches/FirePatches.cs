@@ -1,4 +1,5 @@
 ﻿using Dreamstalker.Components.Streaming;
+using Dreamstalker.Components.Volumes;
 using Dreamstalker.Handlers.SolarSystem;
 using Dreamstalker.Utility;
 using HarmonyLib;
@@ -57,6 +58,25 @@ internal static class FirePatches
             Main.LogError($"Could not tint campfire {__instance.transform.GetPath()} : {e}");
         }
     }
+
+	[HarmonyPrefix]
+	[HarmonyPatch(typeof(Campfire), nameof(Campfire.CanSleepHereNow))]
+	private static bool Campfire_CanSleepHereNow(Campfire __instance, ref bool __result)
+	{
+		__result = __instance.GetComponent<CompletionCampfire>() != null && __instance._state == Campfire.State.LIT && OWInput.IsInputMode(InputMode.Character);
+		return false;
+	}
+
+	[HarmonyPostfix]
+	[HarmonyPatch(typeof(Campfire), nameof(Campfire.Update))]
+	private static void Campfire_Update(Campfire __instance)
+	{
+		// Only show sleep prompt when you actually can
+		if (__instance._sleepPrompt != null)
+		{
+			__instance._sleepPrompt.SetVisibility(__instance._sleepPrompt.IsDisplayState(ScreenPrompt.DisplayState.Normal));
+		}
+	}
 
 	[HarmonyPostfix]
     [HarmonyPatch(typeof(Marshmallow), nameof(Marshmallow.Start))]
