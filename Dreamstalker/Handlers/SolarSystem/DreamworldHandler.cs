@@ -82,13 +82,20 @@ internal class DreamworldHandler : SolarSystemHandler
 			doorTrigger.AddComponent<AutoDoorTrigger>();
 		}
 		
-		// make light sensors (on cage man) work
+		// make light sensors (on elevator) work
 		foreach (var lightSensor in _dreamworld.GetComponentsInChildren<SingleLightSensor>())
 		{
 			lightSensor._sector.OnSectorOccupantsUpdated -= lightSensor.OnSectorOccupantsUpdated;
 			lightSensor._sector = _dreamworld.GetRootSector();
 			lightSensor._sector.OnSectorOccupantsUpdated += lightSensor.OnSectorOccupantsUpdated;
 		}
+		// set elevator destination
+		var cageElevator = _dreamworld.GetComponentInChildren<CageElevator>();
+		var destination = new GameObject("elevator destination");
+		destination.transform.parent = _dreamworld.transform;
+		destination.transform.position = cageElevator.elevatorBody.GetPosition() - cageElevator.elevatorBody.transform.up * 20;
+		destination.transform.rotation = cageElevator.elevatorBody.GetRotation();
+		cageElevator._destinations[0] = destination.AddComponent<ElevatorDestination>();
 
         var islandPrefab = DZ1_A_Island_C_Prefab();
 
@@ -108,7 +115,7 @@ internal class DreamworldHandler : SolarSystemHandler
 
 		var dwVolume = new GameObject("CompletionVolume");
 		dwVolume.transform.parent = _dreamworld.GetRootSector().transform;
-		dwVolume.transform.localPosition = new Vector3(-5.937442f, 20.00692f, 109.1746f);
+		dwVolume.transform.localPosition = new Vector3(-5.937442f, 20.00692f, 98.94357f);
 		dwVolume.layer = LayerMask.NameToLayer("BasicEffectVolume");
 
 		var sphere = dwVolume.AddComponent<SphereCollider>();
