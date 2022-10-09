@@ -58,6 +58,7 @@ public class Main : ModBehaviour
         gameObject.AddComponent<DarkBrambleHandler>();
         gameObject.AddComponent<QuantumMoonHandler>();
         gameObject.AddComponent<AncientGladeHandler>();
+        gameObject.AddComponent<PauseMenuHandler>();
 
         gameObject.AddComponent<TitleScreenHandler>();
 
