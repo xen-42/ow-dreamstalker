@@ -93,7 +93,7 @@ internal static class SpawnWrapper
 		}
 
 		// Disables the artifact
-		//_dreamstalkerPrefab.transform.Find("Ghostbird_Skin_01:Ghostbird_Rig_V01:Base").gameObject.SetActive(false);
+		_dreamstalkerPrefab.GetComponentInChildren<DreamLanternController>().gameObject.SetActive(false);
 
 		GameObject.Destroy(skeleton);
 
