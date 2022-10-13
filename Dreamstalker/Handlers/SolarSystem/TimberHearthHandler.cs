@@ -1,4 +1,5 @@
-﻿using Dreamstalker.Components.Volumes;
+﻿using Dreamstalker.Components;
+using Dreamstalker.Components.Volumes;
 using Dreamstalker.Utility;
 using UnityEngine;
 
@@ -62,13 +63,17 @@ internal class TimberHearthHandler : SolarSystemHandler
             elevator._interactVolume.SetInteractionEnabled(false);
         }
 
-        // Spawn stuff
-        var thCampfire = GameObject.Find("TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire/Controller_Campfire").GetComponent<Campfire>();
+		// Spawn stuff
+		var thCampfire = GameObject.Find("TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire/Controller_Campfire").GetComponent<Campfire>();
 
-		var thCompletionVolume = GameObject.Find("TimberHearth_Body/Sector_TH/Sector_Village/Sector_Observatory/Volumes_Observatory/ObservatoryInteriorVolume/MuseumEntryway").AddComponent<CompletionVolume>();
-		thCompletionVolume.enabled = false;
-		thCompletionVolume.SetCampfire(thCampfire);
-        thCompletionVolume.NextPlanet = AstroObject.Name.BrittleHollow;
+		// Add statue eye controller
+		var statue = th.GetComponentInChildren<MemoryUplinkTrigger>().gameObject.AddComponent<StatueEyeController>();
+        statue.SetSector(th.GetRootSector());
+        statue.campfire = thCampfire;
+
+        var thCompletionVolume = CompletionVolume.MakeCompletionVolume(th, thCampfire, AstroObject.Name.BrittleHollow, Vector3.zero, 8f);
+        thCompletionVolume.transform.parent = statue.transform;
+        thCompletionVolume.transform.localPosition = Vector3.zero;
 
 		SpawnWrapper.SpawnDreamstalker(th, thCampfire, thCompletionVolume, Vector3.zero);
 	}

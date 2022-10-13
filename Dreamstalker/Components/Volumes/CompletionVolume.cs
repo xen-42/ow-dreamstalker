@@ -75,7 +75,7 @@ internal class CompletionVolume : MonoBehaviour
         }
     }
 
-    public static GameObject MakeCompletionVolume(AstroObject planet, Campfire campfire, AstroObject.Name nextPlanet, Vector3 pos, float radius)
+    public static CompletionVolume MakeCompletionVolume(AstroObject planet, Campfire campfire, AstroObject.Name nextPlanet, Vector3 pos, float radius)
     {
 		var volume = new GameObject("CompletionVolume");
 		volume.transform.parent = planet.GetRootSector().transform;
@@ -91,6 +91,6 @@ internal class CompletionVolume : MonoBehaviour
 		completionVolume.SetCampfire(campfire);
 		completionVolume.NextPlanet = nextPlanet;
 
-        return volume;
+        return completionVolume;
 	}
 }
