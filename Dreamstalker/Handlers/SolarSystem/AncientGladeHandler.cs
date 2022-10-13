@@ -162,7 +162,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 			_solanum.SetActive(false);
 			stalker.gameObject.SetActive(true);
 
-			Main.Instance.ModHelper.Events.Unity.FireOnNextUpdate(() =>
+			Main.FireOnNextUpdate(() =>
 			{
 				stalker.GetComponentInChildren<DreamstalkerGrabController>().GrabPlayer(1f);
 			});
@@ -227,7 +227,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 			_sectorRoot.SetActive(false);
 		}
 
-		Main.Instance.ModHelper.Events.Unity.FireOnNextUpdate(() => Locator.GetFlashlight().TurnOn());
+		Main.FireOnNextUpdate(() => Locator.GetFlashlight().TurnOn());
 	}
 
 	// TODO: this stuff should be on a component in the scene

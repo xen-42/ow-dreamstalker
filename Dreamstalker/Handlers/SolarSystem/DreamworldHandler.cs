@@ -88,7 +88,7 @@ internal class DreamworldHandler : SolarSystemHandler
 		}
 		// set elevator destination
 		var cageElevator = _dreamworld.GetComponentInChildren<CageElevator>();
-		var destination = new GameObject("elevator destination");
+		var destination = new GameObject(nameof(ElevatorDestination));
 		destination.transform.parent = _dreamworld.transform;
 		destination.transform.position = cageElevator.elevatorBody.GetPosition() - cageElevator.elevatorBody.transform.up * 20;
 		destination.transform.rotation = cageElevator.elevatorBody.GetRotation();
@@ -124,7 +124,10 @@ internal class DreamworldHandler : SolarSystemHandler
 		dwCompletionVolume.SetCampfire(dwCampfire);
 		dwCompletionVolume.NextPlanet = AstroObject.Name.QuantumMoon;
 
-		SpawnWrapper.SpawnDreamstalker(_dreamworld, dwCampfire, dwCompletionVolume, Vector3.zero);
+		var dreamstalker = SpawnWrapper.SpawnDreamstalker(_dreamworld, dwCampfire, dwCompletionVolume, Vector3.zero);
+		
+		// make elevator KILL dreamstalker
+		cageElevator._ghostInterface.OnDownSelected += () => dreamstalker.DespawnImmediate();
 
 		_sectorRoot = _dreamworld.GetRootSector().gameObject;
 		_sectorRoot.SetActive(false);
