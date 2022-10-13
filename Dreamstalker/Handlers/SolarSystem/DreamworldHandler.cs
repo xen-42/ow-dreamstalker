@@ -42,9 +42,6 @@ internal class DreamworldHandler : SolarSystemHandler
 			.GetComponent<MeshRenderer>()
 			.material;
 
-		// Fix gravity
-		_dreamworld.GetGravityVolume().SetPriority(2);
-
 		// Change fireplace
 		var fireRoot = _dreamworld.transform.Find("Sector/Party_House/Interactibles_PartyHouse/Prefab_IP_LodgeFire/Structure_DW_LodgeFireplace/LodgeFireplace_Fire");
 

@@ -142,9 +142,6 @@ internal class AncientGladeHandler : SolarSystemHandler
 			amalgam.transform.LookAt(_campfire.transform, amalgam.transform.localPosition.normalized);
 		}
 
-		// Fix gravity
-		_ancientGlade.GetGravityVolume().SetPriority(2);
-
 		_sectorRoot = _ancientGlade.GetRootSector().gameObject;
 		_sectorRoot.SetActive(false);
 		PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);

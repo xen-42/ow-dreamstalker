@@ -7,7 +7,14 @@
 		"ambientLight": 0.3,
 		"hasMapMarker": false,
 		"surfaceGravity": 8,
-		"zeroGravityRadius": 400
+		"gravityVolumePriority": 2
+	},
+	"Volumes": {
+		"zeroGravityVolumes": [
+			{
+				"radius": 400
+			}
+		]
 	},
 	"Orbit": {
 		"primaryBody": "Sun",

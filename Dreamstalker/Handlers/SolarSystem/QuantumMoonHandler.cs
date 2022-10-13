@@ -32,9 +32,6 @@ internal class QuantumMoonHandler : SolarSystemHandler
         spawn._isShipSpawn = false;
         spawn._triggerVolumes = new OWTriggerVolume[] { _quantumMoon.GetComponentInChildren<Sector>()._owTriggerVolume };
 
-		// Fix gravity
-		_quantumMoon.GetGravityVolume().SetPriority(2);
-
 		_sectorRoot = _quantumMoon.GetRootSector().gameObject;
 		_sectorRoot.SetActive(false);
 		PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);
