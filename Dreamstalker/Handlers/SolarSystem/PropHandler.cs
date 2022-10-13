@@ -63,7 +63,7 @@ internal class PropHandler : SolarSystemHandler
 		DreamstalkerData.Load();
 		if (Enum.TryParse<AstroObject.Name>(DreamstalkerData.ActiveProfile.LastPlanet, out var planet))
 		{
-			Main.Instance.ModHelper.Events.Unity.FireOnNextUpdate(() => PlayerSpawnUtil.SpawnAt(planet));
+			Main.FireOnNextUpdate(() => PlayerSpawnUtil.SpawnAt(planet));
 		}
 	}
 
