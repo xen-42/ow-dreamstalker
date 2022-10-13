@@ -124,7 +124,18 @@ internal class DreamworldHandler : SolarSystemHandler
 		dwCompletionVolume.SetCampfire(dwCampfire);
 		dwCompletionVolume.NextPlanet = AstroObject.Name.QuantumMoon;
 
-		SpawnWrapper.SpawnDreamstalker(_dreamworld, dwCampfire, dwCompletionVolume, Vector3.zero);
+		var dreamstalker = SpawnWrapper.SpawnDreamstalker(_dreamworld, dwCampfire, dwCompletionVolume, Vector3.zero);
+		
+		// make elevator work only when it should
+		cageElevator._ghostInterface.OnDownSelected -= cageElevator.GoDown;
+		cageElevator._ghostInterface.OnDownSelected += () =>
+		{
+			// dont go if campfire aint lit
+			if (dwCampfire.GetState() != Campfire.State.LIT) return;
+			Main.Log("elevator activate! KILL DREAM MAN");
+			dreamstalker.DespawnImmediate();
+			cageElevator.GoDown();
+		};
 
 		_sectorRoot = _dreamworld.GetRootSector().gameObject;
 		_sectorRoot.SetActive(false);
