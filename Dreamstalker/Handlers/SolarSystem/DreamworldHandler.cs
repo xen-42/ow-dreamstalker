@@ -88,7 +88,7 @@ internal class DreamworldHandler : SolarSystemHandler
 		}
 		// set elevator destination
 		var cageElevator = _dreamworld.GetComponentInChildren<CageElevator>();
-		var destination = new GameObject("elevator destination");
+		var destination = new GameObject(nameof(ElevatorDestination));
 		destination.transform.parent = _dreamworld.transform;
 		destination.transform.position = cageElevator.elevatorBody.GetPosition() - cageElevator.elevatorBody.transform.up * 20;
 		destination.transform.rotation = cageElevator.elevatorBody.GetRotation();
