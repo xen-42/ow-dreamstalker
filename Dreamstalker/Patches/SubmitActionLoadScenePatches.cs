@@ -6,8 +6,7 @@ namespace Dreamstalker.Patches;
 [HarmonyPatch]
 internal static class SubmitActionLoadScenePatches
 {
-	[HarmonyPostfix]
-	[HarmonyPatch(typeof(SubmitActionLoadScene), nameof(SubmitActionLoadScene.Update))]
+	[HarmonyPrefix]
 	[HarmonyPatch(typeof(SubmitActionLoadScene), nameof(SubmitActionLoadScene.ConfirmSubmit))]
 	private static void SubmitActionLoadScene_Update(SubmitActionLoadScene __instance)
 	{
