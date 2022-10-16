@@ -33,6 +33,7 @@
 		],
 		"dialogue": [
 			{
+				"rename": "GabbroIslandNote",
 				"position": {
 					"x": -5.677585,
 					"y": 4.302157,
