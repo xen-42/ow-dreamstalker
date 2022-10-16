@@ -110,12 +110,11 @@ public class Main : ModBehaviour
 	    Instance.ModHelper.Console.WriteLine($"Error: {msg}", MessageType.Error);
 
     public static void RunAfterSeconds(Action action, float seconds) =>
-        Instance.StartCoroutine(Instance.Coroutine_RunAfterSeconds(action, seconds));
+        Instance.StartCoroutine(Coroutine_RunAfterSeconds(action, seconds));
 
-	private IEnumerator Coroutine_RunAfterSeconds(Action action, float seconds)
+	private static IEnumerator Coroutine_RunAfterSeconds(Action action, float seconds)
 	{
 		yield return new WaitForSeconds(seconds);
-
         action?.Invoke();
 	}
 
