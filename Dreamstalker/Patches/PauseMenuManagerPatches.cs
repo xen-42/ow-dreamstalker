@@ -1,6 +1,4 @@
 ﻿using HarmonyLib;
-using NewHorizons.Handlers;
-using UnityEngine.UI;
 
 namespace Dreamstalker.Patches;
 
@@ -12,5 +10,6 @@ internal class PauseMenuManagerPatches
 	private static void PauseMenuManager_Start(PauseMenuManager __instance)
 	{
 		__instance._skipToNextLoopButton.SetActive(false);
+		__instance._exitToMainMenuAction.gameObject.SetActive(false);
 	}
 }

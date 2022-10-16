@@ -28,8 +28,9 @@
 	},
 	"UIDictionary": {
 		"DREAMSTALKER_POPUP": "Thank you for installing Dreamstalker! This should only be played after beating the main game and DLC.\n\nSomething is different in the solar system, search for notes to find answers.",
-		"DREAMSTALKER_STARTBUTTON": "ESCAPE",
-		"DREAMSTALKER_RETRYBUTTON": "RETRY",
-		"DREAMSTALKER_RETRYTEXT": "This will restart the current level."
+		"DREAMSTALKER_START_BUTTON": "ESCAPE",
+		"DREAMSTALKER_RETRY_BUTTON": "RETRY",
+		"DREAMSTALKER_RETRY_TEXT": "This will restart the current level.",
+		"DREAMSTALKER_QUIT_TEXT": "Quit to main menu?\n\nYour progress will be saved."
 	}
 }

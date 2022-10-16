@@ -1,17 +1,14 @@
 ﻿using NewHorizons.Handlers;
 using OWML.Common.Menus;
 using OWML.ModHelper.Menus;
+using System;
 using UnityEngine;
 
 namespace Dreamstalker.Handlers.SolarSystem;
 
 internal class PauseMenuHandler : BaseHandler
 {
-	private string _retryText;
-	private string _okText;
-	private string _cancelText;
-
-	private IModMessagePopup _popup;
+	private IModMessagePopup _currentPopup;
 
 	protected override void Awake()
 	{
@@ -30,8 +27,12 @@ internal class PauseMenuHandler : BaseHandler
 
 	private void OnPauseMenuInit()
 	{
-		var text = TranslationHandler.GetTranslation("DREAMSTALKER_RETRYBUTTON", TranslationHandler.TextType.UI).ToUpper();
-		var retryButton = _main.ModHelper.Menus.PauseMenu.OptionsButton.Duplicate(text);
+		var quitText = UITextLibrary.GetString(UITextType.PauseQuit).ToUpper();
+		var quitButton = _main.ModHelper.Menus.PauseMenu.OptionsButton.Duplicate(quitText);
+		quitButton.OnClick += OnQuitButtonClicked;
+
+		var retryText = TranslationHandler.GetTranslation("DREAMSTALKER_RETRY_BUTTON", TranslationHandler.TextType.UI).ToUpper();
+		var retryButton = _main.ModHelper.Menus.PauseMenu.OptionsButton.Duplicate(retryText);
 		retryButton.OnClick += OnRetryButtonClicked;
 	}
 
@@ -39,21 +40,39 @@ internal class PauseMenuHandler : BaseHandler
 	{
 		Main.Log($"Retry button clicked!");
 
-		_retryText = TranslationHandler.GetTranslation("DREAMSTALKER_RETRYTEXT", TranslationHandler.TextType.UI);
-		_okText = UITextLibrary.GetString(UITextType.MenuConfirm);
-		_cancelText = UITextLibrary.GetString(UITextType.MenuCancel);
-
-		ClosePopup();
-
-		_popup = _main.ModHelper.Menus.PopupManager.CreateMessagePopup(_retryText, true, _okText, _cancelText);
-		_popup.Menu._addToMenuStackManager = true;
-		_popup.Menu.EnableMenu(true);
-		(_popup.Menu as PopupMenu)._popupCanvas.overrideSorting = true;
-		_popup.OnConfirm += Popup_OnConfirm;
-		_popup.OnCancel += ClosePopup;
+		var retryText = TranslationHandler.GetTranslation("DREAMSTALKER_RETRY_TEXT", TranslationHandler.TextType.UI);
+		MakePopup(retryText, RestartPopup_OnConfirm);
 	}
 
-	private void Popup_OnConfirm()
+	private void OnQuitButtonClicked()
+	{
+		Main.Log($"Quit button clicked!");
+
+		var quitText = TranslationHandler.GetTranslation("DREAMSTALKER_QUIT_TEXT", TranslationHandler.TextType.UI);
+		MakePopup(quitText, QuitPopup_OnConfirm);
+	}
+
+	private void MakePopup(string text, Action confirmAction)
+	{
+		ClosePopup();
+
+		var okText = UITextLibrary.GetString(UITextType.MenuConfirm);
+		var cancelText = UITextLibrary.GetString(UITextType.MenuCancel);
+
+		_currentPopup = _main.ModHelper.Menus.PopupManager.CreateMessagePopup(text.ToUpper(), true, okText, cancelText);
+		_currentPopup.Menu._addToMenuStackManager = true;
+		_currentPopup.Menu.EnableMenu(true);
+		(_currentPopup.Menu as PopupMenu)._popupCanvas.overrideSorting = true;
+		_currentPopup.OnConfirm += confirmAction;
+		_currentPopup.OnCancel += ClosePopup;
+	}
+
+	private void QuitPopup_OnConfirm()
+	{
+		LoadManager.LoadScene(OWScene.TitleScreen, LoadManager.FadeType.ToBlack, 1f, true);
+	}
+
+	private void RestartPopup_OnConfirm()
 	{
 		ClosePopup();
 		Locator.GetDeathManager().KillPlayer(DeathType.Meditation);
@@ -62,11 +81,11 @@ internal class PauseMenuHandler : BaseHandler
 
 	private void ClosePopup()
 	{
-		if (_popup != null)
+		if (_currentPopup != null)
 		{
 			// Thanks OWML for throwing exceptions when destroying the popup!
-			_popup.DestroySelf();
-			_popup = null;
+			_currentPopup.DestroySelf();
+			_currentPopup = null;
 		}
 	}
 }
