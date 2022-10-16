@@ -1,10 +1,12 @@
 ﻿using Dreamstalker.Components;
 using Dreamstalker.Components.Volumes;
 using Dreamstalker.Utility;
+using HarmonyLib;
 using UnityEngine;
 
 namespace Dreamstalker.Handlers.SolarSystem;
 
+[HarmonyPatch]
 internal class TimberHearthHandler : SolarSystemHandler
 {
     protected override void BeforePlanetCreation() { }
@@ -23,8 +25,16 @@ internal class TimberHearthHandler : SolarSystemHandler
 
         var th = Locator.GetAstroObject(AstroObject.Name.TimberHearth);
 
-        // Weaken or turn out all lights
-        foreach (var light in th.GetComponentsInChildren<Light>())
+		// Dont want lights disabling when it becomes "day"
+        // Has to go before deleting lights bc lights depend on night lights idk
+		foreach (var nightLight in th.GetComponentsInChildren<NightLight>())
+		{
+			nightLight.OnSunrise();
+			DestroyImmediate(nightLight);
+		}
+
+		// Weaken or turn out all lights
+		foreach (var light in th.GetComponentsInChildren<Light>())
         {
             var parent = light.transform.parent;
             if (parent != null)
@@ -36,16 +46,16 @@ internal class TimberHearthHandler : SolarSystemHandler
                 else if (parent.name.Contains("WindowPivot_Cabin"))
                 {
                     // Turn off their window lights
-                    DestroyImmediate(light);
+                    var owLight = light.gameObject.GetComponent<OWLight>();
+                    if (owLight != null) DestroyImmediate(owLight);
+
+                    var owLight2 = light.gameObject.GetComponent<OWLight2>();
+					if (owLight2 != null) DestroyImmediate(owLight2);
+
+					DestroyImmediate(light);
                 }
             }
             light.color = new Color(0.4f, 1f, 1f);
-        }
-        // Dont want lights disabling when it becomes "day"
-        foreach (var nightLight in th.GetComponentsInChildren<NightLight>())
-        {
-            nightLight.OnSunrise();
-            DestroyImmediate(nightLight);
         }
 
         // Get rid of the ship
@@ -53,9 +63,6 @@ internal class TimberHearthHandler : SolarSystemHandler
 
         // Lower ambient light
         th.transform.Find("AmbientLight_TH").GetComponent<Light>().intensity = 0.6f;
-
-        // Remove music
-        th.GetComponentInChildren<VillageMusicVolume>().gameObject.SetActive(false);
 
         // Disable all elevators
         foreach (var elevator in th.GetComponentsInChildren<Elevator>())
@@ -77,4 +84,8 @@ internal class TimberHearthHandler : SolarSystemHandler
 
 		SpawnWrapper.SpawnDreamstalker(th, thCampfire, thCompletionVolume, Vector3.zero);
 	}
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(MemoryUplinkTrigger), nameof(MemoryUplinkTrigger.OnStartOfTimeLoop))]
+    private static bool MemoryUplinkTrigger_OnStartOfTimeLoop() => false; // Stops it from destroying the component
 }

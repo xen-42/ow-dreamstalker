@@ -28,6 +28,24 @@ internal static class AudioUtility
 		return owAudioSource;
 	}
 
+	public static OWAudioSource MakeOneShot(GameObject parent, OWAudioMixer.TrackName track)
+	{
+		var go = new GameObject($"OneShot");
+		go.transform.parent = parent.transform;
+		go.transform.localPosition = Vector3.zero;
+		go.SetActive(false);
+
+		var audioSource = go.AddComponent<AudioSource>();
+		var oneShotAudioSource = go.AddComponent<OWAudioSource>();
+		oneShotAudioSource._audioSource = audioSource;
+		oneShotAudioSource.spatialBlend = 1f;
+		oneShotAudioSource.SetTrack(track);
+
+		go.SetActive(true);
+
+		return oneShotAudioSource;
+	}
+
 	public static void PlayOneShot(AudioType audio, float volume = 1f) =>
-		Locator.GetPlayerAudioController()._repairToolSource.PlayOneShot(audio, volume);
+		Locator.GetPlayerAudioController()._oneShotSource.PlayOneShot(audio, volume);
 }

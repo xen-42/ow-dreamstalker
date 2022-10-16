@@ -6,7 +6,7 @@ using NewHorizons.Handlers;
 using OWML.Common;
 using OWML.ModHelper;
 using System;
-using System.Diagnostics;
+using System.Collections;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
@@ -46,7 +46,7 @@ public class Main : ModBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         // Add in the handlers
-        gameObject.AddComponent<PropHandler>();
+        gameObject.AddComponent<GeneralHandler>();
         gameObject.AddComponent<PlanetHandler>();
         gameObject.AddComponent<EyeHandler>();
 
@@ -109,7 +109,17 @@ public class Main : ModBehaviour
 	public static void LogError(string msg) =>
 	    Instance.ModHelper.Console.WriteLine($"Error: {msg}", MessageType.Error);
 
-    [HarmonyPrefix]
+    public static void RunAfterSeconds(Action action, float seconds) =>
+        Instance.StartCoroutine(Instance.Coroutine_RunAfterSeconds(action, seconds));
+
+	private IEnumerator Coroutine_RunAfterSeconds(Action action, float seconds)
+	{
+		yield return new WaitForSeconds(seconds);
+
+        action?.Invoke();
+	}
+
+	[HarmonyPrefix]
     [HarmonyPatch(typeof(PlanetCreationHandler), nameof(PlanetCreationHandler.Init))]
     private static void PlanetCreationHandler_Init() => Instance.BeforePlanetCreation?.Invoke();
 }

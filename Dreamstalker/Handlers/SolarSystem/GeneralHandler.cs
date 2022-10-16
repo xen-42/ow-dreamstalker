@@ -9,7 +9,7 @@ using UnityEngine.Events;
 namespace Dreamstalker.Handlers.SolarSystem;
 
 [RequireComponent(typeof(Main))]
-internal class PropHandler : SolarSystemHandler
+internal class GeneralHandler : SolarSystemHandler
 {
 	protected override void Awake()
 	{
@@ -34,6 +34,15 @@ internal class PropHandler : SolarSystemHandler
 		{
 			signal.gameObject.SetActive(false);
 		}
+
+		// Remove all audio volumes
+		foreach (var audioVolume in FindObjectsOfType<AudioVolume>())
+		{
+			GameObject.Destroy(audioVolume);
+		}
+
+		// Ice melt controller freaks out without the audio volumes but we don't want that to exist anyway
+		GameObject.Destroy(GameObject.FindObjectOfType<IceMeltController>());
 	}
 
 	protected override void OnSolarSystemAwake() { }

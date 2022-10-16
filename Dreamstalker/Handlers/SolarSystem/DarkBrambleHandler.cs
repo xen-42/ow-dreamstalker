@@ -120,6 +120,6 @@ internal class DarkBrambleHandler : SolarSystemHandler
 
 		PlayerSpawnUtil.SpawnAt(PlayerSpawnUtil.SecondLastSpawn);
 		PlayerEffectController.Instance.Blink();
-		PropHandler.TurnOffCampFires();
+		GeneralHandler.TurnOffCampFires();
 	}
 }

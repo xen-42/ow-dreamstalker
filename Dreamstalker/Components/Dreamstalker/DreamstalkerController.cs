@@ -1,5 +1,6 @@
 ﻿using Dreamstalker.Components.Volumes;
 using Dreamstalker.Utility;
+using System.Collections;
 using UnityEngine;
 
 namespace Dreamstalker.Components.Dreamstalker;
@@ -31,6 +32,9 @@ internal class DreamstalkerController : VisibilityObject
 
     private bool _despawning;
     private float _despawnTime;
+
+    private float _chaseTimer;
+    private float _nextTeleportTime = 10f;
 
     public float farDistance = 30f;
     public float nearDistance = 10f;
@@ -98,15 +102,25 @@ internal class DreamstalkerController : VisibilityObject
     {
         if (campfire.GetState() == Campfire.State.LIT)
         {
-            gameObject.SetActive(true);
-            _despawning = false;
-            StartStalking();
-        }
+            Main.RunAfterSeconds(() => {
+				if (_campfire?.GetState() == Campfire.State.LIT)
+				{
+					gameObject.SetActive(true);
+					_despawning = false;
+					StartStalking();
+				}
+			}, Random.Range(4f, 8f));
+		}
         else
         {
             DespawnImmediate();
         }
     }
+
+    public void Spawn()
+    {
+
+	}
 
     private void TurnTowardsLocalDirection(Vector3 localDirection, float targetDegreesPerSecond)
     {
@@ -209,7 +223,8 @@ internal class DreamstalkerController : VisibilityObject
 
         var playerRelativePos = Quaternion.AngleAxis(Random.Range(0, 360), playerLocalPosition.normalized) * planeVector;
 
-        transform.localPosition = playerLocalPosition + playerRelativePos * nearDistance;
+        transform.localPosition = playerLocalPosition + playerRelativePos * (nearDistance * Random.Range(0.8f, 1.2f));
+        transform.LookAt(_playerCollider.transform, GlobalUp());
 
         // Will stick it to the ground
         UpdatePositionFromVelocity();
@@ -230,7 +245,12 @@ internal class DreamstalkerController : VisibilityObject
         var direction = displacement.normalized;
         var distance = displacement.magnitude;
 
-        if (distance > farDistance && Time.time > _lastTeleportTime + teleportCooldown)
+        _chaseTimer += Time.deltaTime;
+
+        var shouldTeleportDueToDistance = distance > farDistance && Time.time > _lastTeleportTime + teleportCooldown;
+        var shouldTeleportDueToLongChase = _chaseTimer > _nextTeleportTime;
+
+		if (shouldTeleportDueToDistance || shouldTeleportDueToLongChase)
         {
             TeleportNearPlayer();
             return;
@@ -257,7 +277,10 @@ internal class DreamstalkerController : VisibilityObject
         Main.Log("Started stalking");
         _effects.PlayAnimation(DreamstalkerEffectsController.AnimationKeys.CallForHelp);
         _effects.CallForHelpComplete.AddListener(OnCallForHelpComplete);
-    }
+
+        _nextTeleportTime = Random.Range(4f, 12f);
+        _chaseTimer = 0f;
+	}
 
     private void OnCallForHelpComplete()
     {
@@ -281,7 +304,13 @@ internal class DreamstalkerController : VisibilityObject
 
     public void DespawnImmediate()
     {
-        StopStalking();
+        _effects.OnDespawn();
+
+		_despawning = false;
+		_despawnTime = 0;
+		transform.localPosition = Vector3.zero;
+
+		StopStalking();
         gameObject.SetActive(false);
     }
 
@@ -302,11 +331,7 @@ internal class DreamstalkerController : VisibilityObject
     {
         if (_despawning && Time.time > _despawnTime)
         {
-            _despawning = false;
-            _despawnTime = 0;
-            StopStalking();
-            transform.localPosition = Vector3.zero;
-            gameObject.SetActive(false);
+            DespawnImmediate();
         }
 
         _localTargetPosition = _relativeTransform.InverseTransformPoint(Locator.GetPlayerTransform().position);
@@ -327,10 +352,11 @@ internal class DreamstalkerController : VisibilityObject
         // Only kill player when in stalking mode
         if (_stalking && distance < grabDistance)
         {
-            _grabber.GrabPlayer(4f);
+            _effects.OnGrab();
+			_grabber.GrabPlayer(4f);
             Despawn();
         }
 
-        _effects.UpdateEffects();
+        _effects.UpdateEffects(distance);
     }
 }

@@ -25,7 +25,7 @@ internal static class DeathManagerPatches
 		{
 			PlayerEffectController.Instance.Blink(1f);
 			PlayerSpawnUtil.Respawn();
-			PropHandler.TurnOffCampFires();
+			GeneralHandler.TurnOffCampFires();
 		}
 
 		return false;
