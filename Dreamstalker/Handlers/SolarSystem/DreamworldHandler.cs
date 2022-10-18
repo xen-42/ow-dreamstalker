@@ -110,19 +110,8 @@ internal class DreamworldHandler : SolarSystemHandler
 
 		dwCampfire.SetState(Campfire.State.UNLIT, true);
 
-		var dwVolume = new GameObject("CompletionVolume");
-		dwVolume.transform.parent = _dreamworld.GetRootSector().transform;
-		dwVolume.transform.localPosition = new Vector3(-5.937442f, 20.00692f, 98.94357f);
-		dwVolume.layer = LayerMask.NameToLayer("BasicEffectVolume");
-
-		var sphere = dwVolume.AddComponent<SphereCollider>();
-		sphere.isTrigger = true;
-		sphere.radius = 1f;
-
-		var dwCompletionVolume = dwVolume.AddComponent<CompletionVolume>();
-		dwCompletionVolume.enabled = false;
-		dwCompletionVolume.SetCampfire(dwCampfire);
-		dwCompletionVolume.NextPlanet = AstroObject.Name.QuantumMoon;
+		var dwCompletionVolume = CompletionVolume.MakeCompletionVolume(_dreamworld, dwCampfire, AstroObject.Name.QuantumMoon,
+			new Vector3(-5.937442f, 20.00692f, 98.94357f), 1f);
 
 		var dreamstalker = SpawnWrapper.SpawnDreamstalker(_dreamworld, dwCampfire, dwCompletionVolume, Vector3.zero);
 		

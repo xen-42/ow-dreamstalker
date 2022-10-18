@@ -36,19 +36,8 @@ internal class CaveTwinHandler : SolarSystemHandler
 		// Spawn stuff
 		var ctCampfire = GameObject.Find("CaveTwin_Body/Sector_CaveTwin/Sector_NorthHemisphere/Sector_NorthSurface/Sector_Lakebed/Interactables_Lakebed/Lakebed_VisibleFrom_Far/Prefab_HEA_Campfire/Controller_Campfire").GetComponent<Campfire>();
 
-		var ctVolume = new GameObject("CompletionVolume");
-		ctVolume.transform.parent = ct.GetRootSector().transform;
-		ctVolume.transform.localPosition = new Vector3(-93.88305f, -71.32361f, 60.62481f);
-		ctVolume.layer = LayerMask.NameToLayer("BasicEffectVolume");
-
-		var sphere = ctVolume.AddComponent<SphereCollider>();
-		sphere.isTrigger = true;
-		sphere.radius = 20f;
-
-		var ctCompletionVolume = ctVolume.AddComponent<CompletionVolume>();
-		ctCompletionVolume.enabled = false;
-		ctCompletionVolume.SetCampfire(ctCampfire);
-		ctCompletionVolume.NextPlanet = AstroObject.Name.GiantsDeep;
+		var ctCompletionVolume = CompletionVolume.MakeCompletionVolume(ct, ctCampfire, AstroObject.Name.GiantsDeep,
+			new Vector3(-93.88305f, -71.32361f, 60.62481f), 20f);
 
 		SpawnWrapper.SpawnDreamstalker(ct, ctCampfire, ctCompletionVolume, Vector3.zero);
 	}
