@@ -84,6 +84,11 @@ internal static class PlayerSpawnUtil
 		{
 			DreamstalkerData.Save();
 		}
+
+		foreach (var cullGroup in spawn.GetAttachedOWRigidbody().GetComponentsInChildren<SectorCullGroup>())
+		{
+			cullGroup.SetVisible(true, true);
+		}
 	}
 
 	public static void Respawn()
