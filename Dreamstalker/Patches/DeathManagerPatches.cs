@@ -1,4 +1,5 @@
 ﻿using Dreamstalker.Components;
+using Dreamstalker.External;
 using Dreamstalker.Handlers.SolarSystem;
 using Dreamstalker.Utility;
 using HarmonyLib;
@@ -16,6 +17,10 @@ internal static class DeathManagerPatches
 	{
 		if (flagEnd)
 		{
+			// Reset save
+			PlayerSpawnUtil.LastSpawn = AstroObject.Name.TimberHearth;
+			DreamstalkerData.Save();
+
 			LoadManager.LoadScene(OWScene.Credits_Fast, LoadManager.FadeType.ToBlack, 0.01f);
 			flagEnd = false;
 		}
