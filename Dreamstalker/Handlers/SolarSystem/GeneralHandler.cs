@@ -43,6 +43,24 @@ internal class GeneralHandler : SolarSystemHandler
 
 		// Ice melt controller freaks out without the audio volumes but we don't want that to exist anyway
 		GameObject.Destroy(GameObject.FindObjectOfType<IceMeltController>());
+
+		// Remove all nomai text
+		foreach (var nomaiText in FindObjectsOfType<NomaiWallText>())
+		{
+			nomaiText.gameObject.SetActive(false);
+		}
+
+		// Remove all scrolls
+		foreach (var scrollItem in FindObjectsOfType<ScrollItem>())
+		{
+			scrollItem.gameObject.SetActive(false);
+		}
+
+		// Disable all sockets
+		foreach (var itemSocket in FindObjectsOfType<OWItemSocket>())
+		{
+			itemSocket.EnableInteraction(false);
+		}
 	}
 
 	protected override void OnSolarSystemAwake() { }
