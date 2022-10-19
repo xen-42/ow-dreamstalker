@@ -42,8 +42,9 @@ internal class TimberHearthHandler : SolarSystemHandler
                 if (parent.name.Contains("Props_HEA_BlueLantern"))
                 {
                     parent.gameObject.SetActive(false);
+					continue;
                 }
-                else if (parent.name.Contains("WindowPivot_Cabin"))
+                if (parent.name.Contains("WindowPivot_Cabin"))
                 {
                     // Turn off their window lights
                     var owLight = light.gameObject.GetComponent<OWLight>();
@@ -53,6 +54,7 @@ internal class TimberHearthHandler : SolarSystemHandler
 					if (owLight2 != null) DestroyImmediate(owLight2);
 
 					DestroyImmediate(light);
+					continue;
                 }
             }
             light.color = new Color(0.4f, 1f, 1f);
