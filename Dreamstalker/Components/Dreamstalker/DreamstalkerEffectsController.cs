@@ -133,9 +133,20 @@ internal class DreamstalkerEffectsController : MonoBehaviour
             if (_footstepTimer <= 0f)
             {
                 _footstepTimer = 1.2f;
-                _footstepAudio.PlayOneShot(AudioType.Ghost_Footstep_Forest_Running, 1f);
+                _footstepAudio.PlayOneShot(AudioType.Ghost_Footstep_Forest_Running, 0.5f);
 			}
         }
+
+		// Idk why this happens
+		if (_suspenseMusic.isPlaying && !_suspenseMusic.IsFadingIn() && _suspenseMusic._localVolume == 0f)
+		{
+			_suspenseMusic.Stop();
+		}
+
+		if (_fearMusic.isPlaying && !_fearMusic.IsFadingIn() && _fearMusic._localVolume == 0f)
+		{
+			_fearMusic.Stop();
+		}
 
 		if (distance < 8f)
 		{
@@ -143,12 +154,6 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 			{
 				_suspenseMusic.FadeOut(0.5f, OWAudioSource.FadeOutCompleteAction.STOP);
 			}
-
-            if (_fearMusic.isPlaying && !_fearMusic.IsFadingIn() && _fearMusic._localVolume == 0f)
-            {
-                // Idk why this happens
-                _fearMusic.Stop();
-            }
 
 			if (!_fearMusic.isPlaying && _musicPlaying)
             {
