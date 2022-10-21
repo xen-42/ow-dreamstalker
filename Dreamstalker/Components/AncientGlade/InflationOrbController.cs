@@ -15,7 +15,7 @@ internal class InflationOrbController : MonoBehaviour
 	private GameObject _volume;
 	private OWTriggerVolume _triggerVolume;
 
-	private bool fadingToWhite;
+	private bool fading;
 
 	private float fadeStartTime, loadLength;
 
@@ -47,10 +47,22 @@ internal class InflationOrbController : MonoBehaviour
 
 	public void Update()
 	{
-		if (fadingToWhite)
+		if (fading)
 		{
-			float num2 = Mathf.Clamp01((Time.unscaledTime - fadeStartTime) / 1f);
-			LoadManager.s_instance._fadeImage.color = new Color(1f, 1f, 1f, num2);
+			// Fade to white then to black
+			var fadeToWhiteLength = 1f;
+			var num = Time.unscaledTime - fadeStartTime;
+
+			if (num < fadeToWhiteLength)
+			{
+				LoadManager.s_instance._fadeImage.color = new Color(1f, 1f, 1f, Mathf.Clamp01(num / fadeToWhiteLength));
+			}
+			else
+			{
+				var num2 = 1f - Mathf.Clamp01((Time.unscaledTime - fadeStartTime - fadeToWhiteLength) / (loadLength - fadeToWhiteLength));
+				LoadManager.s_instance._fadeImage.color = new Color(num2, num2, num2, 1f);
+			}
+
 			if (Time.unscaledTime > fadeStartTime + loadLength)
 			{
 				LoadManager.LoadSceneImmediate(OWScene.Credits_Fast);
@@ -80,7 +92,7 @@ internal class InflationOrbController : MonoBehaviour
 		Time.timeScale = 0f;
 		OWInput.ChangeInputMode(InputMode.None);
 
-		fadingToWhite = true;
+		fading = true;
 
 		LoadManager.s_instance._fadeCanvas.enabled = true;
 		LoadManager.s_instance._fadeImage.color = Color.clear;
