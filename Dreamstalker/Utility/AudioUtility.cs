@@ -17,7 +17,7 @@ internal static class AudioUtility
 		owAudioSource.SetTrack(track);
 		if (audio != AudioType.None)
 		{
-			owAudioSource.AssignAudioLibraryClip(audio);
+			owAudioSource._audioLibraryClip = audio;
 		}
 		owAudioSource.loop = loop;
 		owAudioSource.playOnAwake = true;
