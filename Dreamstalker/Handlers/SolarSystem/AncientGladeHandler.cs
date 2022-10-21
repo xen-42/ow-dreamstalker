@@ -1,4 +1,5 @@
 ﻿using Dreamstalker.Components;
+using Dreamstalker.Components.AncientGlade;
 using Dreamstalker.Components.Dreamstalker;
 using Dreamstalker.Components.Dreamworld;
 using Dreamstalker.Handlers.EyeScene;
@@ -25,11 +26,10 @@ internal class AncientGladeHandler : SolarSystemHandler
 	private CharacterDialogueTree _solanumConversation;
 
 	private GameObject _inflationOrb;
-	private Light _inflationLight, _possibilityLight;
-	private OWAudioSource _sfx;
-	private float timer;
 
 	private GameObject[] amalgams;
+
+	private const float radius = 100.1f;
 
 	protected override void BeforePlanetCreation() { }
 
@@ -76,7 +76,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 
 		// Change ground material
 		var ground = _ancientGlade.transform.Find("Sector/GroundSphere");
-		ground.localScale = Vector3.one * 100.1f; // Makes the scatter look a bit better
+		ground.localScale = Vector3.one * radius; // Makes the scatter look a bit better
 		ground.localRotation = Quaternion.Euler(90, 0, 0);
 
 		ground.GetComponent<MeshRenderer>().material =
@@ -112,13 +112,6 @@ internal class AncientGladeHandler : SolarSystemHandler
 
 		Destroy(_inflationOrb.transform.Find("RepelVolume").gameObject);
 
-		var volume = new GameObject("EndVolume");
-		volume.layer = LayerMask.NameToLayer("BasicEffectVolume");
-		volume.AddComponent<SphereShape>().radius = 3f;
-		volume.AddComponent<OWTriggerVolume>().OnEntry += AncientGladeHandler_OnEntry;
-		volume.transform.parent = _inflationOrb.transform.Find("PossibilitySphereRoot");
-		volume.transform.localPosition = Vector3.zero;
-
 		_inflationOrb.transform.Find("PossibilitySphereRoot").localPosition = Vector3.zero;
 		_inflationOrb.transform.Find("Effects_EYE_SmokeSphere").localPosition = new Vector3(0f, 6f, 0f);
 		_inflationOrb.transform.Find("Effects_EYE_SmokeSphere").localRotation = Quaternion.Euler(0f, 180f, 180f);
@@ -127,10 +120,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 		_inflationOrb.transform.localPosition = norm * 106f;
 		_inflationOrb.transform.localRotation = Quaternion.FromToRotation(Vector3.up, -norm);
 
-		_inflationLight = _inflationOrb.transform.Find("PossibilitySphereRoot/InflationLight").GetComponent<Light>();
-		_possibilityLight = _inflationOrb.transform.Find("PossibilitySphereRoot/Effects_EYE_PossibilityParticles2/PossibilityLight").GetComponent<Light>();
-		_sfx = _inflationOrb.transform.Find("SFXAudioSource").GetComponent<OWAudioSource>();
-		_sfx._audioSource.enabled = true;
+		_inflationOrb.AddComponent<InflationOrbController>().campfire = _campfire;
 
 		_inflationOrb.SetActive(false);
 
@@ -145,30 +135,6 @@ internal class AncientGladeHandler : SolarSystemHandler
 		_sectorRoot = _ancientGlade.GetRootSector().gameObject;
 		_sectorRoot.SetActive(false);
 		PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);
-	}
-
-	private void AncientGladeHandler_OnEntry(GameObject hitObj)
-	{
-		if (DeathManagerPatches.flagEnd) return;
-
-		if (hitObj == Locator.GetPlayerDetector())
-		{
-			var stalker = SpawnWrapper.SpawnDreamstalker(_ancientGlade, null, null, Vector3.zero);
-
-			stalker.transform.position = _solanum.transform.position;
-			stalker.transform.rotation = _solanum.transform.rotation;
-			stalker.DisableTeleport();
-
-			_solanum.SetActive(false);
-			stalker.gameObject.SetActive(true);
-
-			Main.FireOnNextUpdate(() =>
-			{
-				stalker.GetComponentInChildren<DreamstalkerGrabController>().GrabPlayer(1f);
-			});
-
-			DeathManagerPatches.flagEnd = true;
-		}
 	}
 
 	private void OnEndConversation()
@@ -206,6 +172,8 @@ internal class AncientGladeHandler : SolarSystemHandler
 			_solanum.GetComponent<SolanumAnimController>().StartWatchingPlayer();
 
 			fire.SetInteractionEnabled(false);
+
+			AudioUtility.PlayOneShot(AudioType.Reel_Rule_Beat_DarkDiscovery);
 		}
 	}
 
@@ -228,23 +196,6 @@ internal class AncientGladeHandler : SolarSystemHandler
 		}
 
 		Main.FireOnNextUpdate(() => Locator.GetFlashlight().TurnOn());
-	}
-
-	// TODO: this stuff should be on a component in the scene
-	private void Update()
-	{
-		if (_inflationOrb != null && _inflationOrb.activeInHierarchy)
-		{
-			if (timer < Time.time)
-			{
-				timer = Time.time + 1f;
-				_sfx.PlayOneShot(AudioType.EyeCosmicInflation, 1f);
-			}
-			var intensity = Mathf.Cos(20f * Time.time / Mathf.PI) / 2f + 0.5f;
-			_inflationLight.intensity = intensity;
-			_possibilityLight.intensity = intensity;
-			_campfire._lightController._intensity = intensity;
-		}
 	}
 
 	private GameObject MakeAmalgam(Sector sector, Vector3 position)
