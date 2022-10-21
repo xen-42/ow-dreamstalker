@@ -37,6 +37,10 @@ internal class GiantsDeepHandler : SolarSystemHandler
 		var campfire = gabbroIsland.transform.Find("Sector_GabbroIsland/Interactables_GabbroIsland/Prefab_HEA_Campfire/Controller_Campfire");
 		campfire.gameObject.AddComponent<CompletionCampfire>().destinationPlanet = AstroObject.Name.DreamWorld;
 
+		var proximitySound = campfire.gameObject.AddComponent<ProximitySound>();
+		proximitySound.audio = AudioType.PartyHouse_Vocals;
+		proximitySound.radius = 10f;
+
 		_note = sector.transform.Find("GabbroIslandNote").GetComponent<CharacterDialogueTree>();
 
 		_note.OnEndConversation += OnReadNote;

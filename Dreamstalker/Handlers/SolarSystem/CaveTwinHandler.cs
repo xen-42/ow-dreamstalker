@@ -1,4 +1,5 @@
-﻿using Dreamstalker.Components.Volumes;
+﻿using Dreamstalker.Components;
+using Dreamstalker.Components.Volumes;
 using Dreamstalker.Utility;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,11 @@ internal class CaveTwinHandler : SolarSystemHandler
 
 		var ctCompletionVolume = CompletionVolume.MakeCompletionVolume(ct, ctCampfire, AstroObject.Name.GiantsDeep,
 			new Vector3(-93.88305f, -71.32361f, 60.62481f), 20f);
+
+		var proximitySound = ctCompletionVolume.gameObject.AddComponent<ProximitySound>();
+		proximitySound.audio = AudioType.NomaiEscapePodDistressSignal_LP;
+		proximitySound.linkedCampfire = ctCampfire;
+		proximitySound.radius = 30f;
 
 		SpawnWrapper.SpawnDreamstalker(ct, ctCampfire, ctCompletionVolume, Vector3.zero);
 	}

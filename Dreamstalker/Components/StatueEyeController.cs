@@ -13,15 +13,12 @@ internal class StatueEyeController : SectoredMonoBehaviour
 	private float _currentGlow = 0f;
 
 	private MemoryUplinkTrigger _statue;
-	private OWAudioSource _audioSource;
 
 	public override void Awake()
 	{
 		base.Awake();
 
 		_statue = GetComponent<MemoryUplinkTrigger>();
-
-		_audioSource = gameObject.AddComponent<OWAudioSource>();
 	}
 
 	public void Start()
@@ -36,13 +33,6 @@ internal class StatueEyeController : SectoredMonoBehaviour
 		{
 			animator.RotateToOriginalLocalRotation(1f);
 		}
-
-		_audioSource.SetTrack(OWAudioMixer.TrackName.Environment);
-		_audioSource.AssignAudioLibraryClip(AudioType.Flashback_Overlay_1_LP);
-		_audioSource.minDistance = 10f;
-		_audioSource.loop = true;
-		_audioSource.spatialBlend = 1f;
-		_audioSource.Play();
 	}
 
 	public void Update()
@@ -55,12 +45,10 @@ internal class StatueEyeController : SectoredMonoBehaviour
 			_currentGlow = Mathf.Clamp01(_currentGlow + (eyesGlow ? delta : -delta));
 
 			_statue.SetEyeGlow(_currentGlow);
-			_audioSource.SetLocalVolume(_currentGlow);
 		}
 		else
 		{
 			_statue.SetEyeGlow(0f);
-			_audioSource.SetLocalVolume(0f);
 		}
 	}
 }

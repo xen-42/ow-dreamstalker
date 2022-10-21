@@ -84,6 +84,10 @@ internal class TimberHearthHandler : SolarSystemHandler
         thCompletionVolume.transform.parent = statue.transform;
         thCompletionVolume.transform.localPosition = Vector3.zero;
 
+		var proximitySound = thCompletionVolume.gameObject.AddComponent<ProximitySound>();
+		proximitySound.audio = AudioType.Flashback_Overlay_1_LP;
+		proximitySound.linkedCampfire = thCampfire;
+
 		SpawnWrapper.SpawnDreamstalker(th, thCampfire, thCompletionVolume, Vector3.zero);
 	}
 
