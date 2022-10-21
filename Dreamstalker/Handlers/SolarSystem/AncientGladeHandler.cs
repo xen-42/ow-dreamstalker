@@ -120,15 +120,22 @@ internal class AncientGladeHandler : SolarSystemHandler
 		_inflationOrb.transform.localPosition = norm * 106f;
 		_inflationOrb.transform.localRotation = Quaternion.FromToRotation(Vector3.up, -norm);
 
-		_inflationOrb.AddComponent<InflationOrbController>().campfire = _campfire;
-
 		_inflationOrb.SetActive(false);
+
+		_inflationOrb.AddComponent<InflationOrbController>().campfire = _campfire;
 
 		_campfire = quantumCampfire.GetComponentInChildren<Campfire>();
 		_campfire.OnCampfireStateChange += OnCampfireStateChange;
 
+		var index = 0;
 		foreach (var amalgam in amalgams)
 		{
+			// I'm tired
+			index++;
+			var relativePos = _campfire.transform.position + Quaternion.AngleAxis(index * 360 / amalgams.Length, _campfire.transform.up) * _campfire.transform.forward * 4f;
+			var relativePosInLocalSpace = _ancientGlade.transform.InverseTransformPoint(relativePos).normalized * radius;
+			amalgam.transform.localPosition = relativePosInLocalSpace;
+
 			amalgam.transform.LookAt(_campfire.transform, amalgam.transform.localPosition.normalized);
 		}
 
