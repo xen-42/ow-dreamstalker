@@ -100,5 +100,7 @@ internal class InflationOrbController : MonoBehaviour
 
 		loadLength = 5f;
 		fadeStartTime = Time.unscaledTime;
+
+		GUIMode.SetRenderMode(GUIMode.RenderMode.Hidden);
 	}
 }
