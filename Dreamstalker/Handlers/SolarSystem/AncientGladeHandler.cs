@@ -24,6 +24,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 	private Campfire _campfire;
 	private GameObject _solanum;
 	private CharacterDialogueTree _solanumConversation;
+	private VanishController _solanumVanishController;
 
 	private GameObject _inflationOrb;
 
@@ -102,6 +103,8 @@ internal class AncientGladeHandler : SolarSystemHandler
 			keepLoaded = true
 		});
 
+		_solanumVanishController = _solanum.AddComponent<VanishController>();
+
 		(_solanumConversation, _) = Main.Instance.NewHorizonsAPI.SpawnDialogue(Main.Instance, _solanum, "assets/xml/AncientGlade.xml", radius: 1.5f, range: 3f);
 		_solanumConversation.transform.localPosition = Vector3.up * 2f;
 
@@ -159,6 +162,8 @@ internal class AncientGladeHandler : SolarSystemHandler
 		{
 			amalgam.SetActive(true);
 		}
+
+		_solanumVanishController.QueueVanish();
 	}
 
 	private void OnCampfireStateChange(Campfire fire)
