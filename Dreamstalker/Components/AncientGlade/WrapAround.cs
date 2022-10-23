@@ -14,12 +14,21 @@ internal class WrapAround : SectoredMonoBehaviour
 	public void Start()
 	{
 		_playerBody = Locator.GetPlayerBody();
+
+		OnSectorOccupantsUpdated();
 	}
 
 	public void SetFocus(Transform focus)
 	{
 		_focus = focus;
 		_axis = (transform.position - _focus.position).normalized; // World space
+	}
+
+	public override void OnSectorOccupantsUpdated()
+	{
+		base.OnSectorOccupantsUpdated();
+
+		enabled = _sector.ContainsOccupant(DynamicOccupant.Player);
 	}
 
 	public void Update()
