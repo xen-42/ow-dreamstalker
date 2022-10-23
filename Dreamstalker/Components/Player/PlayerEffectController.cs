@@ -46,6 +46,12 @@ internal class PlayerEffectController : MonoBehaviour
 		_playerAudioController._oneShotSleepingAtCampfireSource.PlayOneShot(AudioType.PlayerGasp_Light, 1f);
 	}
 
+	public void Flicker()
+	{
+		GlobalMessenger<float, float>.FireEvent("FlickerOffAndOn", 0f, 0.5f);
+		//_lightFlickerController.FlickerOffAndOn(0f, 0.5f);
+	}
+
 	public void SetFlicker(float strength)
 	{
 		// Disable flickering in debug mode so we can actually see the creature

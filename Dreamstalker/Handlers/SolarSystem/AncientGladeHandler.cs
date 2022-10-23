@@ -145,6 +145,10 @@ internal class AncientGladeHandler : SolarSystemHandler
 		_sectorRoot = _ancientGlade.GetRootSector().gameObject;
 		_sectorRoot.SetActive(false);
 		PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);
+
+		var wrapController = _ancientGlade.gameObject.AddComponent<WrapAround>();
+		wrapController.SetFocus(_campfire.transform);
+		wrapController.SetSector(_ancientGlade.GetRootSector());
 	}
 
 	private void OnEndConversation()
