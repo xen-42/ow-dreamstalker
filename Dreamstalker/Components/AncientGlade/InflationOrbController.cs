@@ -82,12 +82,16 @@ internal class InflationOrbController : MonoBehaviour
 
 	private void TriggerVolume_OnEntry(GameObject hitObj)
 	{
+		if (fading) return;
+
 		// Reset save
 		PlayerSpawnUtil.LastSpawn = AstroObject.Name.TimberHearth;
 		DreamstalkerData.Save();
 
 		AudioUtility.PlayOneShot(AudioType.Death_BigBang, 1f);
-		Time.timeScale = 0f;
+
+		// If we actually freeze time the camera freaks out for some reason
+		Time.timeScale = 0.01f;
 		OWInput.ChangeInputMode(InputMode.None);
 
 		fading = true;
