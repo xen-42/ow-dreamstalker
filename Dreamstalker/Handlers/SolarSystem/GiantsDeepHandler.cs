@@ -45,7 +45,7 @@ internal class GiantsDeepHandler : SolarSystemHandler
 
 		_note.OnEndConversation += OnReadNote;
 
-		PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);
+		PlayerSpawnUtil.Spawn.AddListener(OnSpawn);
 	}
 
 	protected override void OnDestroy()
@@ -57,7 +57,7 @@ internal class GiantsDeepHandler : SolarSystemHandler
 			_note.OnEndConversation -= OnReadNote;
 		}
 
-		PlayerSpawnUtil.OnSpawn.RemoveListener(OnSpawn);
+		PlayerSpawnUtil.Spawn.RemoveListener(OnSpawn);
 	}
 
 	protected override void OnSolarSystemStart() { }

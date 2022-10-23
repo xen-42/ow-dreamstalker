@@ -1,4 +1,5 @@
 ﻿using Dreamstalker.Components.Player;
+using Dreamstalker.Utility;
 using UnityEngine;
 
 namespace Dreamstalker.Components.Dreamstalker;
@@ -49,7 +50,7 @@ internal class DreamstalkerGrabController : MonoBehaviour
             _effects.SnapNeck.RemoveListener(OnSnapNeck);
             _effects.LiftPlayer.RemoveListener(OnStartLiftPlayer);
         }
-    }
+	}
 
     public void GrabPlayer(float speed)
     {
@@ -115,15 +116,25 @@ internal class DreamstalkerGrabController : MonoBehaviour
         }
     }
 
-    private void OnSnapNeck()
+    public void OnDisable() => Reset();
+
+	private void OnSnapNeck()
     {
         Locator.GetDeathManager().KillPlayer(DeathType.CrushedByElevator);
 
         // Release them
-        _holdingInPlace = false;
-        _attachPoint.DetachPlayer();
-        _attachPoint.transform.parent = _origParent;
-        OWInput.ChangeInputMode(InputMode.Character);
-        enabled = false;
+        Reset();
+		enabled = false;
     }
+
+    private void Reset()
+    {
+        if (_holdingInPlace)
+        {
+			_holdingInPlace = false;
+			_attachPoint.DetachPlayer();
+			_attachPoint.transform.parent = _origParent;
+			OWInput.ChangeInputMode(InputMode.Character);
+		}
+	}
 }

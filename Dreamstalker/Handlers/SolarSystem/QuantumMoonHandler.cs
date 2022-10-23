@@ -34,13 +34,13 @@ internal class QuantumMoonHandler : SolarSystemHandler
 
 		_sectorRoot = _quantumMoon.GetRootSector().gameObject;
 		_sectorRoot.SetActive(false);
-		PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);
+		PlayerSpawnUtil.Spawn.AddListener(OnSpawn);
 	}
 
 	protected override void OnDestroy()
 	{
 		base.OnDestroy();
-		PlayerSpawnUtil.OnSpawn.RemoveListener(OnSpawn);
+		PlayerSpawnUtil.Spawn.RemoveListener(OnSpawn);
 	}
 
 	private void OnSpawn(AstroObject.Name planet)

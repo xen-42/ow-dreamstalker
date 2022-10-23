@@ -2,6 +2,7 @@
 using Dreamstalker.Components.Player;
 using Dreamstalker.External;
 using Dreamstalker.Handlers.SolarSystem;
+using NewHorizons.Utility;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,7 +12,7 @@ namespace Dreamstalker.Utility;
 internal static class PlayerSpawnUtil
 {
 	public class SpawnEvent : UnityEvent<AstroObject.Name> { }
-	public static SpawnEvent OnSpawn = new();
+	public static SpawnEvent Spawn = new();
 	public static AstroObject.Name LastSpawn = AstroObject.Name.TimberHearth;
 	public static AstroObject.Name SecondLastSpawn { get; private set; } = AstroObject.Name.TimberHearth;
 
@@ -50,7 +51,17 @@ internal static class PlayerSpawnUtil
 		Main.Log($"Spawning at {planet}");
 
 		PlayerAttachPointController.Instance.Detatch();
-		OnSpawn?.Invoke(planet);
+
+		OWInput.ChangeInputMode(InputMode.Character);
+		Locator.GetPauseCommandListener().AddPauseCommandLock();
+
+		// Have to do it next update idk why
+		Delay.FireOnNextUpdate(() => {
+			OWInput.ChangeInputMode(InputMode.Character);
+			Locator.GetPauseCommandListener().RemovePauseCommandLock();
+		});
+
+		Spawn?.Invoke(planet);
 
 		if (LastSpawn != planet)
 		{

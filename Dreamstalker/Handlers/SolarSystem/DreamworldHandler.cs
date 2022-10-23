@@ -124,7 +124,7 @@ internal class DreamworldHandler : SolarSystemHandler
 
 		_sectorRoot = _dreamworld.GetRootSector().gameObject;
 		_sectorRoot.SetActive(false);
-		PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);
+		PlayerSpawnUtil.Spawn.AddListener(OnSpawn);
 
 		var proximitySound = dwCompletionVolume.gameObject.AddComponent<ProximitySound>();
 		proximitySound.audio = AudioType.PartyHouse_Traveler;
@@ -135,7 +135,7 @@ internal class DreamworldHandler : SolarSystemHandler
 	protected override void OnDestroy()
 	{
 		base.OnDestroy();
-		PlayerSpawnUtil.OnSpawn.RemoveListener(OnSpawn);
+		PlayerSpawnUtil.Spawn.RemoveListener(OnSpawn);
 	}
 
 	private void OnSpawn(AstroObject.Name planet)

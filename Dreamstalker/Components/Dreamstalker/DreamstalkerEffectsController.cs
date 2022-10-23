@@ -40,12 +40,12 @@ internal class DreamstalkerEffectsController : MonoBehaviour
         _oneShotAudioSource.SetTrack(OWAudioMixer.TrackName.Environment);
 
         _fearMusic = AudioUtility.Make(gameObject, AudioType.GhostSequence_Fear, OWAudioMixer.TrackName.Music);
-        _fearMusic.SetLocalVolume(1f);
+        _fearMusic.SetLocalVolume(0.5f);
         _fearMusic.Stop();
         _fearMusic.spatialBlend = 0f;
 
 		_suspenseMusic = AudioUtility.Make(gameObject, AudioType.GhostSequence_Suspense, OWAudioMixer.TrackName.Music);
-		_suspenseMusic.SetLocalVolume(1f);
+		_suspenseMusic.SetLocalVolume(0.5f);
 		_suspenseMusic.Stop();
 		_suspenseMusic.spatialBlend = 0f;
 
@@ -158,7 +158,7 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 			if (!_fearMusic.isPlaying && _musicPlaying)
             {
 				_fearMusic.SetLocalVolume(0f);
-				_fearMusic.FadeIn(0.5f, true, true, 1f);
+				_fearMusic.FadeIn(0.5f, true, true, 0.5f);
 			}
 		}
 		
@@ -172,7 +172,7 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 			if (!_suspenseMusic.isPlaying && _musicPlaying)
             {
 				_suspenseMusic.SetLocalVolume(0f);
-				_suspenseMusic.FadeIn(0.5f, true, true, 1f);
+				_suspenseMusic.FadeIn(0.5f, true, true, 0.5f);
 			}
 		}
 	}
@@ -185,11 +185,11 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 
     public void OnTeleport()
     {
-        PlayOneShot(AudioType.Ghost_Identify_Curious, 1f, UnityEngine.Random.Range(0.9f, 1.1f));
+        PlayOneShot(AudioType.DBAnglerfishDetectTarget, 1f, Random.Range(0.9f, 1.1f));
 
         if (_controller.LineOfSightFraction() > 0.6f)
         {
-            AudioUtility.PlayOneShot(AudioType.GhostSequence_Fear_Slam, 3f);
+            AudioUtility.PlayOneShot(AudioType.GhostSequence_Fear_Slam, 2f);
         }
     }
 
@@ -201,7 +201,7 @@ internal class DreamstalkerEffectsController : MonoBehaviour
 
     public void OnGrab()
     {
-		AudioUtility.PlayOneShot(AudioType.GhostSequence_Fear_Slam, 4f);
+		AudioUtility.PlayOneShot(AudioType.GhostSequence_Fear_Slam, 2f);
         PlayOneShot(AudioType.Ghost_DeathSingle);
         _musicPlaying = false;
         _fearMusic.FadeOut(0.2f);

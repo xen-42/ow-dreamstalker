@@ -235,6 +235,13 @@ internal class QuantumAmalgam : QuantumObject
 
 			_characters[newState].character.SetActive(true);
 
+			var animator = _characters[newState].character.GetComponent<Animator>();
+			if (animator != null)
+			{
+				// Ernesto state is bugged
+				animator.enabled = true;
+			}
+
 			_currentState = newState;
 		}
 

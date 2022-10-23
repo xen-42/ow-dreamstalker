@@ -140,7 +140,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 
 		_sectorRoot = _ancientGlade.GetRootSector().gameObject;
 		_sectorRoot.SetActive(false);
-		PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);
+		PlayerSpawnUtil.Spawn.AddListener(OnSpawn);
 
 		var wrapController = _ancientGlade.gameObject.AddComponent<WrapAround>();
 		wrapController.SetFocus(_campfire.transform);
@@ -192,7 +192,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 	protected override void OnDestroy()
 	{
 		base.OnDestroy();
-		PlayerSpawnUtil.OnSpawn.RemoveListener(OnSpawn);
+		PlayerSpawnUtil.Spawn.RemoveListener(OnSpawn);
 		if (_campfire != null)
 		{
 			_campfire.OnCampfireStateChange -= OnCampfireStateChange;

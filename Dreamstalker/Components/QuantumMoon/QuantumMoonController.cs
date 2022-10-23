@@ -89,7 +89,7 @@ internal class QuantumMoonController : SectoredMonoBehaviour
 
 			DestroyImmediate(GetComponentInChildren<NomaiConversationManager>());
 
-			PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);
+			PlayerSpawnUtil.Spawn.AddListener(OnSpawn);
 		}
         catch(Exception e)
         {
@@ -116,7 +116,7 @@ internal class QuantumMoonController : SectoredMonoBehaviour
 			THCampfire.OnCampfireStateChange -= _dreamstalker.OnCampfireStateChange;
 		}
 
-		PlayerSpawnUtil.OnSpawn.RemoveListener(OnSpawn);
+		PlayerSpawnUtil.Spawn.RemoveListener(OnSpawn);
 	}
 
     private void OnSpawn(AstroObject.Name planet)
