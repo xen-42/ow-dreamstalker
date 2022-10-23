@@ -28,6 +28,11 @@
 				"audio": "EYE_ForestOfGalaxies",
 				"radius": 400,
 				"track": "music"
+			},
+			{
+				"audio": "TH_CanyonAmbienceNight_LP",
+				"radius": 400,
+				"track": "environment"
 			}
 		]
 	},

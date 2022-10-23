@@ -1,4 +1,5 @@
-﻿using Dreamstalker.Components.Dreamworld;
+﻿using Dreamstalker.Components;
+using Dreamstalker.Components.Dreamworld;
 using Dreamstalker.Components.Volumes;
 using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
@@ -124,6 +125,11 @@ internal class DreamworldHandler : SolarSystemHandler
 		_sectorRoot = _dreamworld.GetRootSector().gameObject;
 		_sectorRoot.SetActive(false);
 		PlayerSpawnUtil.OnSpawn.AddListener(OnSpawn);
+
+		var proximitySound = dwCompletionVolume.gameObject.AddComponent<ProximitySound>();
+		proximitySound.audio = AudioType.PartyHouse_Traveler;
+		proximitySound.linkedCampfire = dwCampfire;
+		proximitySound.radius = 30f;
 	}
 
 	protected override void OnDestroy()

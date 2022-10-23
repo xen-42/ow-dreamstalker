@@ -55,6 +55,14 @@
 					"z": -3.5835
 				},
 				"xmlFile": "assets/xml/DreamWorldNote.xml"
+			},
+			{
+				"position": {
+					"x": -107.4969,
+					"y": 7.520722,
+					"z": 21.58012
+				},
+				"xmlFile": "assets/xml/DreamWorldNote2.xml"
 			}
 		],
 		"scatter": [
@@ -86,9 +94,28 @@
 			{
 				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Structures_DreamZone_1/Generic_House_A",
 				"position": {
-					"x": -100
+					"x": -99.9836,
+					"y": 11.39,
+					"z": 15.47
 				},
-				"alignToNormal": true
+				"rotation": {
+					"x": 343.5511,
+					"y": 6.6909,
+					"z": 86.6128
+				}
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Props_DreamZone_1/OtherComponentsGroup/Props_GenericHouse_A",
+				"position": {
+					"x": -99.9836,
+					"y": 11.39,
+					"z": 15.47
+				},
+				"rotation": {
+					"x": 343.5511,
+					"y": 6.6909,
+					"z": 86.6128
+				}
 			},
 			{
 				"alignToNormal": true,
@@ -98,6 +125,15 @@
 					"y": 12.0152,
 					"z": -6.9717
 				}
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Props_DreamZone_1/OtherComponentsGroup/Props_GenericHouse_B",
+				"position": {
+					"x": 100.8402,
+					"y": 12.0152,
+					"z": -6.9717
+				},
+				"alignToNormal": true
 			},
 			{
 				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Structures_DreamZone_1/TunnelStairs/TunnelStairRoot_1/Stairs_IP_DW",
@@ -256,6 +292,10 @@
 			},
 			{
 				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (StoryYellow)/Prefab_IP_SleepingMummy_v2",
+				"removeChildren": [
+					"Mummy_IP_ArtifactAnim",
+					"Pointlight_IP_Mummy"
+				],
 				"position": {
 					"x": -13.9885426,
 					"y": -5.004481,
@@ -270,6 +310,10 @@
 			},
 			{
 				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (StoryYellow)/Prefab_IP_SleepingMummy_v2",
+				"removeChildren": [
+					"Mummy_IP_ArtifactAnim",
+					"Pointlight_IP_Mummy"
+				],
 				"position": {
 					"x": -1.39970922,
 					"y": -1.93599439,
@@ -284,6 +328,10 @@
 			},
 			{
 				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (KAMAJI)/Prefab_IP_SleepingMummy_v2/",
+				"removeChildren": [
+					"Mummy_IP_ArtifactAnim",
+					"Pointlight_IP_Mummy"
+				],
 				"position": {
 					"x": -11.3164053,
 					"y": 6.4688344,
@@ -297,6 +345,10 @@
 			},
 			{
 				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (NOFACE)/Prefab_IP_SleepingMummy_v2/",
+				"removeChildren": [
+					"Mummy_IP_ArtifactAnim",
+					"Pointlight_IP_Mummy"
+				],
 				"position": {
 					"x": -1.41533566,
 					"y": 2.09053183,
@@ -310,6 +362,10 @@
 			},
 			{
 				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (NOFACE)/Prefab_IP_SleepingMummy_v2/",
+				"removeChildren": [
+					"Mummy_IP_ArtifactAnim",
+					"Pointlight_IP_Mummy"
+				],
 				"position": {
 					"x": -14.3538942,
 					"y": 3.51345873,
@@ -323,6 +379,10 @@
 			},
 			{
 				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (YUBABA)/Prefab_IP_SleepingMummy_v2/",
+				"removeChildren": [
+					"Mummy_IP_ArtifactAnim",
+					"Pointlight_IP_Mummy"
+				],
 				"position": {
 					"x": -13.6123829,
 					"y": -12.4792871,
@@ -337,6 +397,10 @@
 			},
 			{
 				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (YUBABA)/Prefab_IP_SleepingMummy_v2/",
+				"removeChildren": [
+					"Mummy_IP_ArtifactAnim",
+					"Pointlight_IP_Mummy"
+				],
 				"position": {
 					"x": -0.339836121,
 					"y": -1.82737327,
@@ -351,6 +415,10 @@
 			},
 			{
 				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (YUBABA)/Prefab_IP_SleepingMummy_v2/",
+				"removeChildren": [
+					"Mummy_IP_ArtifactAnim",
+					"Pointlight_IP_Mummy"
+				],
 				"position": {
 					"x": -12.572588,
 					"y": -6.01730347,
@@ -366,9 +434,9 @@
 			{
 				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire",
 				"position": {
-					"x": 100.9181,
-					"y": 14.24627,
-					"z": -2.109142
+					"x": 100.5379,
+					"y": 16.82927,
+					"z": -3.047992
 				},
 				"alignToNormal": true
 			},
@@ -384,6 +452,222 @@
 					"y": 147.1935,
 					"z": 65.1837
 				}
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_TH/DetailFoliage_THState/Crater_1/Foliage_TH_Grass",
+				"position": {
+					"x": 96.12946,
+					"y": -3.92219353,
+					"z": -30.5707016
+				},
+				"rotation": {
+					"x": 307.1324,
+					"y": 13.9167252,
+					"z": 274.660156
+				}
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_TH/DetailFoliage_THState/Crater_1/Foliage_TH_Grass",
+				"position": {
+					"x": 96.68269,
+					"y": -17.3012619,
+					"z": -22.6982422
+				},
+				"rotation": {
+					"x": 285.233215,
+					"y": 117.007233,
+					"z": 162.749161
+				},
+				"scale": 0.99999994
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_TH/DetailFoliage_THState/Crater_1/Foliage_TH_Grass",
+				"position": {
+					"x": 89.43089,
+					"y": -10.173151,
+					"z": -46.5893974
+				},
+				"rotation": {
+					"x": 336.2071,
+					"y": 35.779335,
+					"z": 261.6462
+				},
+				"scale": 0.9999999
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_TH/DetailFoliage_THState/Crater_1/Foliage_TH_Grass",
+				"position": {
+					"x": 84.13682,
+					"y": 43.7891922,
+					"z": -34.622364
+				},
+				"rotation": {
+					"x": 53.35987,
+					"y": 175.735153,
+					"z": 50.1278534
+				},
+				"scale": 0.9999999
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_TH/DetailFoliage_THState/Crater_1/Foliage_TH_Grass",
+				"position": {
+					"x": 95.14378,
+					"y": 7.41657448,
+					"z": 32.982048
+				},
+				"rotation": {
+					"x": 41.913147,
+					"y": 160.563614,
+					"z": 90.80984
+				}
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_TH/DetailFoliage_THState/Crater_1/Foliage_TH_Grass",
+				"position": {
+					"x": 82.09847,
+					"y": -1.34719944,
+					"z": 58.6815453
+				},
+				"rotation": {
+					"x": 6.267317,
+					"y": 144.584579,
+					"z": 96.22238
+				},
+				"scale": 1.00000012
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_TH/DetailFoliage_THState/Crater_1/Foliage_TH_Grass",
+				"position": {
+					"x": 40.1583481,
+					"y": 17.597168,
+					"z": 91.22696
+				},
+				"rotation": {
+					"x": 355.203918,
+					"y": 116.996521,
+					"z": 72.97694
+				},
+				"scale": 1.00000012
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Interactibles_DreamZone_1/GrappleIsland/Prefab_IP_DreamCandle (18)",
+				"position": {
+					"x": 15.3648682,
+					"y": -8.783052,
+					"z": 100.100006
+				},
+				"rotation": {
+					"x": 54.14535,
+					"y": 270.0,
+					"z": 270.0
+				}
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Interactibles_DreamZone_1/GrappleIsland/Prefab_IP_DreamCandle (18)",
+				"position": {
+					"x": 7.473839,
+					"y": -5.650675,
+					"z": 103.100006
+				},
+				"rotation": {
+					"x": 74.64184,
+					"y": 270.0,
+					"z": 270.0
+				}
+			},
+			{
+				"path": "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Interactibles_DreamZone_1/GrappleIsland/Prefab_IP_DreamCandle (18)",
+				"position": {
+					"x": -11.1302872,
+					"y": -19.31803,
+					"z": 103.1
+				},
+				"rotation": {
+					"x": 349.713318,
+					"y": 90.0,
+					"z": 90.0
+				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_Observatory/Interactables_Observatory/Prefab_HEA_DeepFieldExhibit/DeepFieldNotes_1/plaque_paper_1 (1)",
+				"position": {
+					"x": -107.4969,
+					"y": 7.520722,
+					"z": 21.4801
+				},
+				"rotation": {
+					"x": 9.1285,
+					"y": 122.7233,
+					"z": 262.9499
+				},
+				"scale": 1.00000012
+			},
+			{
+				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (StoryYellow)/Prefab_IP_SleepingMummy_v2/Mummy_IP_Anim/",
+				"position": {
+					"x": -100.0,
+					"y": 5.021037,
+					"z": -1.87463093
+				},
+				"rotation": {
+					"x": 87.54091,
+					"y": 180.0,
+					"z": 270.0
+				}
+			},
+			{
+				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (KAONASHI)/Prefab_IP_SleepingMummy_v2/Mummy_IP_Anim/",
+				"position": {
+					"x": -106.0,
+					"y": 4.855645,
+					"z": 2.00327015
+				},
+				"rotation": {
+					"x": 89.32828,
+					"y": 180.0,
+					"z": 270.0
+				},
+				"scale": 0.9999999
+			},
+			{
+				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (NOFACE)/Prefab_IP_SleepingMummy_v2/Mummy_IP_Anim/",
+				"position": {
+					"x": -106.0,
+					"y": 4.807726,
+					"z": -2.00416851
+				},
+				"rotation": {
+					"x": 87.61238,
+					"y": 180.0,
+					"z": 270.0
+				}
+			},
+			{
+				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (NOFACE)/Prefab_IP_SleepingMummy_v2/Mummy_IP_Anim/",
+				"position": {
+					"x": -100.0,
+					"y": 4.930434,
+					"z": 2.13867378
+				},
+				"rotation": {
+					"x": 89.2534943,
+					"y": 180.0,
+					"z": 270.0
+				}
+			},
+			{
+				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (NOFACE)/Prefab_IP_SleepingMummy_v2/Mummy_IP_Anim/",
+				"position": {
+					"x": 100.442787,
+					"y": 18.3968658,
+					"z": -1.72174072
+				},
+				"rotation": {
+					"x": 39.3034172,
+					"y": 178.371,
+					"z": 81.2258148
+				},
+				"scale": 0.9999999
 			}
 		]
 	}

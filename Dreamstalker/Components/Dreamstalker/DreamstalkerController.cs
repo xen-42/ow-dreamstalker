@@ -301,14 +301,17 @@ internal class DreamstalkerController : VisibilityObject
 
     public void DespawnImmediate()
     {
-        _effects.OnDespawn();
+        if (gameObject.activeInHierarchy)
+        {
+			_effects.OnDespawn();
 
-		_despawning = false;
-		_despawnTime = 0;
-		transform.localPosition = Vector3.zero;
+			_despawning = false;
+			_despawnTime = 0;
+			transform.localPosition = Vector3.zero;
 
-		StopStalking();
-        gameObject.SetActive(false);
+			StopStalking();
+			gameObject.SetActive(false);
+		}
     }
 
     public float LineOfSightFraction()

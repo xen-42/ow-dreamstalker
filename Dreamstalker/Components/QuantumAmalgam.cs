@@ -1,6 +1,7 @@
 ﻿using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
 using NewHorizons.External.Modules;
+using NewHorizons.Utility;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -166,7 +167,7 @@ internal class QuantumAmalgam : QuantumObject
 		});
 		ernesto.transform.parent = gameObject.transform;
 		ernesto.transform.localPosition = new Vector3(0, 0.9f, 0);
-		ernesto.GetComponent<Animator>().enabled = true;
+		Delay.FireOnNextUpdate(() => ernesto.GetComponent<Animator>().enabled = true);
 
 		ernesto.SetActive(false);
 		_characters.Add((ernesto, true));

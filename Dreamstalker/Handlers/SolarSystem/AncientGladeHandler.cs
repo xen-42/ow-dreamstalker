@@ -223,7 +223,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 		quantumCharacter.transform.localRotation = Quaternion.identity;
 
 		var (dialogue, _) = Main.Instance.NewHorizonsAPI.SpawnDialogue(Main.Instance, quantumCharacter, "assets/xml/RandomDialogue.xml", radius: 1, range: 2);
-		dialogue.gameObject.transform.localPosition = new Vector3(0, 1, 0);
+		dialogue.gameObject.transform.localPosition = new Vector3(0, 1.5f, 0);
 		dialogue.gameObject.AddComponent<DialogueRandomizer>();
 
 		var amalgam = quantumCharacter.AddComponent<QuantumAmalgam>();

@@ -1,5 +1,7 @@
 ﻿using Dreamstalker.External;
+using Dreamstalker.Handlers.Credits;
 using Dreamstalker.Utility;
+using System;
 using UnityEngine;
 
 namespace Dreamstalker.Components.AncientGlade;
@@ -12,6 +14,10 @@ internal class InflationOrbController : MonoBehaviour
 	public Campfire campfire;
 	private GameObject _volume;
 	private OWTriggerVolume _triggerVolume;
+
+	private AudioVolume[] _audioVolumes;
+
+	private bool _hasMutedAudioVolumes;
 
 	private bool fading;
 
@@ -33,6 +39,8 @@ internal class InflationOrbController : MonoBehaviour
 		_triggerVolume.OnEntry += TriggerVolume_OnEntry;
 		_volume.transform.parent = gameObject.transform.Find("PossibilitySphereRoot");
 		_volume.transform.localPosition = Vector3.zero;
+
+		_audioVolumes = gameObject.GetAttachedOWRigidbody().GetComponentsInChildren<AudioVolume>();
 	}
 
 	public void OnDestroy()
@@ -72,6 +80,16 @@ internal class InflationOrbController : MonoBehaviour
 			{
 				timer = Time.time + 1f;
 				_sfx.PlayOneShot(AudioType.EyeCosmicInflation, 1f);
+
+				// Mute the background noise after the first whoooosh
+				if (!_hasMutedAudioVolumes)
+				{
+					foreach (var audioVolume in _audioVolumes)
+					{
+						audioVolume._owAudioSrc.SetLocalVolume(0f);
+					}
+					_hasMutedAudioVolumes = true;
+				}
 			}
 			var intensity = Mathf.Cos(20f * Time.time / Mathf.PI) / 2f + 0.5f;
 			_inflationLight.intensity = intensity;
@@ -107,5 +125,7 @@ internal class InflationOrbController : MonoBehaviour
 		fadeStartTime = Time.unscaledTime;
 
 		GUIMode.SetRenderMode(GUIMode.RenderMode.Hidden);
+
+		DreamstalkerCreditsHandler.flagWon = true;
 	}
 }

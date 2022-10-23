@@ -72,8 +72,12 @@ internal class QuantumMoonController : SectoredMonoBehaviour
 
 			var quantumMoon = gameObject.GetComponent<AstroObject>();
 
-			CompletionVolume.MakeCompletionVolume(quantumMoon, null,
+			var completionVolume = CompletionVolume.MakeCompletionVolume(quantumMoon, null,
 				AstroObject.Name.Eye, new Vector3(-5.315461f, -68.58476f, 5.373294f), 10f).transform.parent = EyeState.transform;
+
+			var proximitySound = completionVolume.gameObject.AddComponent<ProximitySound>();
+			proximitySound.audio = AudioType.EyeVortex_LP;
+			proximitySound.radius = 20f;
 
 			_dreamstalker = SpawnWrapper.SpawnDreamstalker(gameObject.GetComponent<AstroObject>(), null, null, Vector3.zero);
 

@@ -3,12 +3,7 @@ using Dreamstalker.Components.Player;
 using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
 using NewHorizons.External.Modules;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Dreamstalker.Handlers.SolarSystem;
@@ -69,6 +64,10 @@ internal class DarkBrambleHandler : SolarSystemHandler
 		_dialogue.OnEndConversation += OnEndConversation;
 
 		_lockOn = Locator.GetPlayerTransform().GetRequiredComponent<PlayerLockOnTargeting>();
+
+		var proximitySound = _ernesto.gameObject.AddComponent<ProximitySound>();
+		proximitySound.audio = AudioType.KazooTheme;
+		proximitySound.radius = 30f;
 	}
 
 	private void OnEatMarshmallow(float _)

@@ -2,19 +2,21 @@
 	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/main/NewHorizons/Schemas/translation_schema.json",
 	"DialogueDictionary": {
 		"DREAMSTALKER_TH_NOTE_1": "All the fires must be lit. It will try to stop you.",
-		"DREAMSTALKER_TH_NOTE_2": "Light the fire. Go to the observatory, you'll be safe there.",
+		"DREAMSTALKER_TH_NOTE_2": "Light the fire. Go to where the loop began.",
 		"DREAMSTALKER_TH_NOTE_3": "Do not let it catch you. It could be anywhere.",
 
-		"DREAMSTALKER_BH_NOTE_1": "Light the fire.",
-		"DREAMSTALKER_BH_NOTE_2": "Jump.",
+		"DREAMSTALKER_BH_NOTE_1": "Light the fire. The lanterns will guide your path.",
+		"DREAMSTALKER_BH_NOTE_2": "Darkness slumbers below, jump.",
 
-		"DREAMSTALKER_CT_NOTE_1": "I left a trail of lanterns",
+		"DREAMSTALKER_CT_NOTE_1": "Get to the escape pod crash site.",
 		"DREAMSTALKER_CT_NOTE_2": "Light the fire and come, quickly",
 
 		"DREAMSTALKER_GD_NOTE_1": "You must be seeing things, maybe you should <![CDATA[<color=orange>doze off</color>]]>, get some rest.",
 
 		"DREAMSTALKER_DW_NOTE_1": "Go to the secret room in the party house.",
 		"DREAMSTALKER_DW_NOTE_2": "Don't die.",
+
+		"DREAMSTALKER_DW_OTHER_NOTE_1": "This is not the right place.",
 
 		"DREAMSTALKER_DB_1": "Hey it's me Ernesto, the magic talking anglerfish!",
 		"DREAMSTALKER_DB_2": "You eating some weird marshmallows or what.",

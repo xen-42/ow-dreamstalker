@@ -1,4 +1,5 @@
-﻿using Dreamstalker.Handlers.EyeScene;
+﻿using Dreamstalker.Handlers.Credits;
+using Dreamstalker.Handlers.EyeScene;
 using Dreamstalker.Handlers.SolarSystem;
 using Dreamstalker.Handlers.TitleScreen;
 using HarmonyLib;
@@ -25,10 +26,9 @@ public class Main : ModBehaviour
     public UnityEvent BeforePlanetCreation = new();
     public UnityEvent SolarSystemAwake = new();
     public UnityEvent SolarSystemStart = new();
-
     public UnityEvent TitleScreenAwake = new();
-
     public UnityEvent EyeSceneAwake = new();
+    public UnityEvent FastCredits = new();
 
     public static bool DebugMode { get; private set; } = false;
 
@@ -62,6 +62,8 @@ public class Main : ModBehaviour
 
         gameObject.AddComponent<TitleScreenHandler>();
 
+        gameObject.AddComponent<DreamstalkerCreditsHandler>();
+
         // Title screen is already loaded
         OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
@@ -88,7 +90,11 @@ public class Main : ModBehaviour
 				Log("EyeOfTheUniverse loaded event invocation");
 				EyeSceneAwake?.Invoke();
 				break;
-        }
+			case "Credits_Fast":
+				Log("Credits_Fast loaded event invocation");
+				FastCredits?.Invoke();
+				break;
+		}
     }
 
 	internal void Update()
