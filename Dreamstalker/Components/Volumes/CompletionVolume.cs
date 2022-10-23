@@ -15,6 +15,8 @@ internal class CompletionVolume : MonoBehaviour
 
     protected SphereShape _streamingSphere;
 
+    public bool killWithoutLitCampfire;
+
     public virtual void Start()
     {
         var nextPlanetGroup = StreamingGroups.Get(NextPlanet);
@@ -63,15 +65,19 @@ internal class CompletionVolume : MonoBehaviour
 
     public virtual void OnTriggerEnter(Collider hitCollider)
     {
-        // This gets called even when disabled I guess that makes sense
-        if (!enabled) return;
-
         if (hitCollider.attachedRigidbody == Locator.GetPlayerBody()._rigidbody)
         {
-            Main.Log("Player entered a completion volume");
-            OnPlayerEnter?.Invoke();
-            PlayerEffectController.Instance.WakeUp();
-            PlayerSpawnUtil.SpawnAt(NextPlanet);
+			Main.Log("Player entered a completion volume");
+			if (enabled)
+            {
+				OnPlayerEnter?.Invoke();
+				PlayerEffectController.Instance.WakeUp();
+				PlayerSpawnUtil.SpawnAt(NextPlanet);
+			}
+            else if (killWithoutLitCampfire)
+            {
+                Locator.GetDeathManager().KillPlayer(DeathType.Crushed);
+            }
         }
     }
 

@@ -12,6 +12,7 @@ internal class DreamworldHandler : SolarSystemHandler
 {
     private AstroObject _dreamworld;
 	private GameObject _sectorRoot;
+	private CageElevator _elevator;
 
 	protected override void BeforePlanetCreation() { }
 
@@ -87,12 +88,12 @@ internal class DreamworldHandler : SolarSystemHandler
 			lightSensor._sector.OnSectorOccupantsUpdated += lightSensor.OnSectorOccupantsUpdated;
 		}
 		// set elevator destination
-		var cageElevator = _dreamworld.GetComponentInChildren<CageElevator>();
+		_elevator = _dreamworld.GetComponentInChildren<CageElevator>();
 		var destination = new GameObject(nameof(ElevatorDestination));
 		destination.transform.parent = _dreamworld.transform;
-		destination.transform.position = cageElevator.elevatorBody.GetPosition() - cageElevator.elevatorBody.transform.up * 20;
-		destination.transform.rotation = cageElevator.elevatorBody.GetRotation();
-		cageElevator._destinations[0] = destination.AddComponent<ElevatorDestination>();
+		destination.transform.position = _elevator.elevatorBody.GetPosition() - _elevator.elevatorBody.transform.up * 20;
+		destination.transform.rotation = _elevator.elevatorBody.GetRotation();
+		_elevator._destinations[0] = destination.AddComponent<ElevatorDestination>();
 
         var islandPrefab = DZ1_A_Island_C_Prefab();
 
@@ -113,10 +114,12 @@ internal class DreamworldHandler : SolarSystemHandler
 		var dwCompletionVolume = CompletionVolume.MakeCompletionVolume(_dreamworld, dwCampfire, AstroObject.Name.QuantumMoon,
 			new Vector3(-5.937442f, 20.00692f, 98.94357f), 1f);
 
+		dwCompletionVolume.killWithoutLitCampfire = true;
+
 		var dreamstalker = SpawnWrapper.SpawnDreamstalker(_dreamworld, dwCampfire, dwCompletionVolume, Vector3.zero);
-		
+
 		// make elevator KILL dreamstalker
-		cageElevator._ghostInterface.OnDownSelected += () => dreamstalker.DespawnImmediate();
+		_elevator._ghostInterface.OnDownSelected += () => dreamstalker.DespawnImmediate();
 
 		_sectorRoot = _dreamworld.GetRootSector().gameObject;
 		_sectorRoot.SetActive(false);
@@ -131,6 +134,8 @@ internal class DreamworldHandler : SolarSystemHandler
 
 	private void OnSpawn(AstroObject.Name planet)
 	{
+		_elevator.GoUp();
+
 		if (planet == AstroObject.Name.DreamWorld)
 		{
 			_sectorRoot.SetActive(true);
