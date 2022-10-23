@@ -1,4 +1,5 @@
 ﻿using Dreamstalker.Utility;
+using OWML.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +52,7 @@ public class DreamstalkerData
 			}
 		}
 
-		PlayerSpawnUtil.LastSpawn = (AstroObject.Name)Enum.Parse(typeof(AstroObject.Name), ActiveProfile.LastPlanet);
+		Enum.TryParse(ActiveProfile.LastPlanet, out PlayerSpawnUtil.LastSpawn);
 	}
 
 	public static void Save()
