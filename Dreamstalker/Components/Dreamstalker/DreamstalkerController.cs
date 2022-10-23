@@ -51,13 +51,10 @@ internal class DreamstalkerController : VisibilityObject
         _dreamstalkerCollider = gameObject.AddComponent<CapsuleCollider>();
         gameObject.AddComponent<OWCollider>();
 
-        var visibilityTracker = new GameObject("VisibilityTracker_Sphere");
-        visibilityTracker.transform.parent = transform;
-        visibilityTracker.transform.localPosition = Vector3.zero;
-        var sphere = visibilityTracker.AddComponent<SphereShape>();
-        sphere.radius = 4f;
-        var tracker = visibilityTracker.AddComponent<ShapeVisibilityTracker>();
-        _visibilityTrackers = new VisibilityTracker[] { tracker };
+        _visibilityTrackers = new VisibilityTracker[]
+        {
+            VisibilityUtility.AddVisibilityTracker(transform, 4f)
+        };
     }
 
     public void Start()
@@ -103,7 +100,7 @@ internal class DreamstalkerController : VisibilityObject
         if (campfire.GetState() == Campfire.State.LIT)
         {
             Main.RunAfterSeconds(() => {
-				if (_campfire?.GetState() == Campfire.State.LIT)
+				if (campfire?.GetState() == Campfire.State.LIT)
 				{
 					gameObject.SetActive(true);
 					_despawning = false;

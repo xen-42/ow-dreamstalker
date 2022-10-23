@@ -188,9 +188,11 @@ internal class QuantumMoonController : SectoredMonoBehaviour
         {
             SetState(nextState);
 
-			_dreamstalker.DespawnImmediate();
+			PlayerEffectController.Instance.Blink();
 
-            PlayerEffectController.Instance.Blink();
+			AudioUtility.PlayOneShot(AudioType.EyeVortexExit);
+
+			_dreamstalker?.DespawnImmediate();
         }
     }
 

@@ -76,7 +76,10 @@ internal class InflationOrbController : MonoBehaviour
 			var intensity = Mathf.Cos(20f * Time.time / Mathf.PI) / 2f + 0.5f;
 			_inflationLight.intensity = intensity;
 			_possibilityLight.intensity = intensity;
-			campfire._lightController._intensity = intensity;
+			if (campfire != null)
+			{
+				campfire._lightController._intensity = intensity;
+			}
 		}
 	}
 

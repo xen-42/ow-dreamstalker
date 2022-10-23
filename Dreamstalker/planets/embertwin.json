@@ -8,6 +8,15 @@
 	"Sand": {
 		"size": 30
 	},
+	"Volumes": {
+		"audioVolumes": [
+			{
+				"audio": "EyeAmbience_LP",
+				"radius": 400,
+				"track": "music"
+			}
+		]
+	},
 	"Props": {
 		"dialogue": [
 			{

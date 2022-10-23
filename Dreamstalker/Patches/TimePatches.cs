@@ -10,6 +10,7 @@ internal class TimePatches
 	[HarmonyPatch(typeof(SunController), nameof(SunController.OnTriggerSupernova))]
 	[HarmonyPatch(typeof(GlobalMusicController), nameof(GlobalMusicController.UpdateEndTimesMusic))]
 	[HarmonyPatch(typeof(TimeLoop), nameof(TimeLoop.Update))]
+	[HarmonyPatch(typeof(TimeLoop), nameof(TimeLoop.Start))]
 	private static bool SkipMethod() => false;
 
 	[HarmonyPrefix]
@@ -28,13 +29,5 @@ internal class TimePatches
 	{
 		__result = TimeLoop._loopDuration;
 		return false;
-	}
-
-	[HarmonyPostfix]
-	[HarmonyPatch(typeof(TimeLoop), nameof(TimeLoop.Start))]
-	private static void TimeLoop_Start(TimeLoop __instance)
-	{
-		TimeLoop._isTimeFlowing = false;
-		__instance.enabled = false;
 	}
 }

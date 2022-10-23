@@ -1,17 +1,13 @@
 ﻿using Dreamstalker.Components;
 using Dreamstalker.Components.AncientGlade;
-using Dreamstalker.Components.Dreamstalker;
 using Dreamstalker.Components.Dreamworld;
 using Dreamstalker.Handlers.EyeScene;
-using Dreamstalker.Patches;
 using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
 using NewHorizons.External.Modules;
 using NewHorizons.Utility;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Dreamstalker.Handlers.SolarSystem;
 
@@ -197,7 +193,10 @@ internal class AncientGladeHandler : SolarSystemHandler
 	{
 		base.OnDestroy();
 		PlayerSpawnUtil.OnSpawn.RemoveListener(OnSpawn);
-		_campfire.OnCampfireStateChange -= OnCampfireStateChange;
+		if (_campfire != null)
+		{
+			_campfire.OnCampfireStateChange -= OnCampfireStateChange;
+		}
 	}
 
 	private void OnSpawn(AstroObject.Name planet)

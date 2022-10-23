@@ -3,5 +3,14 @@
 	"name": "Giants Deep",
 	"removeChildren": [
 		"Atmosphere_GD"
-	]
+	],
+	"Volumes": {
+		"audioVolumes": [
+			{
+				"audio": "EyeAmbience_LP",
+				"radius": 1000,
+				"track": "music"
+			}
+		]
+	}
 }

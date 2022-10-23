@@ -11,6 +11,15 @@
 		"BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/Prefab_NOM_Whiteboard",
 		"BrittleHollow_Body/Sector_BH/Sector_SouthHemisphere/Sector_SouthPole/Sector_Observatory/Interactables_Observatory/Prefab_NOM_Whiteboard"
 	],
+	"Volumes": {
+		"audioVolumes": [
+			{
+				"audio": "EyeAmbience_LP",
+				"radius": 400,
+				"track": "music"
+			}
+		]
+	},
 	"Props": {
 		"details": [
 			{

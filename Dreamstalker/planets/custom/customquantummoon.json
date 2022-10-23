@@ -14,13 +14,23 @@
 			{
 				"radius": 400
 			}
+		],
+		"audioVolumes": [
+			{
+				"audio": "EyeAmbience_LP",
+				"radius": 400,
+				"track": "music"
+			}
 		]
 	},
 	"Props": {
 		"details": [
 			{
 				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_BH",
-				"keepLoaded": true
+				"keepLoaded": true,
+				"removeChildren": [
+					"Interactables_BHState/BHState_Quantum_Objects/BH_State_Crater_3/BH_Q_TreeClumps"
+				]
 			},
 			{
 				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_DB",
@@ -39,7 +49,8 @@
 				"keepLoaded": true,
 				"removeChildren": [
 					"Interactables_GDState/GDState_Sockets/QRockClump_Single_Sockets",
-					"Interactables_GDState/GDState_Quantum_Objects/QRockClump_Single"
+					"Interactables_GDState/GDState_Quantum_Objects/QRockClump_Single",
+					"Interactables_GDState/GDState_Quantum_Objects/QRockClump_Large"
 				]
 			},
 			{
@@ -135,6 +146,26 @@
 				}
 			},
 			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"parentPath": "Sector/State_HT",
+				"position": {
+					"x": -2.704983,
+					"y": -55.56334,
+					"z": 40.82154
+				},
+				"alignToNormal": true
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"parentPath": "Sector/State_HT",
+				"position": {
+					"x": -30.61541,
+					"y": -57.20929,
+					"z": 23.469
+				},
+				"alignToNormal": true
+			},
+			{
 				"path": "QuantumMoon_Body/Sector_QuantumMoon/QuantumShrine/Structure_NOM_QuantumShrine",
 				"parentPath": "Sector/State_HT",
 				"position": {
@@ -175,6 +206,46 @@
 					"y": 139.188492,
 					"z": 230.385086
 				}
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"parentPath": "Sector/State_DB",
+				"position": {
+					"x": 32.51631,
+					"y": 22.84315,
+					"z": 58.18539
+				},
+				"alignToNormal": true
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"parentPath": "Sector/State_DB",
+				"position": {
+					"x": -7.801407,
+					"y": -1.974329,
+					"z": 68.69997
+				},
+				"alignToNormal": true
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"parentPath": "Sector/State_DB",
+				"position": {
+					"x": -41.11017,
+					"y": -37.60487,
+					"z": 45.53255
+				},
+				"alignToNormal": true
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"parentPath": "Sector/State_DB",
+				"position": {
+					"x": -54.52275,
+					"y": -44.72294,
+					"z": -16.27195
+				},
+				"alignToNormal": true
 			},
 			{
 				"path": "QuantumMoon_Body/Sector_QuantumMoon/QuantumShrine/Structure_NOM_QuantumShrine",
@@ -259,6 +330,55 @@
 					"y": 175.2207,
 					"z": 72.6097
 				}
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_GD/Interactables_GDState/GDState_Quantum_Objects/Quantum_TreeClump_1/Rock_Tree",
+				"parentPath": "Sector/State_GD",
+				"position": {
+					"x": 54.304,
+					"y": 43.8066063,
+					"z": -6.19949341
+				},
+				"rotation": {
+					"x": 338.290527,
+					"y": 345.955261,
+					"z": 310.136749
+				}
+			},
+			{
+				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_GD/Interactables_GDState/GDState_Quantum_Objects/Quantum_TreeClump_1/Rock_Tree",
+				"parentPath": "Sector/State_GD",
+				"position": {
+					"x": 6.50503063,
+					"y": 41.9485474,
+					"z": -55.6592827
+				},
+				"rotation": {
+					"x": 309.608521,
+					"y": 16.8545952,
+					"z": 338.987061
+				},
+				"scale": 1.00000024
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"parentPath": "Sector/State_GD",
+				"position": {
+					"x": 9.02169,
+					"y": 48.13038,
+					"z": -51.17289
+				},
+				"alignToNormal": true
+			},
+			{
+				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
+				"parentPath": "Sector/State_GD",
+				"position": {
+					"x": 54.87443,
+					"y": 44.42942,
+					"z": -3.25362
+				},
+				"alignToNormal": true
 			},
 			{
 				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Interactables_Village/LaunchTower/Effects_HEA_Campfire",
