@@ -1,3 +1,3 @@
 # Escape the Dreamstalker
 
-A short horror mod for Outer Wilds.
+A short horror story mod for Outer Wilds.
