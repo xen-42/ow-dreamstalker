@@ -163,8 +163,10 @@ internal class QuantumMoonController : SectoredMonoBehaviour
 			shrine.SetActive(false);
 			DestroyImmediate(compass);
 
-			var volume = new GameObject("Volume");
-			volume.layer = LayerMask.NameToLayer("BasicEffectVolume");
+			var volume = new GameObject("Volume")
+			{
+				layer = LayerMask.NameToLayer("BasicEffectVolume")
+			};
 
 			volume.AddComponent<SphereShape>().radius = 5f;
 
