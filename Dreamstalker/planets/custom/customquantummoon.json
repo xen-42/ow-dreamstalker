@@ -36,7 +36,11 @@
 			},
 			{
 				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_GD",
-				"keepLoaded": true
+				"keepLoaded": true,
+				"removeChildren": [
+					"Interactables_GDState/GDState_Sockets/QRockClump_Single_Sockets",
+					"Interactables_GDState/GDState_Quantum_Objects/QRockClump_Single"
+				]
 			},
 			{
 				"path": "QuantumMoon_Body/Sector_QuantumMoon/State_HT",
@@ -274,9 +278,9 @@
 				"path": "TimberHearth_Body/Sector_TH/Sector_Village/Sector_StartingCamp/Lighting_StartingCamp/OtherComponentsGroup/Props_HEA_Lantern (1)",
 				"parentPath": "Sector/State_BH",
 				"position": {
-					"x": 0.9351237,
-					"y": 59.4012451,
-					"z": -36.4870949
+					"x": -1.836593,
+					"y": 60.85927,
+					"z": -33.6745
 				},
 				"rotation": {
 					"x": 20.3964558,
