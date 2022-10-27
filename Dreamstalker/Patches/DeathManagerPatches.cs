@@ -14,8 +14,10 @@ internal static class DeathManagerPatches
 	private static bool DeathManager_KillPlayer(DeathManager __instance, DeathType deathType)
 	{
 		// The time loop should be ignored
-		if (deathType != DeathType.TimeLoop)
+		if (deathType != DeathType.TimeLoop && deathType != DeathType.Supernova)
 		{
+			Main.Log($"Player died to {deathType}");
+
 			PlayerEffectController.Instance.Blink(1f);
 			PlayerSpawnUtil.Respawn();
 			GeneralHandler.TurnOffCampFires();
