@@ -1,11 +1,11 @@
 {
   "$schema": "https://raw.githubusercontent.com/Outer-Wilds-New-Horizons/new-horizons/main/NewHorizons/Schemas/addon_manifest_schema.json",
   "credits": [
-    "xen#Mod Director\n#Programmer",
-    "JohnCorby#Programmer",
+    "xen#Made the mod",
+    "JohnCorby#Helped",
     "Bwc9876#Checked one thing one time",
     " ",
-    "Playtesters#JohnCorby\n#Other people I hope"
+    "Playtesters#JohnCorby\n#2walker2\n#Damian\n#CrypticBird\n#Other people I think"
   ],
   "popupMessage": "DREAMSTALKER_POPUP"
 }
