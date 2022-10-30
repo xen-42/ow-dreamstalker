@@ -16,8 +16,9 @@ internal class ProximitySound : MonoBehaviour
 	public void Start()
 	{
 		_audioSource = AudioUtility.Make(gameObject, audio, OWAudioMixer.TrackName.Environment, true);
-		_audioSource.minDistance = 10f;
 		_audioSource.spatialBlend = 0f;
+
+		_currentVolume = 0f;
 		_audioSource.SetLocalVolume(0f);
 
 		_player = Locator.GetPlayerTransform();
@@ -28,16 +29,16 @@ internal class ProximitySound : MonoBehaviour
 	{
 		if (Main.DebugMode || linkedCampfire == null || linkedCampfire.GetState() == Campfire.State.LIT)
 		{
-			var num = (transform.position - _player.transform.position).sqrMagnitude < radius * radius;
+			var inRange = (transform.position - _player.transform.position).sqrMagnitude < radius * radius;
 
 			var delta = 2f * Time.deltaTime;
-			_currentVolume = Mathf.Clamp01(_currentVolume + (num ? delta : -delta));
-
-			_audioSource.SetLocalVolume(_currentVolume);
+			_currentVolume = Mathf.Clamp01(_currentVolume + (inRange ? delta : -delta));
 		}
 		else
 		{
-			_audioSource.SetLocalVolume(0f);
+			_currentVolume = 0f;
 		}
+
+		_audioSource.SetLocalVolume(_currentVolume);
 	}
 }
