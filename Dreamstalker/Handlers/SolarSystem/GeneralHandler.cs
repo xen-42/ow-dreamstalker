@@ -3,6 +3,7 @@ using Dreamstalker.Components.Player;
 using Dreamstalker.External;
 using Dreamstalker.Utility;
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -60,6 +61,17 @@ internal class GeneralHandler : SolarSystemHandler
 		foreach (var itemSocket in FindObjectsOfType<OWItemSocket>())
 		{
 			itemSocket.EnableInteraction(false);
+		}
+
+		// Disable all supernova related garbage
+		foreach (var supernova in FindObjectsOfType<SupernovaEffectController>())
+		{
+			supernova.enabled = false;
+		}
+
+		foreach (var supernova in FindObjectsOfType<SupernovaStreamersController>())
+		{
+			supernova.enabled = false;
 		}
 	}
 

@@ -10,6 +10,7 @@
 	],
 	"Star": {
 		"size": 1,
-		"solarLuminosity": 0.3
+		"solarLuminosity": 0.3,
+		"stellarDeathType": "none"
 	}
 }
