@@ -11,6 +11,7 @@ internal class QuantumMoonController : SectoredMonoBehaviour
 	private GameObject BHState, DBState, EyeState, GDState, HTState, THState;
 	private GameObject BHNomai, DBNomai, GDNomai, HTNomai, THNomai;
 	private GameObject BHShrine, DBShrine, GDShrine, HTShrine, THShrine;
+	private GameObject[] _shrines;
 
 	private Campfire BHCampfire, DBCampfire, GDCampfire, HTCampfire, THCampfire;
     private Campfire[] _campfires;
@@ -61,6 +62,14 @@ internal class QuantumMoonController : SectoredMonoBehaviour
 			SetUpShrine(1, QMState.HourglassTwins, THState, ref THShrine);
 
 			_campfires = GetComponentsInChildren<Campfire>();
+			_shrines = new GameObject[]
+			{
+				BHShrine,
+				DBShrine, 
+				GDShrine,
+				HTShrine, 
+				THShrine
+			};
 
 			_note = GetComponentInChildren<CharacterDialogueTree>();
 
@@ -215,5 +224,10 @@ internal class QuantumMoonController : SectoredMonoBehaviour
         {
             campfire.SetState(Campfire.State.UNLIT, true);
         }
+
+		foreach (var shrine in _shrines)
+		{
+			shrine.SetActive(false);
+		}
     }
 }
