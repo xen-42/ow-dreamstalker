@@ -74,12 +74,20 @@ internal class CompletionVolume : MonoBehaviour
 				PlayerEffectController.Instance.WakeUp();
 				PlayerSpawnUtil.SpawnAt(NextPlanet);
 			}
-            else if (killWithoutLitCampfire)
+            else
             {
-                Locator.GetDeathManager().KillPlayer(DeathType.Crushed);
-            }
+                OnEnterEarly();
+			}
         }
     }
+
+    public virtual void OnEnterEarly() 
+    {
+		if (killWithoutLitCampfire)
+		{
+			Locator.GetDeathManager().KillPlayer(DeathType.Crushed);
+		}
+	}
 
     public static CompletionVolume MakeCompletionVolume(AstroObject planet, Campfire campfire, AstroObject.Name nextPlanet, Vector3 pos, float radius)
     {

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Dreamstalker.Components.Volumes;
+﻿namespace Dreamstalker.Components.Volumes;
 
 internal class BlackHoleCompletionVolume : CompletionVolume
 {
@@ -11,22 +9,12 @@ internal class BlackHoleCompletionVolume : CompletionVolume
 		{
 			_streamingSphere.radius = 100f;
 		}
+		killWithoutLitCampfire = true;
 	}
 
-	public override void OnTriggerEnter(Collider hitCollider)
+	public override void OnEnterEarly()
 	{
-		if (!enabled)
-		{
-			if (hitCollider.attachedRigidbody == Locator.GetPlayerBody()._rigidbody)
-			{
-				// If not enabled, kill player when they enter the black hole
-				Locator.GetDeathManager().KillPlayer(DeathType.Impact);
-				PlayerEffectController.Instance.PlayOneShot(AudioType.BH_BlackHoleEmission);
-			}
-		}
-		else
-		{
-			base.OnTriggerEnter(hitCollider);
-		}
+		base.OnEnterEarly();
+		PlayerEffectController.Instance.PlayOneShot(AudioType.BH_BlackHoleEmission);
 	}
 }
