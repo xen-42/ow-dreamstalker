@@ -39,6 +39,7 @@ internal class CaveTwinHandler : SolarSystemHandler
 
 		var ctCompletionVolume = CompletionVolume.MakeCompletionVolume(ct, ctCampfire, AstroObject.Name.GiantsDeep,
 			new Vector3(-93.88305f, -71.32361f, 60.62481f), 20f);
+		ctCompletionVolume.killWithoutLitCampfire = true;
 
 		var proximitySound = ctCompletionVolume.gameObject.AddComponent<ProximitySound>();
 		proximitySound.audio = AudioType.NomaiEscapePodDistressSignal_LP;

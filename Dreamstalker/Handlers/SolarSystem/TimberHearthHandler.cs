@@ -83,6 +83,7 @@ internal class TimberHearthHandler : SolarSystemHandler
         var thCompletionVolume = CompletionVolume.MakeCompletionVolume(th, thCampfire, AstroObject.Name.BrittleHollow, Vector3.zero, 8f);
         thCompletionVolume.transform.parent = statue.transform;
         thCompletionVolume.transform.localPosition = Vector3.zero;
+        thCompletionVolume.killWithoutLitCampfire = true;
 
 		var proximitySound = thCompletionVolume.gameObject.AddComponent<ProximitySound>();
 		proximitySound.audio = AudioType.Flashback_Overlay_1_LP;
