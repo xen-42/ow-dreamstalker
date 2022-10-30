@@ -2,6 +2,7 @@
 using Dreamstalker.Components.Player;
 using Dreamstalker.External;
 using Dreamstalker.Utility;
+using NewHorizons.Components.SizeControllers;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -72,6 +73,11 @@ internal class GeneralHandler : SolarSystemHandler
 		foreach (var supernova in FindObjectsOfType<SupernovaStreamersController>())
 		{
 			supernova.enabled = false;
+		}
+
+		foreach (var star in FindObjectsOfType<StarEvolutionController>())
+		{
+			star.enabled = false;
 		}
 	}
 
