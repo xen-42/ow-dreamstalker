@@ -14,7 +14,6 @@ internal static class PlayerSpawnUtil
 	public class SpawnEvent : UnityEvent<AstroObject.Name> { }
 	public static SpawnEvent Spawn = new();
 	public static AstroObject.Name LastSpawn = AstroObject.Name.TimberHearth;
-	public static AstroObject.Name SecondLastSpawn { get; private set; } = AstroObject.Name.TimberHearth;
 
 	private static PlayerSpawner GetPlayerSpawner()
 	{
@@ -63,9 +62,9 @@ internal static class PlayerSpawnUtil
 
 		Spawn?.Invoke(planet);
 
-		if (LastSpawn != planet)
+		// Never respawn at DB
+		if (planet != AstroObject.Name.DarkBramble && LastSpawn != planet)
 		{
-			SecondLastSpawn = LastSpawn;
 			LastSpawn = planet;
 		}
 

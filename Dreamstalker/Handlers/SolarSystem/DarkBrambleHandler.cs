@@ -32,7 +32,6 @@ internal class DarkBrambleHandler : SolarSystemHandler
 		var ernestoPos = new Vector3(-525.7968f, 617.6582f, -160.946f);
 		var spawnPos = new Vector3(-524.4136f, 616.8699f, -164.5957f);
 
-
 		// Spawn point
 		var spawnGO = new GameObject("Spawn");
 		spawnGO.transform.parent = db.transform;
@@ -57,7 +56,7 @@ internal class DarkBrambleHandler : SolarSystemHandler
 		ernesto.transform.position = db.transform.TransformPoint(ernestoPos);
 		_ernesto = ernesto.transform;
 
-		(_dialogue, _) = Main.Instance.NewHorizonsAPI.SpawnDialogue(Main.Instance, db.gameObject, "assets/xml/DarkBramble.xml", radius: 0);
+		(_dialogue, _) = Main.Instance.NewHorizonsAPI.SpawnDialogue(Main.Instance, db.gameObject, "assets/xml/DarkBramble.xml", radius: 1);
 		_dialogue.transform.parent = ernesto.transform;
 		_dialogue.transform.localPosition = Vector3.zero;
 
@@ -77,8 +76,8 @@ internal class DarkBrambleHandler : SolarSystemHandler
 		PlayerSpawnUtil.SpawnAt(AstroObject.Name.DarkBramble);
 
 		// Keep the previous location loaded
-		var streamingGroup = Locator.GetAstroObject(PlayerSpawnUtil.SecondLastSpawn).GetComponentInChildren<StreamingGroup>();
-		if (streamingGroup != null && PlayerSpawnUtil.SecondLastSpawn != AstroObject.Name.DreamWorld)
+		var streamingGroup = Locator.GetAstroObject(PlayerSpawnUtil.LastSpawn).GetComponentInChildren<StreamingGroup>();
+		if (streamingGroup != null && PlayerSpawnUtil.LastSpawn != AstroObject.Name.DreamWorld)
 		{
 			_streamingGroup = streamingGroup;
 			_streamingGroup.RequestRequiredAssets(0);
@@ -117,7 +116,7 @@ internal class DarkBrambleHandler : SolarSystemHandler
 			_streamingGroup = null;
 		}
 
-		PlayerSpawnUtil.SpawnAt(PlayerSpawnUtil.SecondLastSpawn);
+		PlayerSpawnUtil.SpawnAt(PlayerSpawnUtil.LastSpawn);
 		PlayerEffectController.Instance.Blink();
 		GeneralHandler.TurnOffCampFires();
 	}

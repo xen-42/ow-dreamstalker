@@ -4,7 +4,7 @@
   "author": "xen & JohnCorby",
   "name": "Escape the Dreamstalker",
   "uniqueName": "xen.Dreamstalker",
-  "version": "0.1.1",
-  "owmlVersion": "2.7.0",
+  "version": "0.1.2",
+  "owmlVersion": "2.7.3",
   "dependencies": [ "xen.NewHorizons" ]
 }
