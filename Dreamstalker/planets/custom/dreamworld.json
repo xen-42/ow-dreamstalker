@@ -605,54 +605,54 @@
 			{
 				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (StoryYellow)/Prefab_IP_SleepingMummy_v2/Mummy_IP_Anim/",
 				"position": {
-					"x": -100.0,
-					"y": 5.021037,
-					"z": -1.87463093
+					"x": -100.0669,
+					"y": 15.26497,
+					"z": 12.43696
 				},
 				"rotation": {
-					"x": 87.54091,
-					"y": 180.0,
-					"z": 270.0
+					"x": 71.46671,
+					"y": 355.9837,
+					"z": 79.73085
 				}
 			},
 			{
 				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (KAONASHI)/Prefab_IP_SleepingMummy_v2/Mummy_IP_Anim/",
 				"position": {
-					"x": -106.0,
-					"y": 4.855645,
-					"z": 2.00327015
+					"x": -99.61819,
+					"y": 16.45545,
+					"z": 16.23193
 				},
 				"rotation": {
-					"x": 89.32828,
-					"y": 180.0,
-					"z": 270.0
+					"x": 70.81325,
+					"y": 356.3437,
+					"z": 80.07153
 				},
 				"scale": 0.9999999
 			},
 			{
 				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (NOFACE)/Prefab_IP_SleepingMummy_v2/Mummy_IP_Anim/",
 				"position": {
-					"x": -106.0,
-					"y": 4.807726,
-					"z": -2.00416851
+					"x": -105.5936,
+					"y": 16.65595,
+					"z": 16.75982
 				},
 				"rotation": {
-					"x": 87.61238,
-					"y": 180.0,
-					"z": 270.0
+					"x": 75.14016,
+					"y": 353.3793,
+					"z": 77.23494
 				}
 			},
 			{
 				"path": "RingWorld_Body/Sector_RingInterior/Sector_Zone3/Sector_HiddenGorge/Sector_DreamFireHouse_Zone3/Interactables_DreamFireHouse_Zone3/DreamFireChamber_DFH_Zone3/MummyCircle/MummyPivot (NOFACE)/Prefab_IP_SleepingMummy_v2/Mummy_IP_Anim/",
 				"position": {
-					"x": -100.0,
-					"y": 4.930434,
-					"z": 2.13867378
+					"x": -106.0339,
+					"y": 15.72903,
+					"z": 12.89965
 				},
 				"rotation": {
-					"x": 89.2534943,
-					"y": 180.0,
-					"z": 270.0
+					"x": 75.62928,
+					"y": 352.9324,
+					"z": 76.80252
 				}
 			},
 			{
