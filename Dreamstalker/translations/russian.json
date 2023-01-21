@@ -1,0 +1,38 @@
+{
+	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/main/NewHorizons/Schemas/translation_schema.json",
+	"DialogueDictionary": {
+		"DREAMSTALKER_TH_NOTE_1": "Все костры должны гореть. Оно будет пытаться остановить тебя.",
+		"DREAMSTALKER_TH_NOTE_2": "Зажги огонь. Иди туда, где началась петля.",
+		"DREAMSTALKER_TH_NOTE_3": "Не позволь ему поймать тебя. Оно может быть где угодно.",
+
+		"DREAMSTALKER_BH_NOTE_1": "Зажги костёр. Фонари укажут путь.",
+		"DREAMSTALKER_BH_NOTE_2": "Когда ты увидешь тьму, лежащую внизу, окунись в нее.",
+
+		"DREAMSTALKER_CT_NOTE_1": "Доберитесь до спасательной капсулы.",
+		"DREAMSTALKER_CT_NOTE_2": "Зажги огонь и вернись.",
+
+		"DREAMSTALKER_GD_NOTE_1": "Наверное, тебе мерещится. Наверное, тебе стоит <![CDATA[<color=orange>поспать</color>]]>, отдохнуть.",
+
+		"DREAMSTALKER_DW_NOTE_1": "Иди в секретную комнату в доме.",
+		"DREAMSTALKER_DW_NOTE_2": "Не умри.",
+
+		"DREAMSTALKER_DW_OTHER_NOTE_1": "Это не то место.",
+
+		"DREAMSTALKER_DB_1": "Хей, это я, Эрнесто, магический говорящий удильщик!",
+		"DREAMSTALKER_DB_2": "Ты съел какие-то странные маршмеллоу или что?",
+		"DREAMSTALKER_DB_3": "На твоём месте я бы перестал пить вино.",
+		"DREAMSTALKER_DB_4": "Ведь рыбы не могут говорить, глупец.",
+
+    "DREAMSTALKER_QM_NOTE_1": "Почти окончено.",
+
+		"DREAMSTALKER_AG_1": "В какой несчастной вселенной мы существуем.",
+		"DREAMSTALKER_AG_2": "Давай попробуем опять, да?"
+	},
+	"UIDictionary": {
+		"DREAMSTALKER_POPUP": "Спасибо, что установили Dreamstalker! В этот мод рекомендуется играть только после прохождения игры и DLC.\n\nКое-что в солнечной системе другое, ищи подсказки, чтобы найти ответ.",
+		"DREAMSTALKER_START_BUTTON": "СБЕЖАТЬ",
+		"DREAMSTALKER_RETRY_BUTTON": "ПОПЫТАТЬСЯ СНОВА",
+		"DREAMSTALKER_RETRY_TEXT": "Это приведет к перезапуску текущего уровня.",
+		"DREAMSTALKER_QUIT_TEXT": "Выйти в главное меню?\n\nВаш прогресс будет сохранён."
+	}
+}
