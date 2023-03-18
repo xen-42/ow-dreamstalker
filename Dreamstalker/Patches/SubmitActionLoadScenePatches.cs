@@ -17,6 +17,6 @@ internal static class SubmitActionLoadScenePatches
 
 	// Stop NH from warping back to the eye
 	[HarmonyPrefix]
-	[HarmonyPatch(typeof(EyeOfTheUniversePatches), nameof(EyeOfTheUniversePatches.SubmitActionLoadScene_ConfirmSubmit))]
+	[HarmonyPatch(typeof(NewHorizons.Patches.EyeScenePatches.SubmitActionLoadScenePatches), nameof(NewHorizons.Patches.EyeScenePatches.SubmitActionLoadScenePatches.SubmitActionLoadScene_ConfirmSubmit))]
 	private static bool EyeOfTheUniversePatches_SubmitActionLoadScene_ConfirmSubmit() => false;
 }
