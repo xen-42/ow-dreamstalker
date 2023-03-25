@@ -1,5 +1,4 @@
 ﻿using Dreamstalker.Components;
-using Dreamstalker.External;
 using Dreamstalker.Handlers.SolarSystem;
 using Dreamstalker.Utility;
 using HarmonyLib;

@@ -1,11 +1,10 @@
 ﻿using Dreamstalker.Handlers.EyeScene;
 using NewHorizons.Builder.Atmosphere;
 using NewHorizons.Builder.Props;
-using NewHorizons.Components.Stars;
 using NewHorizons.External.Configs;
 using NewHorizons.External.Modules;
 using NewHorizons.External.Modules.Props;
-using NewHorizons.Utility;
+using NewHorizons.External.SerializableData;
 using UnityEngine;
 
 namespace Dreamstalker.Handlers.SolarSystem;

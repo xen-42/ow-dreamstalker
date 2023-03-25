@@ -1,7 +1,6 @@
 ﻿using Dreamstalker.External;
 using Dreamstalker.Handlers.Credits;
 using Dreamstalker.Utility;
-using System;
 using UnityEngine;
 
 namespace Dreamstalker.Components.AncientGlade;

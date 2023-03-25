@@ -2,7 +2,6 @@
 using Dreamstalker.Components.Player;
 using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
-using NewHorizons.External.Modules;
 using NewHorizons.External.Modules.Props;
 using System.Collections;
 using UnityEngine;

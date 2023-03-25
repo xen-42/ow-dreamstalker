@@ -1,9 +1,7 @@
 ﻿using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
-using NewHorizons.External.Modules;
 using NewHorizons.External.Modules.Props;
-using NewHorizons.Utility;
-using NewHorizons.Utility.OWMLUtilities;
+using NewHorizons.Utility.OWML;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;

@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using NewHorizons.Patches;
 
 namespace Dreamstalker.Patches;
 

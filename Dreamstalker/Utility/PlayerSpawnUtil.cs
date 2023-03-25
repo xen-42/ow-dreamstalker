@@ -2,8 +2,7 @@
 using Dreamstalker.Components.Player;
 using Dreamstalker.External;
 using Dreamstalker.Handlers.SolarSystem;
-using NewHorizons.Utility;
-using NewHorizons.Utility.OWMLUtilities;
+using NewHorizons.Utility.OWML;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;

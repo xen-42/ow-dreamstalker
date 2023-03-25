@@ -1,7 +1,6 @@
 ﻿using Dreamstalker.Components.QuantumMoon;
 using Dreamstalker.Utility;
-using NewHorizons.Utility;
-using NewHorizons.Utility.OWUtilities;
+using NewHorizons.Utility.OuterWilds;
 using UnityEngine;
 
 namespace Dreamstalker.Handlers.SolarSystem;

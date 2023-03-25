@@ -3,10 +3,9 @@ using Dreamstalker.Components.Dreamworld;
 using Dreamstalker.Components.Volumes;
 using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
-using NewHorizons.External.Modules;
 using NewHorizons.External.Modules.Props;
-using NewHorizons.Utility;
-using NewHorizons.Utility.OWUtilities;
+using NewHorizons.Utility.Files;
+using NewHorizons.Utility.OuterWilds;
 using UnityEngine;
 
 namespace Dreamstalker.Handlers.SolarSystem;

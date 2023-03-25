@@ -4,10 +4,8 @@ using Dreamstalker.Components.Dreamworld;
 using Dreamstalker.Handlers.EyeScene;
 using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
-using NewHorizons.External.Modules;
 using NewHorizons.External.Modules.Props;
-using NewHorizons.Utility;
-using NewHorizons.Utility.OWUtilities;
+using NewHorizons.Utility.OuterWilds;
 using System.Collections.Generic;
 using UnityEngine;
 

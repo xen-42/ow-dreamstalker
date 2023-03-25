@@ -1,5 +1,4 @@
-﻿using NewHorizons.Handlers;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Dreamstalker.Handlers.TitleScreen;
 
