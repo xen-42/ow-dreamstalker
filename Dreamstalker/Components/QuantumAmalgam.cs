@@ -1,6 +1,7 @@
 ﻿using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
 using NewHorizons.External.Modules;
+using NewHorizons.External.Modules.Props;
 using NewHorizons.Utility;
 using NewHorizons.Utility.OWMLUtilities;
 using System.Collections.Generic;
@@ -43,13 +44,13 @@ internal class QuantumAmalgam : QuantumObject
 			if (character.gameObject.name.Equals("Villager_HEA_Hornfels_ANIM_Working") 
 				&& character._animator.runtimeAnimatorController.name == "Villager_Hornfels") continue;
 			
-			var detail = DetailBuilder.Make(gameObject, _sector, character.gameObject, new PropModule.DetailInfo() { keepLoaded = true });
+			var detail = DetailBuilder.Make(gameObject, _sector, character.gameObject, new DetailInfo() { keepLoaded = true });
 			detail.transform.parent = gameObject.transform;
 			detail.transform.localPosition = Vector3.zero;
 
 			if (detail.name.Contains("Slate"))
 			{
-				var stump = DetailBuilder.Make(detail, _sector, new PropModule.DetailInfo()
+				var stump = DetailBuilder.Make(detail, _sector, new DetailInfo()
 				{
 					path = "TimberHearth_Body/Sector_TH/Sector_QuantumGrove/Interactables_QuantumGrove/QuantumGrove_QuantumSockets/RootsSockets/Socket (3)/QuantumRoots_Proxy/OLD_Tree_TH_RootStump",
 					scale = 0.2f,
@@ -69,7 +70,7 @@ internal class QuantumAmalgam : QuantumObject
 		}
 		foreach(var character in GameObject.FindObjectsOfType<TravelerController>())
 		{
-			var detail = DetailBuilder.Make(gameObject, _sector, character.gameObject, new PropModule.DetailInfo() { keepLoaded = true });
+			var detail = DetailBuilder.Make(gameObject, _sector, character.gameObject, new DetailInfo() { keepLoaded = true });
 			detail.transform.parent = gameObject.transform;
 			detail.transform.localPosition = Vector3.zero;
 
@@ -83,7 +84,7 @@ internal class QuantumAmalgam : QuantumObject
 			else if (detail.name.Contains("Villager_HEA_Slate_ANIM_LogSit"))
 			{
 				// Add a chair
-				var chair = DetailBuilder.Make(detail, _sector, new PropModule.DetailInfo() { 
+				var chair = DetailBuilder.Make(detail, _sector, new DetailInfo() { 
 					path = "Props_HEA_RockingChair:Props_HEA_RockingChair", position = new Vector3(0, 0, -0.6f),
 					keepLoaded = true
 				});
@@ -106,7 +107,7 @@ internal class QuantumAmalgam : QuantumObject
 			}
 			else if (detail.name.Contains("Riebeck"))
 			{
-				var stump = DetailBuilder.Make(detail, _sector, new PropModule.DetailInfo()
+				var stump = DetailBuilder.Make(detail, _sector, new DetailInfo()
 				{
 					path = "TimberHearth_Body/Sector_TH/Sector_QuantumGrove/Interactables_QuantumGrove/QuantumGrove_QuantumSockets/RootsSockets/Socket (3)/QuantumRoots_Proxy/OLD_Tree_TH_RootStump",
 					scale = 0.3f,
@@ -117,7 +118,7 @@ internal class QuantumAmalgam : QuantumObject
 			}
 			else if (detail.name.Contains("Chert"))
 			{
-				var stump = DetailBuilder.Make(detail, _sector, new PropModule.DetailInfo()
+				var stump = DetailBuilder.Make(detail, _sector, new DetailInfo()
 				{
 					path = "TimberHearth_Body/Sector_TH/Sector_QuantumGrove/Interactables_QuantumGrove/QuantumGrove_QuantumSockets/RootsSockets/Socket (3)/QuantumRoots_Proxy/OLD_Tree_TH_RootStump",
 					keepLoaded = true
@@ -134,7 +135,7 @@ internal class QuantumAmalgam : QuantumObject
 
 			_characters.Add((detail.gameObject, false));
 		}
-		var nomai = DetailBuilder.Make(gameObject, _sector, new PropModule.DetailInfo() { 
+		var nomai = DetailBuilder.Make(gameObject, _sector, new DetailInfo() { 
 			path = "QuantumMoon_Body/Sector_QuantumMoon/State_EYE/Interactables_EYEState/ConversationPivot/Character_NOM_Solanum/Nomai_ANIM_SkyWatching_Idle",
 			scale = 0.9f,
 			keepLoaded = true
@@ -147,7 +148,7 @@ internal class QuantumAmalgam : QuantumObject
 		nomaiController.StartWatchingPlayer();
 		_characters.Add((nomai.gameObject, true));
 
-		var ghostBird = DetailBuilder.Make(gameObject, _sector, new PropModule.DetailInfo() { 
+		var ghostBird = DetailBuilder.Make(gameObject, _sector, new DetailInfo() { 
 			path = "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_2/Ghosts_DreamZone_2/GhostNodeMap_HornetHouse/Prefab_IP_GhostBird_Hornet/Ghostbird_IP_ANIM",
 			scale = 0.9f,
 			keepLoaded = true
@@ -158,7 +159,7 @@ internal class QuantumAmalgam : QuantumObject
 		ghostBird.SetActive(false);
 		_characters.Add((ghostBird.gameObject, true));
 
-		var ernesto = DetailBuilder.Make(gameObject, _sector, new PropModule.DetailInfo() {
+		var ernesto = DetailBuilder.Make(gameObject, _sector, new DetailInfo() {
 			path = "Anglerfish_Body/Beast_Anglerfish",
 			scale = 0.015f,
 			removeChildren = new string[] {
@@ -173,7 +174,7 @@ internal class QuantumAmalgam : QuantumObject
 		ernesto.SetActive(false);
 		_characters.Add((ernesto, true));
 
-		var geswaldo = DetailBuilder.Make(gameObject, _sector, new PropModule.DetailInfo() { 
+		var geswaldo = DetailBuilder.Make(gameObject, _sector, new DetailInfo() { 
 			path = "GiantsDeep_Body/Sector_GD/Sector_GDInterior/Jellyfish_GDInterior/Jellyfish_Pivot (1)/Jellyfish_Body/Beast_GD_Jellyfish_v4", 
 			scale = 0.05f,
 			keepLoaded = true

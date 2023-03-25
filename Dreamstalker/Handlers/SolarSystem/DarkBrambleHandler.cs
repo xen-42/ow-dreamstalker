@@ -3,6 +3,7 @@ using Dreamstalker.Components.Player;
 using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
 using NewHorizons.External.Modules;
+using NewHorizons.External.Modules.Props;
 using System.Collections;
 using UnityEngine;
 
@@ -41,7 +42,7 @@ internal class DarkBrambleHandler : SolarSystemHandler
 		EasterEggSpawnPoint._isShipSpawn = false;
 		EasterEggSpawnPoint._triggerVolumes = new OWTriggerVolume[] { db.GetRootSector()._owTriggerVolume };
 
-		var ernesto = DetailBuilder.Make(db.gameObject, db.GetRootSector(), new PropModule.DetailInfo()
+		var ernesto = DetailBuilder.Make(db.gameObject, db.GetRootSector(), new DetailInfo()
 		{
 			path = "Anglerfish_Body/Beast_Anglerfish",
 			scale = 0.015f,

@@ -5,6 +5,7 @@ using Dreamstalker.Handlers.EyeScene;
 using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
 using NewHorizons.External.Modules;
+using NewHorizons.External.Modules.Props;
 using NewHorizons.Utility;
 using NewHorizons.Utility.OWUtilities;
 using System.Collections.Generic;
@@ -55,7 +56,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 		farClipController.SetSector(_ancientGlade.GetRootSector());
 
 		// Eye stuff
-		var quantumCampfire = DetailBuilder.Make(_ancientGlade.gameObject, _ancientGlade.GetRootSector(), EyeHandler.QuantumCampfirePrefab, new PropModule.DetailInfo()
+		var quantumCampfire = DetailBuilder.Make(_ancientGlade.gameObject, _ancientGlade.GetRootSector(), EyeHandler.QuantumCampfirePrefab, new DetailInfo()
 		{
 			keepLoaded = true,
 			position = new Vector3(-11.1801f, -99.2024f, 6.6523f),
@@ -85,7 +86,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 		for (int i = 0; i < 200; i++)
 		{
 			var pos = Random.onUnitSphere * (103f + Random.Range(-2f, 2f));
-			_miniGalaxies.Add(DetailBuilder.Make(_ancientGlade.gameObject, _ancientGlade.GetRootSector(), EyeHandler.MiniGalaxyPrefab, new PropModule.DetailInfo()
+			_miniGalaxies.Add(DetailBuilder.Make(_ancientGlade.gameObject, _ancientGlade.GetRootSector(), EyeHandler.MiniGalaxyPrefab, new DetailInfo()
 			{
 				keepLoaded = true,
 				position = pos,
@@ -94,7 +95,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 			}).GetComponent<MiniGalaxy>());
 		}
 
-		_solanum = DetailBuilder.Make(_ancientGlade.gameObject, _ancientGlade.GetRootSector(), new PropModule.DetailInfo()
+		_solanum = DetailBuilder.Make(_ancientGlade.gameObject, _ancientGlade.GetRootSector(), new DetailInfo()
 		{
 			path = "QuantumMoon_Body/Sector_QuantumMoon/State_EYE/Interactables_EYEState/ConversationPivot/Character_NOM_Solanum/Nomai_ANIM_SkyWatching_Idle",
 			keepLoaded = true
@@ -108,7 +109,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 		_solanumConversation.OnEndConversation += OnEndConversation;
 
 		_inflationOrb = DetailBuilder.Make(_ancientGlade.gameObject, _ancientGlade.GetRootSector(),
-			EyeHandler.InflationPrefab, new PropModule.DetailInfo() { keepLoaded = true, removeComponents = true });
+			EyeHandler.InflationPrefab, new DetailInfo() { keepLoaded = true, removeComponents = true });
 
 		Destroy(_inflationOrb.transform.Find("RepelVolume").gameObject);
 

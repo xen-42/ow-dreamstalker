@@ -4,6 +4,7 @@ using NewHorizons.Builder.Props;
 using NewHorizons.Components.Stars;
 using NewHorizons.External.Configs;
 using NewHorizons.External.Modules;
+using NewHorizons.External.Modules.Props;
 using NewHorizons.Utility;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ internal class PlanetHandler : SolarSystemHandler
 
 		// Add eye to the sun
 		var sun = Locator.GetAstroObject(AstroObject.Name.Sun);
-		var eye = DetailBuilder.Make(sun.gameObject, sun._rootSector, EyeHandler.EyePrefab, new PropModule.DetailInfo() { keepLoaded = true });
+		var eye = DetailBuilder.Make(sun.gameObject, sun._rootSector, EyeHandler.EyePrefab, new DetailInfo() { keepLoaded = true, ignoreSun = true });
 		eye.AddComponent<FaceActiveCamera>()._localFacingVector = Vector3.up;
 		Destroy(eye.GetComponentInChildren<SectorProxy>());
 

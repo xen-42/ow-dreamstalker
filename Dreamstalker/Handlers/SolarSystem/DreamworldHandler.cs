@@ -4,6 +4,7 @@ using Dreamstalker.Components.Volumes;
 using Dreamstalker.Utility;
 using NewHorizons.Builder.Props;
 using NewHorizons.External.Modules;
+using NewHorizons.External.Modules.Props;
 using NewHorizons.Utility;
 using NewHorizons.Utility.OWUtilities;
 using UnityEngine;
@@ -155,7 +156,7 @@ internal class DreamworldHandler : SolarSystemHandler
 
     private GameObject MakeIsland(GameObject prefab, Vector3 pos, Vector3? rot = null)
     {
-        var island = new PropModule.DetailInfo()
+        var island = new DetailInfo()
         {
             path = prefab.name,
             position = pos,
@@ -187,7 +188,7 @@ internal class DreamworldHandler : SolarSystemHandler
 		offset.transform.localPosition = offsetPos;
 		offset.transform.localRotation = Quaternion.Euler(offsetRot);
 
-		var wall = new PropModule.DetailInfo()
+		var wall = new DetailInfo()
 		{
 			path = $"DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Geo_DreamZone_1/Terrain_DreamZone1/Side_{side}/Wall_{name}",
 			position = pos,
@@ -196,7 +197,7 @@ internal class DreamworldHandler : SolarSystemHandler
 		};
 		DetailBuilder.Make(offset, null, wall);
 
-		var floor = new PropModule.DetailInfo()
+		var floor = new DetailInfo()
 		{
 			path = $"DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Geo_DreamZone_1/Terrain_DreamZone1/Side_{side}/Floor_{name}",
 			position = pos,
