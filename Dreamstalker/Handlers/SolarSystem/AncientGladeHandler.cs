@@ -59,7 +59,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 		{
 			keepLoaded = true,
 			position = new Vector3(-11.1801f, -99.2024f, 6.6523f),
-			alignToNormal = true
+			alignRadial = true
 		});
 
 		// Spawn point
@@ -89,7 +89,7 @@ internal class AncientGladeHandler : SolarSystemHandler
 			{
 				keepLoaded = true,
 				position = pos,
-				alignToNormal = true,
+				alignRadial = true,
 				scale = 0.5f
 			}).GetComponent<MiniGalaxy>());
 		}

@@ -43,6 +43,7 @@ internal class EyeHandler : BaseHandler
 			LightningPrefab = GameObject.Find("EyeOfTheUniverse_Body/Sector_EyeOfTheUniverse/SixthPlanet_Root/Sector_EyeSurface/QuantumLightningObjects/Pivot/Prefab_EYE_QuantumLightningObject").InstantiateInactive();
 			InflationPrefab = GameObject.Find("EyeOfTheUniverse_Body/Sector_EyeOfTheUniverse/Sector_Campfire/InflationController").InstantiateInactive();
 			QuantumCampfirePrefab = GameObject.Find("EyeOfTheUniverse_Body/Sector_EyeOfTheUniverse/Sector_Campfire/QuantumCampfire").InstantiateInactive();
+			QuantumCampfirePrefab.transform.rotation = Quaternion.identity;
 			MiniGalaxyPrefab = GameObject.Find("EyeOfTheUniverse_Body/Sector_EyeOfTheUniverse/ForestOfGalaxies_Root/Sector_ForestOfGalaxies/MiniGalaxyController/Prefab_EYE_MiniGalaxy(Clone)").InstantiateInactive();
 
 			// Make eye prefab
