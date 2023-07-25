@@ -66,6 +66,6 @@ internal class PlanetHandler : SolarSystemHandler
 		};
 
 		var planet = Locator.GetAstroObject(planetName);
-		FogBuilder.Make(planet.gameObject, planet.GetRootSector(), atmosphere);
+		FogBuilder.Make(planet.gameObject, planet.GetRootSector(), atmosphere, Main.Instance);
 	}
 }
