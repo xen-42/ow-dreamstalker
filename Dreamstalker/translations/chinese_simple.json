@@ -1,0 +1,38 @@
+{
+	"$schema": "https://raw.githubusercontent.com/outer-wilds-new-horizons/new-horizons/main/NewHorizons/Schemas/translation_schema.json",
+	"DialogueDictionary": {
+		"DREAMSTALKER_TH_NOTE_1": "你必须点燃所有的营火。要当心，它会来阻止你的。",
+		"DREAMSTALKER_TH_NOTE_2": "点燃营火。前往循环开始的地方。",
+		"DREAMSTALKER_TH_NOTE_3": "别让它抓到你。别大意，它无处不在。",
+
+		"DREAMSTALKER_BH_NOTE_1": "点燃营火。灯火会指引你的道路。",
+		"DREAMSTALKER_BH_NOTE_2": "当黑暗于地底蛰伏，纵身一跃。",
+
+		"DREAMSTALKER_CT_NOTE_1": "前往逃生舱坠毁之地。",
+		"DREAMSTALKER_CT_NOTE_2": "点燃篝火，然后赶紧出发。",
+
+		"DREAMSTALKER_GD_NOTE_1": "你一定看到了怪东西，也许你应该<![CDATA[<color=orange>打个盹</color>]]>，休息一下吧。",
+
+		"DREAMSTALKER_DW_NOTE_1": "前往派对房的隐藏房间。",
+		"DREAMSTALKER_DW_NOTE_2": "当心别死在路上",
+
+		"DREAMSTALKER_DW_OTHER_NOTE_1": "不是这里。",
+
+		"DREAMSTALKER_DB_1": "嘿，我是厄内斯托，会说话的魔法安康鱼！",
+		"DREAMSTALKER_DB_2": "你一定吃了奇怪的棉花糖或别的什么。",
+		"DREAMSTALKER_DB_3": "喝了这杯树液酒，年轻人。",
+		"DREAMSTALKER_DB_4": "鱼不会说假话。",
+
+		"DREAMSTALKER_QM_NOTE_1": "都结束了。",
+
+		"DREAMSTALKER_AG_1": "生于此处，何其不幸。",
+		"DREAMSTALKER_AG_2": "我们再试一次，好吗？"
+	},
+	"UIDictionary": {
+		"DREAMSTALKER_POPUP": "感谢您安装 Dreamstalker！ 请确保在通关游戏本篇和DLC后游玩本mod。\n\n太阳系里有些东西变得不一样了，搜索笔记来寻找答案。",
+		"DREAMSTALKER_START_BUTTON": "套利",
+		"DREAMSTALKER_RETRY_BUTTON": "重试",
+		"DREAMSTALKER_RETRY_TEXT": "这将重置当前关卡",
+		"DREAMSTALKER_QUIT_TEXT": "回到主菜单？\n\n你的进度将会被保存。"
+	}
+}
