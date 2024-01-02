@@ -4,7 +4,8 @@
   "author": "xen & JohnCorby",
   "name": "Escape the Dreamstalker",
   "uniqueName": "xen.Dreamstalker",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "owmlVersion": "2.9.0",
-  "dependencies": [ "xen.NewHorizons" ]
+  "dependencies": [ "xen.NewHorizons" ],
+  "donateLink": "https://www.patreon.com/xen42"
 }
