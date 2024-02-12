@@ -30,8 +30,8 @@
 	},
 	"UIDictionary": {
 		"DREAMSTALKER_POPUP": "感谢您安装 Dreamstalker！ 请确保在通关游戏本篇和DLC后游玩本mod。\n\n太阳系里有些东西变得不一样了，搜索笔记来寻找答案。",
-		"DREAMSTALKER_START_BUTTON": "套利",
-		"DREAMSTALKER_RETRY_BUTTON": "重试",
+		"DREAMSTALKER_START_BUTTON": "ESCAPE",
+		"DREAMSTALKER_RETRY_BUTTON": "RETRY",
 		"DREAMSTALKER_RETRY_TEXT": "这将重置当前关卡",
 		"DREAMSTALKER_QUIT_TEXT": "回到主菜单？\n\n你的进度将会被保存。"
 	}
