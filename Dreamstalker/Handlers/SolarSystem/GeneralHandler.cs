@@ -16,7 +16,7 @@ internal class GeneralHandler : SolarSystemHandler
 		base.Awake();
 	}
 
-	protected override void BeforePlanetCreation() 
+	protected override void BeforePlanetCreation()
 	{
 		// Remove all dialogue
 		foreach (var dialogue in FindObjectsOfType<CharacterDialogueTree>())
@@ -81,8 +81,8 @@ internal class GeneralHandler : SolarSystemHandler
 
 	protected override void OnSolarSystemAwake() { }
 
-    protected override void OnSolarSystemStart()
-    {
+	protected override void OnSolarSystemStart()
+	{
 		// Doing these on Start so they can be found on Awake elsewhere
 		// Remove all Hearthians
 		foreach (var controller in FindObjectsOfType<CharacterAnimController>())

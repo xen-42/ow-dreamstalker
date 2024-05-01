@@ -7,21 +7,21 @@ namespace Dreamstalker.Components.Volumes;
 
 internal class CompletionVolume : MonoBehaviour
 {
-    public AstroObject.Name NextPlanet { set; private get; }
+	public AstroObject.Name NextPlanet { set; private get; }
 
-    private Campfire _campfire;
+	private Campfire _campfire;
 
-    public UnityEvent OnPlayerEnter = new();
+	public UnityEvent OnPlayerEnter = new();
 
-    protected SphereShape _streamingSphere;
+	protected SphereShape _streamingSphere;
 
-    public bool killWithoutLitCampfire;
+	public bool killWithoutLitCampfire;
 
-    public virtual void Start()
-    {
-        var nextPlanetGroup = StreamingGroups.Get(NextPlanet);
-        if (nextPlanetGroup != null)
-        {
+	public virtual void Start()
+	{
+		var nextPlanetGroup = StreamingGroups.Get(NextPlanet);
+		if (nextPlanetGroup != null)
+		{
 			var streamingVolume = new GameObject("StreamingVolume");
 			streamingVolume.transform.parent = transform;
 			streamingVolume.transform.localPosition = Vector3.zero;
@@ -38,59 +38,59 @@ internal class CompletionVolume : MonoBehaviour
 		}
 	}
 
-    public void SetCampfire(Campfire campfire)
-    {
-        _campfire = campfire;
+	public void SetCampfire(Campfire campfire)
+	{
+		_campfire = campfire;
 
-        if (_campfire == null)
-        {
-            enabled = true;
-        }
-        else
-        {
+		if (_campfire == null)
+		{
+			enabled = true;
+		}
+		else
+		{
 			campfire.OnCampfireStateChange += OnCampfireStateChange;
 		}
-    }
+	}
 
-    public void OnDestroy()
-    {
-        if (_campfire != null)
-        {
-            _campfire.OnCampfireStateChange -= OnCampfireStateChange;
-        }
-    }
+	public void OnDestroy()
+	{
+		if (_campfire != null)
+		{
+			_campfire.OnCampfireStateChange -= OnCampfireStateChange;
+		}
+	}
 
-    private void OnCampfireStateChange(Campfire campfire) =>
-        enabled = campfire.GetState() == Campfire.State.LIT;
+	private void OnCampfireStateChange(Campfire campfire) =>
+		enabled = campfire.GetState() == Campfire.State.LIT;
 
-    public virtual void OnTriggerEnter(Collider hitCollider)
-    {
-        if (hitCollider.attachedRigidbody == Locator.GetPlayerBody()._rigidbody)
-        {
+	public virtual void OnTriggerEnter(Collider hitCollider)
+	{
+		if (hitCollider.attachedRigidbody == Locator.GetPlayerBody()._rigidbody)
+		{
 			Main.Log("Player entered a completion volume");
 			if (enabled)
-            {
+			{
 				OnPlayerEnter?.Invoke();
 				PlayerEffectController.Instance.WakeUp();
 				PlayerSpawnUtil.SpawnAt(NextPlanet);
 			}
-            else
-            {
-                OnEnterEarly();
+			else
+			{
+				OnEnterEarly();
 			}
-        }
-    }
+		}
+	}
 
-    public virtual void OnEnterEarly() 
-    {
+	public virtual void OnEnterEarly()
+	{
 		if (killWithoutLitCampfire)
 		{
 			Locator.GetDeathManager().KillPlayer(DeathType.Crushed);
 		}
 	}
 
-    public static CompletionVolume MakeCompletionVolume(AstroObject planet, Campfire campfire, AstroObject.Name nextPlanet, Vector3 pos, float radius)
-    {
+	public static CompletionVolume MakeCompletionVolume(AstroObject planet, Campfire campfire, AstroObject.Name nextPlanet, Vector3 pos, float radius)
+	{
 		var volume = new GameObject("CompletionVolume");
 		volume.transform.parent = planet.GetRootSector().transform;
 		volume.transform.localPosition = pos;
@@ -105,6 +105,6 @@ internal class CompletionVolume : MonoBehaviour
 		completionVolume.SetCampfire(campfire);
 		completionVolume.NextPlanet = nextPlanet;
 
-        return completionVolume;
+		return completionVolume;
 	}
 }

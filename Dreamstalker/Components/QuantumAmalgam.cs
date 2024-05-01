@@ -35,13 +35,13 @@ internal class QuantumAmalgam : QuantumObject
 			if (character.gameObject.name.Equals("Villager_HEA_Spinel_ANIM_Fishing_ROD") ||
 				character.gameObject.name.Equals("Villager_HEA_Tephra_ANIM_SitIdle")) continue;
 
-			if (character.gameObject.name.Equals("Villager_HEA_Hal_ANIM_Museum") 
+			if (character.gameObject.name.Equals("Villager_HEA_Hal_ANIM_Museum")
 				&& character._animator.runtimeAnimatorController.name == "Villager_Hal_Outside") continue;
-			if (character.gameObject.name.Equals("Villager_HEA_Galena_ANIM_Idle") 
+			if (character.gameObject.name.Equals("Villager_HEA_Galena_ANIM_Idle")
 				&& character._animator.runtimeAnimatorController.name == "Village_Kid_Hiding") continue;
-			if (character.gameObject.name.Equals("Villager_HEA_Hornfels_ANIM_Working") 
+			if (character.gameObject.name.Equals("Villager_HEA_Hornfels_ANIM_Working")
 				&& character._animator.runtimeAnimatorController.name == "Villager_Hornfels") continue;
-			
+
 			var detail = DetailBuilder.Make(gameObject, _sector, character.gameObject, new DetailInfo() { keepLoaded = true });
 			detail.transform.parent = gameObject.transform;
 			detail.transform.localPosition = Vector3.zero;
@@ -66,7 +66,7 @@ internal class QuantumAmalgam : QuantumObject
 			_characters.Add((detail.gameObject, false));
 			first = false;
 		}
-		foreach(var character in GameObject.FindObjectsOfType<TravelerController>())
+		foreach (var character in GameObject.FindObjectsOfType<TravelerController>())
 		{
 			var detail = DetailBuilder.Make(gameObject, _sector, character.gameObject, new DetailInfo() { keepLoaded = true });
 			detail.transform.parent = gameObject.transform;
@@ -82,8 +82,10 @@ internal class QuantumAmalgam : QuantumObject
 			else if (detail.name.Contains("Villager_HEA_Slate_ANIM_LogSit"))
 			{
 				// Add a chair
-				var chair = DetailBuilder.Make(detail, _sector, new DetailInfo() { 
-					path = "Props_HEA_RockingChair:Props_HEA_RockingChair", position = new Vector3(0, 0, -0.6f),
+				var chair = DetailBuilder.Make(detail, _sector, new DetailInfo()
+				{
+					path = "Props_HEA_RockingChair:Props_HEA_RockingChair",
+					position = new Vector3(0, 0, -0.6f),
 					keepLoaded = true
 				});
 				chair.transform.parent = detail.transform;
@@ -133,7 +135,8 @@ internal class QuantumAmalgam : QuantumObject
 
 			_characters.Add((detail.gameObject, false));
 		}
-		var nomai = DetailBuilder.Make(gameObject, _sector, new DetailInfo() { 
+		var nomai = DetailBuilder.Make(gameObject, _sector, new DetailInfo()
+		{
 			path = "QuantumMoon_Body/Sector_QuantumMoon/State_EYE/Interactables_EYEState/ConversationPivot/Character_NOM_Solanum/Nomai_ANIM_SkyWatching_Idle",
 			scale = 0.9f,
 			keepLoaded = true
@@ -146,7 +149,8 @@ internal class QuantumAmalgam : QuantumObject
 		nomaiController.StartWatchingPlayer();
 		_characters.Add((nomai.gameObject, true));
 
-		var ghostBird = DetailBuilder.Make(gameObject, _sector, new DetailInfo() { 
+		var ghostBird = DetailBuilder.Make(gameObject, _sector, new DetailInfo()
+		{
 			path = "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_2/Ghosts_DreamZone_2/GhostNodeMap_HornetHouse/Prefab_IP_GhostBird_Hornet/Ghostbird_IP_ANIM",
 			scale = 0.9f,
 			keepLoaded = true
@@ -157,7 +161,8 @@ internal class QuantumAmalgam : QuantumObject
 		ghostBird.SetActive(false);
 		_characters.Add((ghostBird.gameObject, true));
 
-		var ernesto = DetailBuilder.Make(gameObject, _sector, new DetailInfo() {
+		var ernesto = DetailBuilder.Make(gameObject, _sector, new DetailInfo()
+		{
 			path = "Anglerfish_Body/Beast_Anglerfish",
 			scale = 0.015f,
 			removeChildren = new string[] {
@@ -172,8 +177,9 @@ internal class QuantumAmalgam : QuantumObject
 		ernesto.SetActive(false);
 		_characters.Add((ernesto, true));
 
-		var geswaldo = DetailBuilder.Make(gameObject, _sector, new DetailInfo() { 
-			path = "GiantsDeep_Body/Sector_GD/Sector_GDInterior/Jellyfish_GDInterior/Jellyfish_Pivot (1)/Jellyfish_Body/Beast_GD_Jellyfish_v4", 
+		var geswaldo = DetailBuilder.Make(gameObject, _sector, new DetailInfo()
+		{
+			path = "GiantsDeep_Body/Sector_GD/Sector_GDInterior/Jellyfish_GDInterior/Jellyfish_Pivot (1)/Jellyfish_Body/Beast_GD_Jellyfish_v4",
 			scale = 0.05f,
 			keepLoaded = true
 		});

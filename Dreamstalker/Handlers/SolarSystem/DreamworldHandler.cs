@@ -12,7 +12,7 @@ namespace Dreamstalker.Handlers.SolarSystem;
 
 internal class DreamworldHandler : SolarSystemHandler
 {
-    private AstroObject _dreamworld;
+	private AstroObject _dreamworld;
 	private GameObject _sectorRoot;
 	private CageElevator _elevator;
 
@@ -20,24 +20,24 @@ internal class DreamworldHandler : SolarSystemHandler
 
 	protected override void OnSolarSystemAwake() { }
 
-    protected override void OnSolarSystemStart()
-    {
-        Main.Log("Dream World handler invoked.");
+	protected override void OnSolarSystemStart()
+	{
+		Main.Log("Dream World handler invoked.");
 
-        _dreamworld = AstroObjectLocator.GetAstroObject("Dreaming");
+		_dreamworld = AstroObjectLocator.GetAstroObject("Dreaming");
 
-        var farClipController = _dreamworld.gameObject.AddComponent<CameraLayerCullController>();
-        farClipController.SetSector(_dreamworld.GetRootSector());
+		var farClipController = _dreamworld.gameObject.AddComponent<CameraLayerCullController>();
+		farClipController.SetSector(_dreamworld.GetRootSector());
 
 		// Spawn point
 		var spawnGO = new GameObject("Spawn");
-        spawnGO.transform.parent = _dreamworld.transform;
-        spawnGO.transform.localPosition = new Vector3(93.9882f, 11.37577f, -30.61145f);
+		spawnGO.transform.parent = _dreamworld.transform;
+		spawnGO.transform.localPosition = new Vector3(93.9882f, 11.37577f, -30.61145f);
 		spawnGO.transform.localRotation = Quaternion.FromToRotation(Vector3.up, spawnGO.transform.localPosition.normalized);
 		spawnGO.layer = 8;
-        var spawn = spawnGO.AddComponent<SpawnPoint>();
-        spawn._isShipSpawn = false;
-        spawn._triggerVolumes = new OWTriggerVolume[] { _dreamworld.GetComponentInChildren<Sector>()._owTriggerVolume };
+		var spawn = spawnGO.AddComponent<SpawnPoint>();
+		spawn._isShipSpawn = false;
+		spawn._triggerVolumes = new OWTriggerVolume[] { _dreamworld.GetComponentInChildren<Sector>()._owTriggerVolume };
 
 		// Change floorbed material
 		_dreamworld.transform.Find("Sector/GroundSphere").GetComponent<MeshRenderer>().material =
@@ -67,7 +67,7 @@ internal class DreamworldHandler : SolarSystemHandler
 		{
 			// some of them are open so CLOSE THEM
 			rotatingDoor.Close();
-			
+
 			var doorTrigger = new GameObject("DoorTrigger");
 			doorTrigger.layer = LayerMask.NameToLayer("BasicEffectVolume");
 			doorTrigger.transform.parent = rotatingDoor.transform;
@@ -81,7 +81,7 @@ internal class DreamworldHandler : SolarSystemHandler
 
 			doorTrigger.AddComponent<AutoDoorTrigger>();
 		}
-		
+
 		// make light sensors (on elevator) work
 		foreach (var lightSensor in _dreamworld.GetComponentsInChildren<SingleLightSensor>())
 		{
@@ -97,7 +97,7 @@ internal class DreamworldHandler : SolarSystemHandler
 		destination.transform.rotation = _elevator.elevatorBody.GetRotation();
 		_elevator._destinations[0] = destination.AddComponent<ElevatorDestination>();
 
-        var islandPrefab = DZ1_A_Island_C_Prefab();
+		var islandPrefab = DZ1_A_Island_C_Prefab();
 
 		Random.InitState(420); //haha funny number
 
@@ -109,7 +109,7 @@ internal class DreamworldHandler : SolarSystemHandler
 		}
 
 		// Spawn stuff
-        var dwCampfire = _dreamworld.GetComponentInChildren<Campfire>();
+		var dwCampfire = _dreamworld.GetComponentInChildren<Campfire>();
 
 		dwCampfire.SetState(Campfire.State.UNLIT, true);
 
@@ -153,19 +153,19 @@ internal class DreamworldHandler : SolarSystemHandler
 		}
 	}
 
-    private GameObject MakeIsland(GameObject prefab, Vector3 pos, Vector3? rot = null)
-    {
-        var island = new DetailInfo()
-        {
-            path = prefab.name,
-            position = pos,
-            rotation = rot ?? Vector3.zero
+	private GameObject MakeIsland(GameObject prefab, Vector3 pos, Vector3? rot = null)
+	{
+		var island = new DetailInfo()
+		{
+			path = prefab.name,
+			position = pos,
+			rotation = rot ?? Vector3.zero
 		};
 		return DetailBuilder.Make(_dreamworld.gameObject, _dreamworld.GetRootSector(), island);
 	}
 
-    private GameObject DZ1_A_Island_C_Prefab()
-    {
+	private GameObject DZ1_A_Island_C_Prefab()
+	{
 		var name = "DZ1_A_Island_C";
 		var side = "A";
 		var pivotPos = new Vector3(0f, -1.85f, 0f);

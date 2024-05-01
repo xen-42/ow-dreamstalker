@@ -83,7 +83,7 @@ internal class EyeHandler : BaseHandler
 			DontDestroyOnLoad(MiniGalaxyPrefab);
 			DontDestroyOnLoad(EyePrefab);
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			Main.LogError($"Something went wrong when loading eye props. Going to the solar system without them. {e}");
 		}
@@ -93,7 +93,7 @@ internal class EyeHandler : BaseHandler
 		}
 	}
 
-	private void SetLayersRecursively (Transform transform, int layer)
+	private void SetLayersRecursively(Transform transform, int layer)
 	{
 		transform.gameObject.layer = layer;
 

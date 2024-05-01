@@ -33,9 +33,9 @@ internal class BrittleHollowHandler : SolarSystemHandler
 		var bhCampfire = GameObject.Find("BrittleHollow_Body/Sector_BH/Effects_HEA_Campfire/Controller_Campfire").GetComponent<Campfire>();
 
 		var bhCompletionVolume = GameObject.Find("BrittleHollow_Body/BlackHole_BH/BlackHoleVolume").AddComponent<BlackHoleCompletionVolume>();
-		
+
 		bhCompletionVolume.gameObject.GetComponent<BlackHoleVolume>().enabled = false;
-		
+
 		bhCompletionVolume.enabled = false;
 		bhCompletionVolume.SetCampfire(bhCampfire);
 		bhCompletionVolume.NextPlanet = AstroObject.Name.CaveTwin;
