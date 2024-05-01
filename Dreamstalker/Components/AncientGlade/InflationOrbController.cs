@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Dreamstalker.Components.AncientGlade;
 
-internal class InflationOrbController : MonoBehaviour 
+internal class InflationOrbController : MonoBehaviour
 {
 	private Light _inflationLight, _possibilityLight;
 	private float timer;
@@ -29,7 +29,7 @@ internal class InflationOrbController : MonoBehaviour
 		_sfx = gameObject.transform.Find("SFXAudioSource").GetComponent<OWAudioSource>();
 		_sfx._audioSource.enabled = true;
 
-		_volume = new ("EndVolume")
+		_volume = new("EndVolume")
 		{
 			layer = LayerMask.NameToLayer("BasicEffectVolume")
 		};

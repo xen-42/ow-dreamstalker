@@ -7,16 +7,16 @@ namespace Dreamstalker.Handlers.SolarSystem;
 
 internal class QuantumMoonHandler : SolarSystemHandler
 {
-    private AstroObject _quantumMoon;
+	private AstroObject _quantumMoon;
 	private GameObject _sectorRoot;
 
 	protected override void BeforePlanetCreation() { }
 
 	protected override void OnSolarSystemAwake() { }
 
-    protected override void OnSolarSystemStart()
-    {
-        Main.Log("Quantum Moon handler invoked.");
+	protected override void OnSolarSystemStart()
+	{
+		Main.Log("Quantum Moon handler invoked.");
 
 		_quantumMoon = AstroObjectLocator.GetAstroObject("Custom Quantum Moon");
 
@@ -24,13 +24,13 @@ internal class QuantumMoonHandler : SolarSystemHandler
 
 		// Spawn point
 		var spawnGO = new GameObject("Spawn");
-        spawnGO.transform.parent = _quantumMoon.transform;
+		spawnGO.transform.parent = _quantumMoon.transform;
 		spawnGO.transform.localPosition = new Vector3(-12.61486f, -73.44263f, -2.316277f);
 		spawnGO.transform.localRotation = Quaternion.FromToRotation(Vector3.up, spawnGO.transform.localPosition.normalized);
 		spawnGO.layer = 8;
-        var spawn = spawnGO.AddComponent<SpawnPoint>();
-        spawn._isShipSpawn = false;
-        spawn._triggerVolumes = new OWTriggerVolume[] { _quantumMoon.GetComponentInChildren<Sector>()._owTriggerVolume };
+		var spawn = spawnGO.AddComponent<SpawnPoint>();
+		spawn._isShipSpawn = false;
+		spawn._triggerVolumes = new OWTriggerVolume[] { _quantumMoon.GetComponentInChildren<Sector>()._owTriggerVolume };
 
 		_sectorRoot = _quantumMoon.GetRootSector().gameObject;
 		_sectorRoot.SetActive(false);

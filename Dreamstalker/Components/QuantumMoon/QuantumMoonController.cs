@@ -14,28 +14,28 @@ internal class QuantumMoonController : SectoredMonoBehaviour
 	private GameObject[] _shrines;
 
 	private Campfire BHCampfire, DBCampfire, GDCampfire, HTCampfire, THCampfire;
-    private Campfire[] _campfires;
+	private Campfire[] _campfires;
 
-    private CharacterDialogueTree _note;
+	private CharacterDialogueTree _note;
 
 	private DreamstalkerController _dreamstalker;
 
-    public enum QMState
-    {
-        BrittleHollow,
-        DarkBramble,
-        Eye,
-        GiantsDeep,
-        HourglassTwins,
-        TimberHearth
-    }
+	public enum QMState
+	{
+		BrittleHollow,
+		DarkBramble,
+		Eye,
+		GiantsDeep,
+		HourglassTwins,
+		TimberHearth
+	}
 
-    public override void Awake()
-    {
-        base.Awake();
+	public override void Awake()
+	{
+		base.Awake();
 
-        try
-        {
+		try
+		{
 			BHState = transform.Find("Sector/State_BH")?.gameObject;
 			DBState = transform.Find("Sector/State_DB")?.gameObject;
 			EyeState = transform.Find("Sector/State_EYE")?.gameObject;
@@ -65,9 +65,9 @@ internal class QuantumMoonController : SectoredMonoBehaviour
 			_shrines = new GameObject[]
 			{
 				BHShrine,
-				DBShrine, 
+				DBShrine,
 				GDShrine,
-				HTShrine, 
+				HTShrine,
 				THShrine
 			};
 
@@ -100,21 +100,21 @@ internal class QuantumMoonController : SectoredMonoBehaviour
 
 			PlayerSpawnUtil.Spawn.AddListener(OnSpawn);
 		}
-        catch(Exception e)
-        {
-            Main.LogError($"Couldn't awake quantum moon controller : {e}");
-        }
-    }
+		catch (Exception e)
+		{
+			Main.LogError($"Couldn't awake quantum moon controller : {e}");
+		}
+	}
 
-    public override void OnDestroy()
-    {
-        base.OnDestroy();
+	public override void OnDestroy()
+	{
+		base.OnDestroy();
 
 		BHCampfire.OnCampfireStateChange -= BHCampfire_OnCampfireStateChange;
 		DBCampfire.OnCampfireStateChange -= DBCampfire_OnCampfireStateChange;
 		GDCampfire.OnCampfireStateChange -= GDCampfire_OnCampfireStateChange;
 		HTCampfire.OnCampfireStateChange -= HTCampfire_OnCampfireStateChange;
-        THCampfire.OnCampfireStateChange -= THCampfire_OnCampfireStateChange;
+		THCampfire.OnCampfireStateChange -= THCampfire_OnCampfireStateChange;
 
 		if (_dreamstalker != null)
 		{
@@ -128,19 +128,19 @@ internal class QuantumMoonController : SectoredMonoBehaviour
 		PlayerSpawnUtil.Spawn.RemoveListener(OnSpawn);
 	}
 
-    private void OnSpawn(AstroObject.Name planet)
-    {
-        if (planet == AstroObject.Name.QuantumMoon)
-        {
-            SetState(QMState.TimberHearth);
-        }
-    }
+	private void OnSpawn(AstroObject.Name planet)
+	{
+		if (planet == AstroObject.Name.QuantumMoon)
+		{
+			SetState(QMState.TimberHearth);
+		}
+	}
 
 	private void BHCampfire_OnCampfireStateChange(Campfire fire)
-    {
-        BHNomai.SetActive(fire._state != Campfire.State.LIT);
-        BHShrine.SetActive(fire._state == Campfire.State.LIT);
-    }
+	{
+		BHNomai.SetActive(fire._state != Campfire.State.LIT);
+		BHShrine.SetActive(fire._state == Campfire.State.LIT);
+	}
 
 	private void DBCampfire_OnCampfireStateChange(Campfire fire)
 	{
@@ -167,9 +167,9 @@ internal class QuantumMoonController : SectoredMonoBehaviour
 	}
 
 	private void SetUpShrine(int index, QMState nextState, GameObject state, ref GameObject shrine)
-    {
-        try
-        {
+	{
+		try
+		{
 			var compass = state.GetComponentInChildren<QuantumMoonCompass>();
 			compass._degrees = index * 180f / 5f;
 			shrine = compass.transform.parent.gameObject;
@@ -189,45 +189,45 @@ internal class QuantumMoonController : SectoredMonoBehaviour
 			volume.transform.parent = shrine.transform;
 			volume.transform.localPosition = Vector3.zero;
 		}
-        catch(Exception e)
-        {
-            Main.LogError($"Failed to setup shrine {state.name} : {e}");
-        }
-    }
+		catch (Exception e)
+		{
+			Main.LogError($"Failed to setup shrine {state.name} : {e}");
+		}
+	}
 
-    private void Trigger_OnEntry(QMState nextState, GameObject hitObj)
-    {
-        if (hitObj == Locator.GetPlayerDetector())
-        {
-            SetState(nextState);
+	private void Trigger_OnEntry(QMState nextState, GameObject hitObj)
+	{
+		if (hitObj == Locator.GetPlayerDetector())
+		{
+			SetState(nextState);
 
 			PlayerEffectController.Instance.Blink();
 
 			AudioUtility.PlayOneShot(AudioType.EyeVortexExit);
 
 			_dreamstalker?.DespawnImmediate();
-        }
-    }
+		}
+	}
 
-    public void SetState(QMState state)
-    {
-        BHState.SetActive(state == QMState.BrittleHollow);
-        DBState.SetActive(state == QMState.DarkBramble);
-        EyeState.SetActive(state == QMState.Eye);
-        GDState.SetActive(state == QMState.GiantsDeep);
-        HTState.SetActive(state == QMState.HourglassTwins);
-        THState.SetActive(state == QMState.TimberHearth);
+	public void SetState(QMState state)
+	{
+		BHState.SetActive(state == QMState.BrittleHollow);
+		DBState.SetActive(state == QMState.DarkBramble);
+		EyeState.SetActive(state == QMState.Eye);
+		GDState.SetActive(state == QMState.GiantsDeep);
+		HTState.SetActive(state == QMState.HourglassTwins);
+		THState.SetActive(state == QMState.TimberHearth);
 
-        _note.gameObject.SetActive(state == QMState.TimberHearth);
+		_note.gameObject.SetActive(state == QMState.TimberHearth);
 
-        foreach (var campfire in _campfires)
-        {
-            campfire.SetState(Campfire.State.UNLIT, true);
-        }
+		foreach (var campfire in _campfires)
+		{
+			campfire.SetState(Campfire.State.UNLIT, true);
+		}
 
 		foreach (var shrine in _shrines)
 		{
 			shrine.SetActive(false);
 		}
-    }
+	}
 }

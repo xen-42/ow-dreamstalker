@@ -55,7 +55,8 @@ internal static class PlayerSpawnUtil
 		Locator.GetPauseCommandListener().AddPauseCommandLock();
 
 		// Have to do it next update idk why
-		Delay.FireOnNextUpdate(() => {
+		Delay.FireOnNextUpdate(() =>
+		{
 			OWInput.ChangeInputMode(InputMode.Character);
 			Locator.GetPauseCommandListener().RemovePauseCommandLock();
 		});

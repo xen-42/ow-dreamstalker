@@ -85,7 +85,7 @@ public class DreamstalkerData
 		}
 	}
 
-	public class DreamstalkerProfile 
+	public class DreamstalkerProfile
 	{
 		public string LastPlanet { get; set; }
 	}

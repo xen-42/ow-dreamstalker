@@ -25,9 +25,10 @@ internal class GiantsDeepHandler : SolarSystemHandler
 		};
 
 		// Stop all tornados
-		foreach (var torando in GameObject.FindObjectsOfType<TornadoController>())
+		foreach (var tornado in GameObject.FindObjectsOfType<TornadoController>())
 		{
-			GameObject.Destroy(torando.gameObject);
+			// Set inactive instead of destroying for better mod compat (would throw errors with GE installed)
+			tornado.gameObject.SetActive(false);
 		}
 
 		// Ambient light

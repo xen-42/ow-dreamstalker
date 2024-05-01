@@ -15,8 +15,8 @@ internal class PlanetHandler : SolarSystemHandler
 
 	protected override void OnSolarSystemAwake() { }
 
-    protected override void OnSolarSystemStart()
-    {
+	protected override void OnSolarSystemStart()
+	{
 		// Turn prompts back on
 		GUIMode.SetRenderMode(GUIMode.RenderMode.FPS);
 
@@ -39,8 +39,8 @@ internal class PlanetHandler : SolarSystemHandler
 		AddPlanetFog(AstroObject.Name.GiantsDeep, 9f, Color.black, 1000);
 	}
 
-    private static void AddPlanetEffects(AstroObject.Name planetName, bool oxygen, bool rain, float maxHeight, float surfaceHeight)
-    {
+	private static void AddPlanetEffects(AstroObject.Name planetName, bool oxygen, bool rain, float maxHeight, float surfaceHeight)
+	{
 		var config = new PlanetConfig()
 		{
 			Atmosphere = new AtmosphereModule()
@@ -66,6 +66,6 @@ internal class PlanetHandler : SolarSystemHandler
 		};
 
 		var planet = Locator.GetAstroObject(planetName);
-		FogBuilder.Make(planet.gameObject, planet.GetRootSector(), atmosphere);
+		FogBuilder.Make(planet.gameObject, planet.GetRootSector(), atmosphere, Main.Instance);
 	}
 }

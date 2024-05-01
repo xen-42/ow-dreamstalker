@@ -21,7 +21,7 @@ internal class DebugCommands : MonoBehaviour
 				if (Keyboard.current[Key.Numpad7].wasReleasedThisFrame) PlayerSpawnUtil.SpawnAt(AstroObject.Name.DreamWorld);
 				if (Keyboard.current[Key.Numpad8].wasReleasedThisFrame) PlayerSpawnUtil.SpawnAt(AstroObject.Name.QuantumMoon);
 				if (Keyboard.current[Key.Numpad9].wasReleasedThisFrame) PlayerSpawnUtil.SpawnAt(AstroObject.Name.Eye);
-			} 
+			}
 		}
 	}
 }
