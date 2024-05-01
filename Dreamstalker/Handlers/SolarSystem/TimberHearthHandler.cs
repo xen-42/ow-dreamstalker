@@ -63,6 +63,9 @@ internal class TimberHearthHandler : SolarSystemHandler
         // Get rid of the ship
         Locator.GetShipBody().gameObject.SetActive(false);
 
+		// Set ship reference to null for better mod compat, so they don't try to use the mod
+        Locator._shipBody = null;
+
         // Lower ambient light
         th.transform.Find("AmbientLight_TH").GetComponent<Light>().intensity = 0.6f;
 
