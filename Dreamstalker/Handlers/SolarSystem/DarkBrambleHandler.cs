@@ -76,7 +76,7 @@ internal class DarkBrambleHandler : SolarSystemHandler
 		PlayerSpawnUtil.SpawnAt(AstroObject.Name.DarkBramble);
 
 		// Keep the previous location loaded
-		var streamingGroup = Locator.GetAstroObject(PlayerSpawnUtil.LastSpawn).GetComponentInChildren<StreamingGroup>();
+		var streamingGroup = Locator.GetAstroObject(PlayerSpawnUtil.LastSpawn)?.GetComponentInChildren<StreamingGroup>();
 		if (streamingGroup != null && PlayerSpawnUtil.LastSpawn != AstroObject.Name.DreamWorld)
 		{
 			_streamingGroup = streamingGroup;

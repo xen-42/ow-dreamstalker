@@ -8,7 +8,7 @@ namespace Dreamstalker.Utility;
 
 internal static class SpawnWrapper
 {
-	public static string GhostBirdPath => "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_2/Ghosts_DreamZone_2/GhostNodeMap_HornetHouse/Prefab_IP_GhostBird_Hornet/Ghostbird_IP_ANIM";
+	public static string GhostBirdPath => "DreamWorld_Body/Sector_DreamWorld/Sector_DreamZone_1/Ghosts_DreamZone_1/GhostNodeMap_Forest/Prefab_IP_GhostBird_Pazuzu/Ghostbird_IP_ANIM";
 	public static string MummyPath => "RingWorld_Body/Sector_RingInterior/Sector_Zone2/Sector_DreamFireLighthouse_Zone2_AnimRoot/Interactibles_DreamFireLighthouse_Zone2/DreamFireChamber/MummyCircle/MummyPivot (HORNET)/Mummy_IP_Anim";
 	public static string SkeletonPath => "QuantumMoon_Body/Sector_QuantumMoon/State_DB/Interactables_DBState/QuantumDeadNomaiSuit/State_4/Prefab_NOM_Dead_Suit_GroundC/Character_NOM_Dead_Suit";
 
@@ -92,7 +92,7 @@ internal static class SpawnWrapper
 		}
 
 		// Disables the artifact
-		_dreamstalkerPrefab.GetComponentInChildren<DreamLanternController>().gameObject.SetActive(false);
+		_dreamstalkerPrefab.GetComponentInChildren<DreamLanternController>(true)?.gameObject?.SetActive(false);
 
 		GameObject.Destroy(skeleton);
 
