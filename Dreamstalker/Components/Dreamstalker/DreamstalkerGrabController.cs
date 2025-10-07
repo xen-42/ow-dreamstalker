@@ -1,4 +1,5 @@
 ﻿using Dreamstalker.Components.Player;
+using System.Linq;
 using UnityEngine;
 
 namespace Dreamstalker.Components.Dreamstalker;
@@ -33,7 +34,7 @@ internal class DreamstalkerGrabController : MonoBehaviour
 		holdPointGO.transform.localRotation = Quaternion.Euler(340.1717f, 128.0523f, 9.4284f);
 		_holdPoint = transform;
 
-		_liftPoint = transform.parent.Find("Ghostbird_Skin_01:Ghostbird_Rig_V01:Base/Ghostbird_Skin_01:Ghostbird_Rig_V01:Root/Ghostbird_Skin_01:Ghostbird_Rig_V01:Spine01/Ghostbird_Skin_01:Ghostbird_Rig_V01:Spine02/Ghostbird_Skin_01:Ghostbird_Rig_V01:Spine03/Ghostbird_Skin_01:Ghostbird_Rig_V01:Spine04/Ghostbird_Skin_01:Ghostbird_Rig_V01:ClavicleL/Ghostbird_Skin_01:Ghostbird_Rig_V01:ShoulderL/Ghostbird_Skin_01:Ghostbird_Rig_V01:ElbowL/Ghostbird_Skin_01:Ghostbird_Rig_V01:WristL/Ghostbird_Skin_01:Ghostbird_Rig_V01:HandAttachL/LiftHoldTarget").transform;
+		_liftPoint = transform.parent.GetComponentsInChildren<Transform>(true).FirstOrDefault(x => x.name == "LiftHoldTarget").transform;
 
 		_effects = transform.parent.GetComponent<DreamstalkerEffectsController>();
 		_effects.SnapNeck.AddListener(OnSnapNeck);
